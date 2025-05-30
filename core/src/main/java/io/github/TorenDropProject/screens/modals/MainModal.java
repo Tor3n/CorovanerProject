@@ -13,7 +13,6 @@ public class MainModal implements ModalScreen {
     public MainModal(Main main, SpriteBatch spriteBatch) {
         this.spriteBatch = spriteBatch;
         this.assetManager = main.assetManager;
-        main.assetManager.load("MainModal.png", Texture.class);
     }
 
     public void draw() {

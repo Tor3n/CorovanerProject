@@ -1,10 +1,15 @@
 package io.github.TorenDropProject;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import io.github.TorenDropProject.pregame.SplashPseudoScreen;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import io.github.TorenDropProject.entities.EntityLoader;
+import io.github.TorenDropProject.entities.PlayerEntityCreator;
+import io.github.TorenDropProject.pregame.SplashScreenAssetLoader;
 import io.github.TorenDropProject.screens.BattleScreen;
 import io.github.TorenDropProject.screens.MenuScreen;
 import io.github.TorenDropProject.screens.ScreenManager;
@@ -19,8 +24,13 @@ public class Main implements ApplicationListener {
     public AssetManager assetManager;
     SpriteBatch spriteBatch;
     boolean assetsLoaded = false;
-    SplashPseudoScreen splashPseudoScreen;
+    boolean postLoadedComplete = false;
+    SplashScreenAssetLoader splashPseudoScreen;
     ScreenManager screenManager;
+    public FitViewport viewport;
+    Engine ashleyEngine;
+    OrthographicCamera camera;
+    PlayerEntityCreator player;
 
     @Override
     public void create() {
@@ -28,30 +38,45 @@ public class Main implements ApplicationListener {
         worldHeight=10;
 
         assetManager = new AssetManager();
-        splashPseudoScreen = new SplashPseudoScreen(assetManager).loadSplash();
+        splashPseudoScreen = new SplashScreenAssetLoader(assetManager).loadAssets();
+
         screenManager = new ScreenManager();
         spriteBatch = new SpriteBatch();
-        BattleScreen battleScreen = new BattleScreen(this, spriteBatch);
+        camera = new OrthographicCamera();
+        viewport = new FitViewport(Main.worldWidth, Main.worldHeight, camera);
+
+    }
+
+    private boolean postloaded(){
+
+        ashleyEngine = new Engine();
+        player = new PlayerEntityCreator(ashleyEngine, assetManager);
+        player.createPlayer();
+
+        BattleScreen battleScreen = new BattleScreen(this, spriteBatch, assetManager, player.loader.testWalk);
         MenuScreen menuScreen = new MenuScreen(this, spriteBatch);
         ModalScreen mainModal = new MainModal(this, spriteBatch);
 
         screenManager.addGameScreen(battleScreen);
         screenManager.addGameScreen(menuScreen);
-
         screenManager.addModalScreen(mainModal);
-
-
         screenManager.setScreen(battleScreen);
+
+        return true;
     }
 
     @Override
     public void resize(int width, int height) {
         // Resize your application here. The parameters represent the new window size.
-        screenManager.resize(width, height);
+        viewport.update(width, height, true);
     }
 
     @Override
     public void render() {
+        //This better be here.
+        viewport.apply();
+        spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
+
         preload();
         screenManager.render(Gdx.graphics.getDeltaTime());
     }
@@ -59,7 +84,9 @@ public class Main implements ApplicationListener {
     //TODO refactor preloadScreen
     private void preload() {
         if (assetsLoaded){
-            //drawMenue();
+            if(!postLoadedComplete){
+                postLoadedComplete = postloaded();
+            }
         } else {
             assetsLoaded = splashPseudoScreen.preloaded(spriteBatch);
         }

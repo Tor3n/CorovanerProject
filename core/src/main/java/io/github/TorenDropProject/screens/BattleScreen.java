@@ -2,18 +2,16 @@ package io.github.TorenDropProject.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import io.github.TorenDropProject.Main;
 import io.github.TorenDropProject.assetsLoaders.GrasslandTestBackGroundLoader;
 import io.github.TorenDropProject.screens.modals.ModalScreen;
@@ -21,8 +19,10 @@ import io.github.TorenDropProject.screens.modals.ModalScreen;
 public class BattleScreen implements GameScreen{
     private SpriteBatch spriteBatch;
     Texture bucketTexture;
-    FitViewport viewport;
-    Sprite bucketSprite;
+
+    Sprite playerTestSprite;
+
+
     Vector2 touchPos;
     Rectangle bucketRectangle;
     Rectangle dropRectangle;
@@ -31,24 +31,26 @@ public class BattleScreen implements GameScreen{
     BitmapFont guiFont;
     ShapeRenderer shapeRenderer;
     DrawModal modalDraw;
+    AssetManager assetManager;
+    Main main;
+    Animation<TextureRegion> walkAnimation;
 
     float screenWidth;
     float screenHeight;
     int missed;
     int collected;
     boolean modalActive = false;
+    private float stateTime = 0f;
 
-    public BattleScreen(Main main, SpriteBatch spriteBatch) {
+    public BattleScreen(Main main, SpriteBatch spriteBatch, AssetManager assetManager, Array<TextureRegion> testWalk) {
+        this.main = main;
+        this.assetManager = assetManager;
         this.spriteBatch = spriteBatch;
         grassLandBackground = new GrasslandTestBackGroundLoader(main.assetManager);
-        bucketTexture = new Texture("bucket.png");
 
-
-        OrthographicCamera camera = new OrthographicCamera();
-        viewport = new FitViewport(Main.worldWidth, Main.worldHeight, camera);
-
-        bucketSprite = new Sprite(bucketTexture);
-        bucketSprite.setSize(1,1);
+        playerTestSprite = new Sprite(testWalk.get(0));
+        playerTestSprite.setSize(0.34f*3,0.7f*3);
+        walkAnimation = new Animation<>(0.1f, testWalk);
 
         touchPos = new Vector2();
 
@@ -77,7 +79,7 @@ public class BattleScreen implements GameScreen{
 
     @Override
     public void resize(int width, int height) {
-        viewport.update(width, height, true);
+
     }
 
     @Override
@@ -103,8 +105,8 @@ public class BattleScreen implements GameScreen{
 
     private void simpleGuiCreate(){
 
-        screenWidth = viewport.getScreenWidth();
-        screenHeight = viewport.getScreenHeight();
+        screenWidth = main.viewport.getScreenWidth();
+        screenHeight = main.viewport.getScreenHeight();
 
         guiSpriteBatch.begin();
         guiFont.draw(guiSpriteBatch, "collected: "+collected,screenWidth-screenWidth/6, screenHeight-screenHeight/30);
@@ -119,14 +121,14 @@ public class BattleScreen implements GameScreen{
 
     private void logic() {
 
-        float worldWidthIns = viewport.getWorldWidth();
-        float worldHeightIns = viewport.getWorldHeight();
+        float worldWidthIns = main.viewport.getWorldWidth();
+        float worldHeightIns = main.viewport.getWorldHeight();
 
-        float bucketWidth = bucketSprite.getWidth();
-        float bucketHeight = bucketSprite.getHeight();
+        float bucketWidth = playerTestSprite.getWidth();
+        float bucketHeight = playerTestSprite.getHeight();
 
-        bucketSprite.setX(MathUtils.clamp(bucketSprite.getX(), 0, worldWidthIns - bucketWidth));
-        bucketRectangle.set(bucketSprite.getX(), bucketSprite.getY(), bucketWidth, bucketHeight);
+        playerTestSprite.setX(MathUtils.clamp(playerTestSprite.getX(), 0, worldWidthIns - bucketWidth));
+        bucketRectangle.set(playerTestSprite.getX(), playerTestSprite.getY(), bucketWidth, bucketHeight);
 
         float delta = Gdx.graphics.getDeltaTime();
 
@@ -156,10 +158,10 @@ public class BattleScreen implements GameScreen{
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            bucketSprite.translateX(speed*delta);
+            playerTestSprite.translateX(speed*delta);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            bucketSprite.translateX(- speed*delta);
+            playerTestSprite.translateX(- speed*delta);
         }
 
         //mouseTouch
@@ -167,20 +169,22 @@ public class BattleScreen implements GameScreen{
             //Gdx.input.getX();
             //Gdx.input.getY();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY());
-            viewport.unproject(touchPos);
-            bucketSprite.setCenterX(touchPos.x);
-            bucketSprite.setCenterY(touchPos.y);
+            main.viewport.unproject(touchPos);
+            playerTestSprite.setCenterX(touchPos.x);
+            playerTestSprite.setCenterY(touchPos.y);
         }
     }
 
     private void draw() {
         ScreenUtils.clear(Color.BLACK);
-        viewport.apply();
-        spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
+        stateTime += Gdx.graphics.getDeltaTime();
+        TextureRegion currentFrame = walkAnimation.getKeyFrame(stateTime, true);
 
         spriteBatch.begin();
         grassLandBackground.drawBackGround(spriteBatch);
-        bucketSprite.draw(spriteBatch);
+        playerTestSprite.draw(spriteBatch);
+        spriteBatch.draw(currentFrame,0,0, 0.34f*3,0.7f*3);
+
         if (modalActive){
             //modalDraw.drawModal();
             ModalScreen screen = ScreenManager.manager.getModalScreen(0);

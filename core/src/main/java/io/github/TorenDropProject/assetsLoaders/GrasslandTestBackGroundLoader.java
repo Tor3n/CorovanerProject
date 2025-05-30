@@ -16,8 +16,7 @@ public class GrasslandTestBackGroundLoader {
     TextureRegion[][] testStaticMap;
 
     public GrasslandTestBackGroundLoader(AssetManager assetManager){
-        texture = new Texture("grassland_tiles.png");
-        assetManager.load("grassland_tiles.png", Texture.class);
+        texture = assetManager.get("grassland_tiles.png", Texture.class);
 
         TESTregion = new TextureRegion(texture, 0,0,63,31);
 
