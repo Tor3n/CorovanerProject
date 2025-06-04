@@ -2,23 +2,35 @@ package io.github.TorenDropProject.entities;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Texture;
 import io.github.TorenDropProject.entities.textureLoaders.MsDOSFalloutLeatherJacketLoader;
 
-public class PlayerEntityCreator {
-    Engine ashleyEngine;
+public class PlayerEntityFactory {
+    public Engine ashleyEngine;
     public MsDOSFalloutLeatherJacketLoader loader;
     AssetManager assetManager;
 
-    public PlayerEntityCreator(Engine ashleyEngine, AssetManager assetManager) {
+    public PlayerEntityFactory(Engine ashleyEngine, AssetManager assetManager) {
         this.ashleyEngine = ashleyEngine;
         this.assetManager = assetManager;
     }
 
     public Entity createPlayer(){
         Entity player = new Entity();
-        //So, if you try to add two instances of the same class, the second one will replace the old one.
+
         player.add(new PositionComponent());
         player.add(new VelocityComponent());
+        player.add(new TextureComponent());
+
+        PositionComponent position = player.getComponent(PositionComponent.class);
+        position.x = 1;
+        position.y = 1;
+
+        TextureComponent textureComp = player.getComponent(TextureComponent.class);
+
+        textureComp.texture = assetManager.get("drop.png", Texture.class);
+
+
         ashleyEngine.addEntity(player);
         loader = new MsDOSFalloutLeatherJacketLoader(assetManager);
         return player;
@@ -46,7 +58,11 @@ public class PlayerEntityCreator {
     }
 
     public class VelocityComponent implements Component {
-        public float x = 0.0f;
-        public float y = 0.0f;
+        public float dx = 0.0f;
+        public float dy = 0.0f;
+    }
+
+    public class TextureComponent implements Component {
+        public Texture texture;
     }
 }

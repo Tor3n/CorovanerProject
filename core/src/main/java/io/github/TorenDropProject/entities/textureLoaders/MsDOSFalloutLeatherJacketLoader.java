@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
+import java.util.ArrayList;
+
 public class MsDOSFalloutLeatherJacketLoader {
 
-    public Array<TextureRegion> testWalk;
+    public ArrayList<Array<TextureRegion>> testWalk;
 
     TextureAtlas atlas;
     public MsDOSFalloutLeatherJacketLoader(AssetManager assetManager) {
@@ -25,14 +27,19 @@ public class MsDOSFalloutLeatherJacketLoader {
         }
 
         int walkColumns = 6, walkRows = 8;
-        TextureRegion[][] walkFramesArray = walkingRegion.split(42, 70); // Width=59, Height=52
+        TextureRegion[][] walkFramesArray = walkingRegion.split(44, 69); // Width=59, Height=52
 
-        Array<TextureRegion> walkFrames = new Array<>();
+        ArrayList<Array<TextureRegion>> result = new ArrayList<>();
+
+
         for (TextureRegion[] row : walkFramesArray) {
-            walkFrames.addAll(row);
+            Array<TextureRegion> walkFramesOneDirection = new Array<>();
+            walkFramesOneDirection.addAll(row);
+            result.add(walkFramesOneDirection);
         }
 
-        testWalk = walkFrames;
+
+        testWalk = result;
     }
 
 }

@@ -1,14 +1,19 @@
 package io.github.TorenDropProject;
 
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import io.github.TorenDropProject.entities.EntityLoader;
-import io.github.TorenDropProject.entities.PlayerEntityCreator;
+import io.github.TorenDropProject.entities.MovementSystem;
+import io.github.TorenDropProject.entities.PlayerEntityFactory;
+import io.github.TorenDropProject.entities.RenderSystem;
 import io.github.TorenDropProject.pregame.SplashScreenAssetLoader;
 import io.github.TorenDropProject.screens.BattleScreen;
 import io.github.TorenDropProject.screens.MenuScreen;
@@ -30,7 +35,9 @@ public class Main implements ApplicationListener {
     public FitViewport viewport;
     Engine ashleyEngine;
     OrthographicCamera camera;
-    PlayerEntityCreator player;
+    PlayerEntityFactory entityFactory;
+    MovementSystem playerMovementSystem;
+    RenderSystem playerRenderSystem;
 
     @Override
     public void create() {
@@ -44,16 +51,18 @@ public class Main implements ApplicationListener {
         spriteBatch = new SpriteBatch();
         camera = new OrthographicCamera();
         viewport = new FitViewport(Main.worldWidth, Main.worldHeight, camera);
-
     }
 
     private boolean postloaded(){
-
         ashleyEngine = new Engine();
-        player = new PlayerEntityCreator(ashleyEngine, assetManager);
-        player.createPlayer();
+        entityFactory = new PlayerEntityFactory(ashleyEngine, assetManager);
+        //entityFactory.createPlayer();
+        playerMovementSystem = new MovementSystem();
+        playerRenderSystem = new RenderSystem(spriteBatch);
+        ashleyEngine.addSystem(playerMovementSystem);
+        ashleyEngine.addSystem(playerRenderSystem);
 
-        BattleScreen battleScreen = new BattleScreen(this, spriteBatch, assetManager, player.loader.testWalk);
+        BattleScreen battleScreen = new BattleScreen(this, spriteBatch, assetManager, entityFactory);
         MenuScreen menuScreen = new MenuScreen(this, spriteBatch);
         ModalScreen mainModal = new MainModal(this, spriteBatch);
 
@@ -76,14 +85,13 @@ public class Main implements ApplicationListener {
         //This better be here.
         viewport.apply();
         spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
-
         preload();
         screenManager.render(Gdx.graphics.getDeltaTime());
     }
 
-    //TODO refactor preloadScreen
     private void preload() {
         if (assetsLoaded){
+            ScreenUtils.clear(Color.BLACK);
             if(!postLoadedComplete){
                 postLoadedComplete = postloaded();
             }
