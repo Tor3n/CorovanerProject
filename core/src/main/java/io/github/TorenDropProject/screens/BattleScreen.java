@@ -9,25 +9,33 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.kotcrab.vis.ui.widget.VisTextButton;
 import io.github.TorenDropProject.Main;
 import io.github.TorenDropProject.assetsLoaders.GrasslandTestBackGroundLoader;
 import io.github.TorenDropProject.entities.PlayerEntityFactory;
-import io.github.TorenDropProject.entities.textureLoaders.Directions;
+import io.github.TorenDropProject.entities.systems.InputSystem;
+import io.github.TorenDropProject.screens.GUIs.BattleScreenGUI;
 import io.github.TorenDropProject.screens.modals.ModalScreen;
 
 
 public class BattleScreen implements GameScreen{
+    BattleScreenGUI battleScreenGUI;
+    private ScreenManager screenManager;
+
     private SpriteBatch spriteBatch;
+    private Stage stage;
 
     public Engine ashleyEngine;
     Vector2 touchPos;
     GrasslandTestBackGroundLoader grassLandBackground;
-    SpriteBatch guiSpriteBatch;
-    BitmapFont guiFont;
+    SpriteBatch devConsoleSpriteBatch;
+    BitmapFont devConsoleFont;
     ShapeRenderer shapeRenderer;
-    AssetManager assetManager;
-    Main main;
+    public AssetManager assetManager;
+    public Main main;
     Entity player;
 
     float screenWidth;
@@ -38,22 +46,25 @@ public class BattleScreen implements GameScreen{
     private float stateTime = 0f;
     boolean devconsole = false;
 
-    public BattleScreen(Main main, SpriteBatch spriteBatch, AssetManager assetManager, PlayerEntityFactory playerFactory) {
+    public BattleScreen(Main main, SpriteBatch spriteBatch, AssetManager assetManager, PlayerEntityFactory playerFactory, ScreenManager screenManager) {
         this.main = main;
         this.assetManager = assetManager;
         this.spriteBatch = spriteBatch;
+        this.screenManager = screenManager;
         this.ashleyEngine = playerFactory.ashleyEngine;
+        this.battleScreenGUI = new BattleScreenGUI(this, screenManager, spriteBatch);
+
         grassLandBackground = new GrasslandTestBackGroundLoader(main.assetManager);
         player = playerFactory.createPlayer();
 
         touchPos = new Vector2();
 
-        guiSpriteBatch = new SpriteBatch();
-        guiFont = new BitmapFont();
-        guiFont.setColor(Color.GREEN);
-
+        devConsoleSpriteBatch = new SpriteBatch();
+        devConsoleFont = new BitmapFont();
+        devConsoleFont.setColor(Color.GREEN);
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setColor(Color.GREEN);
+
     }
 
     @Override
@@ -66,6 +77,7 @@ public class BattleScreen implements GameScreen{
         input();
         logic();
         draw();
+        battleScreenGUI.draw(Gdx.graphics.getDeltaTime());
 
         if(devconsole){
             simpleGuiCreate();
@@ -102,11 +114,11 @@ public class BattleScreen implements GameScreen{
         screenWidth = main.viewport.getScreenWidth();
         screenHeight = main.viewport.getScreenHeight();
 
-        guiSpriteBatch.begin();
-        guiFont.draw(guiSpriteBatch, "collected: "+collected,screenWidth-screenWidth/6, screenHeight-screenHeight/30);
-        guiFont.draw(guiSpriteBatch, "missed: "+missed,screenWidth-screenWidth/6, screenHeight-screenHeight/13);
-        guiFont.draw(guiSpriteBatch, "fps: "+ Gdx.graphics.getFramesPerSecond(),screenWidth-screenWidth/6, screenHeight-screenHeight/7);
-        guiSpriteBatch.end();
+        devConsoleSpriteBatch.begin();
+        devConsoleFont.draw(devConsoleSpriteBatch, "collected: "+collected,screenWidth-screenWidth/6, screenHeight-screenHeight/30);
+        devConsoleFont.draw(devConsoleSpriteBatch, "missed: "+missed,screenWidth-screenWidth/6, screenHeight-screenHeight/13);
+        devConsoleFont.draw(devConsoleSpriteBatch, "fps: "+ Gdx.graphics.getFramesPerSecond(),screenWidth-screenWidth/6, screenHeight-screenHeight/7);
+        devConsoleSpriteBatch.end();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.rect(screenWidth-screenWidth/5,screenHeight-screenHeight/6-2,screenWidth/5,screenHeight/6);
@@ -124,15 +136,7 @@ public class BattleScreen implements GameScreen{
      */
     private void input() {
 
-
-
-
-        float speed = 4f;
-        float delta = Gdx.graphics.getDeltaTime();
-
-        PlayerEntityFactory.VelocityComponent velocity = player.getComponent(PlayerEntityFactory.VelocityComponent.class);
-        velocity.dx = 0f;
-        velocity.dy = 0f;
+        InputSystem inputSystem = ashleyEngine.getSystem(InputSystem.class);
 
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             modalActive = !modalActive;
@@ -141,19 +145,6 @@ public class BattleScreen implements GameScreen{
             } catch (Exception e){
             }
         }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            velocity.dy=+10;
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            velocity.dy=-10;
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            velocity.dx=-10;
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            velocity.dx=+10;
-        }
         if(Gdx.input.isKeyPressed(Input.Keys.F2)){
             devconsole = !devconsole;
             try{
@@ -161,33 +152,36 @@ public class BattleScreen implements GameScreen{
             } catch (Exception e){
                 e.printStackTrace();
             }
+        }
+
+        if(isInputEntityInput()){
+            inputSystem.setInputEntityRelated(true);
+        } else {
 
         }
 
-        //mouseTouch
-        if(Gdx.input.isTouched()){
-            //Gdx.input.getX();
-            //Gdx.input.getY();
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY());
-            main.viewport.unproject(touchPos);
-            //playerTestSprite.setCenterX(touchPos.x);
-            //playerTestSprite.setCenterY(touchPos.y);
-        }
+
+    }
+
+    private boolean isInputEntityInput() {
+        return true;
     }
 
     private void draw() {
         ScreenUtils.clear(Color.BLACK);
-        stateTime += Gdx.graphics.getDeltaTime();
+        float delta = Gdx.graphics.getDeltaTime();
+        stateTime += delta;
 
         spriteBatch.begin();
         grassLandBackground.drawBackGround(spriteBatch);
-        ashleyEngine.update(Gdx.graphics.getDeltaTime());
+        ashleyEngine.update(delta);
 
         if (modalActive){
             ModalScreen screen = ScreenManager.manager.getModalScreen(0);
             screen.draw();
         }
         spriteBatch.end();
+
     }
 
 

@@ -22,7 +22,8 @@ public class SplashScreenAssetLoader {
         assetManager.load("grassland_tiles.png", Texture.class);
         assetManager.load("MainModal.png", Texture.class);
         assetManager.load("drop.png",Texture.class);
-        assetManager.load("./output/leatherJacket.atlas", TextureAtlas.class);
+        assetManager.load("MainMenu.png",Texture.class);
+
         return this;
     }
 

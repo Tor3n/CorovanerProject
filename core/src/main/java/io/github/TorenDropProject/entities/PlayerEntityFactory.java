@@ -7,7 +7,7 @@ import io.github.TorenDropProject.entities.textureLoaders.MsDOSFalloutLeatherJac
 
 public class PlayerEntityFactory {
     public Engine ashleyEngine;
-    public MsDOSFalloutLeatherJacketLoader loader;
+    //public MsDOSFalloutLeatherJacketLoader loader;
     AssetManager assetManager;
 
     public PlayerEntityFactory(Engine ashleyEngine, AssetManager assetManager) {
@@ -23,23 +23,21 @@ public class PlayerEntityFactory {
         player.add(new TextureComponent());
 
         PositionComponent position = player.getComponent(PositionComponent.class);
-        position.x = 1;
-        position.y = 1;
+        position.x = 16;
+        position.y = 10;
 
         TextureComponent textureComp = player.getComponent(TextureComponent.class);
 
         textureComp.texture = assetManager.get("drop.png", Texture.class);
 
-
         ashleyEngine.addEntity(player);
-        loader = new MsDOSFalloutLeatherJacketLoader(assetManager);
+        //loader = new MsDOSFalloutLeatherJacketLoader(assetManager);
         return player;
     }
 
     public void getComponents(Entity entity){
         ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
         ComponentMapper<VelocityComponent> vm = ComponentMapper.getFor(VelocityComponent.class);
-
 
         PositionComponent position = pm.get(entity);
         VelocityComponent velocity = vm.get(entity);

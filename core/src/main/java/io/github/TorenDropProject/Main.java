@@ -1,22 +1,22 @@
 package io.github.TorenDropProject;
 
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import io.github.TorenDropProject.entities.MovementSystem;
+import com.kotcrab.vis.ui.VisUI;
+import io.github.TorenDropProject.entities.systems.InputSystem;
+import io.github.TorenDropProject.entities.systems.MovementSystem;
 import io.github.TorenDropProject.entities.PlayerEntityFactory;
-import io.github.TorenDropProject.entities.RenderSystem;
+import io.github.TorenDropProject.entities.systems.RenderSystem;
 import io.github.TorenDropProject.pregame.SplashScreenAssetLoader;
 import io.github.TorenDropProject.screens.BattleScreen;
-import io.github.TorenDropProject.screens.MenuScreen;
+import io.github.TorenDropProject.screens.MainMenuScreen;
 import io.github.TorenDropProject.screens.ScreenManager;
 import io.github.TorenDropProject.screens.modals.MainModal;
 import io.github.TorenDropProject.screens.modals.ModalScreen;
@@ -34,15 +34,18 @@ public class Main implements ApplicationListener {
     ScreenManager screenManager;
     public FitViewport viewport;
     Engine ashleyEngine;
-    OrthographicCamera camera;
+    public OrthographicCamera camera;
     PlayerEntityFactory entityFactory;
     MovementSystem playerMovementSystem;
     RenderSystem playerRenderSystem;
+    InputSystem playerInputSystem;
 
     @Override
     public void create() {
-        worldWidth=16;
-        worldHeight=10;
+        worldWidth=32;
+        worldHeight=20;
+
+        VisUI.load();
 
         assetManager = new AssetManager();
         splashPseudoScreen = new SplashScreenAssetLoader(assetManager).loadAssets();
@@ -56,18 +59,20 @@ public class Main implements ApplicationListener {
     private boolean postloaded(){
         ashleyEngine = new Engine();
         entityFactory = new PlayerEntityFactory(ashleyEngine, assetManager);
-        //entityFactory.createPlayer();
         playerMovementSystem = new MovementSystem();
         playerRenderSystem = new RenderSystem(spriteBatch);
+        playerInputSystem = new InputSystem();
+
         ashleyEngine.addSystem(playerMovementSystem);
         ashleyEngine.addSystem(playerRenderSystem);
+        ashleyEngine.addSystem(playerInputSystem);
 
-        BattleScreen battleScreen = new BattleScreen(this, spriteBatch, assetManager, entityFactory);
-        MenuScreen menuScreen = new MenuScreen(this, spriteBatch);
+        BattleScreen battleScreen = new BattleScreen(this, spriteBatch, assetManager, entityFactory, screenManager);
+        //MainMenuScreen mainMenuScreen = new MainMenuScreen(this, spriteBatch, assetManager, screenManager);
         ModalScreen mainModal = new MainModal(this, spriteBatch);
 
         screenManager.addGameScreen(battleScreen);
-        screenManager.addGameScreen(menuScreen);
+        //screenManager.addGameScreen(mainMenuScreen);
         screenManager.addModalScreen(mainModal);
         screenManager.setScreen(battleScreen);
 
@@ -114,6 +119,7 @@ public class Main implements ApplicationListener {
     public void dispose() {
         assetManager.clear();
         spriteBatch.dispose();
+        VisUI.dispose();
         // Destroy application's resources here.
     }
 }

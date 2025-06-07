@@ -1,10 +1,11 @@
-package io.github.TorenDropProject.entities;
+package io.github.TorenDropProject.entities.systems;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import io.github.TorenDropProject.entities.PlayerEntityFactory;
 
 public class RenderSystem extends IteratingSystem {
     private SpriteBatch batch;
@@ -23,7 +24,7 @@ public class RenderSystem extends IteratingSystem {
         PlayerEntityFactory.TextureComponent textureComponent = entity.getComponent(PlayerEntityFactory.TextureComponent.class);
         if(playerSprite==null){
             playerSprite = new Sprite(textureComponent.texture);
-            playerSprite.setSize(1,1);
+            playerSprite.setSize(2,4);
         }
 
         playerSprite.setX(position.x);
