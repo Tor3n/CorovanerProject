@@ -35,7 +35,7 @@ public class Main implements ApplicationListener {
     public FitViewport viewport;
     Engine ashleyEngine;
     public OrthographicCamera camera;
-    PlayerEntityFactory entityFactory;
+    public PlayerEntityFactory entityFactory;
     MovementSystem playerMovementSystem;
     RenderSystem playerRenderSystem;
     InputSystem playerInputSystem;
@@ -68,13 +68,13 @@ public class Main implements ApplicationListener {
         ashleyEngine.addSystem(playerInputSystem);
 
         BattleScreen battleScreen = new BattleScreen(this, spriteBatch, assetManager, entityFactory, screenManager);
-        //MainMenuScreen mainMenuScreen = new MainMenuScreen(this, spriteBatch, assetManager, screenManager);
+        MainMenuScreen mainMenuScreen = new MainMenuScreen(this, spriteBatch, assetManager, screenManager);
         ModalScreen mainModal = new MainModal(this, spriteBatch);
 
-        screenManager.addGameScreen(battleScreen);
-        //screenManager.addGameScreen(mainMenuScreen);
+        screenManager.addGameScreen("BattleScreen", battleScreen);
+        screenManager.addGameScreen("MainMenu", mainMenuScreen);
         screenManager.addModalScreen(mainModal);
-        screenManager.setScreen(battleScreen);
+        screenManager.setScreen(mainMenuScreen);
 
         return true;
     }

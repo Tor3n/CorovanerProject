@@ -9,12 +9,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import io.github.TorenDropProject.screens.BattleScreen;
 import io.github.TorenDropProject.screens.GameScreen;
 import io.github.TorenDropProject.screens.MainMenuScreen;
 import io.github.TorenDropProject.screens.ScreenManager;
 
 public class MainScreenGUI {
-    GameScreen gameScreen;
+    MainMenuScreen gameScreen;
     private Stage stage;
     private ScreenManager screenManager;
     ScreenViewport guiMainViewPort;
@@ -36,7 +37,7 @@ public class MainScreenGUI {
         mainContinueButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                //screenManager.setScreen(new MainMenuScreen(mainMenuScreen.main, spriteBatch, mainMenuScreen.assetManager, screenManager));
+                screenManager.setScreen(screenManager.getGameScreen("BattleScreen"));
             }
         });
 
@@ -51,15 +52,13 @@ public class MainScreenGUI {
             }
         });
 
-
         stage.addActor(mainContinueButton);
         stage.addActor(settings);
 
-        Gdx.input.setInputProcessor(stage);
     }
 
-
     public void draw(float delta) {
+        Gdx.input.setInputProcessor(stage);
         stage.act(delta);
         stage.draw();
     }

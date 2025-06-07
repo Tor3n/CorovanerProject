@@ -39,8 +39,7 @@ public class BattleScreenGUI {
             public void clicked(InputEvent event, float x, float y)
             {
                 System.out.println("main menu clicked");
-
-                screenManager.setScreen(new MainMenuScreen(battleScreen.main, spriteBatch, battleScreen.assetManager, screenManager));
+                screenManager.setScreen(screenManager.getGameScreen("MainMenu"));
             }
         });
 
@@ -74,11 +73,11 @@ public class BattleScreenGUI {
         stage.addActor(mainMenuButton);
         stage.addActor(inventory);
         stage.addActor(character);
-        Gdx.input.setInputProcessor(stage);
+
     }
 
-
     public void draw(float delta) {
+        Gdx.input.setInputProcessor(stage);
         stage.act(delta);
         stage.draw();
     }

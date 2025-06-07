@@ -4,15 +4,16 @@ package io.github.TorenDropProject.screens;
 import io.github.TorenDropProject.screens.modals.ModalScreen;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ScreenManager {
     static ScreenManager manager;
     private GameScreen currentScreen;
-    ArrayList<GameScreen> gameScreens;
+    HashMap<String, GameScreen> gameScreens;
     ArrayList<ModalScreen> modalScreens;
 
     public ScreenManager() {
-        gameScreens = new ArrayList<>();
+        gameScreens = new HashMap<>();
         modalScreens = new ArrayList<>();
         manager = this;
     }
@@ -21,8 +22,12 @@ public class ScreenManager {
         return manager;
     }
 
-    public void addGameScreen(GameScreen gameScreen) {
-        this.gameScreens.add(gameScreen);
+    public void addGameScreen(String name, GameScreen gameScreen) {
+        this.gameScreens.put(name, gameScreen);
+    }
+
+    public GameScreen getGameScreen(String name) {
+        return this.gameScreens.get(name);
     }
 
     public void addModalScreen(ModalScreen modalScreen) {
