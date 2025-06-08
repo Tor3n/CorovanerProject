@@ -68,12 +68,12 @@ public class BattleScreenGUI {
         TextArea logTextArea = new TextArea("", skin);
         logTextArea.setPosition((stage.getWidth()/2f)-(300/2f),0);
         logTextArea.setSize(300, 100);
+        logTextArea.setDisabled(true);
 
         stage.addActor(logTextArea);
         stage.addActor(mainMenuButton);
         stage.addActor(inventory);
         stage.addActor(character);
-
     }
 
     public void draw(float delta) {

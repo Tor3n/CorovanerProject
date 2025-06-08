@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import io.github.TorenDropProject.Main;
@@ -37,6 +38,7 @@ public class MainMenuScreen implements GameScreen{
 
     @Override
     public void render(float delta) {
+
         spriteBatch.begin();
         spriteBatch.draw(background,0,0,main.viewport.getWorldWidth(),main.viewport.getWorldHeight());
         spriteBatch.end();
@@ -45,9 +47,12 @@ public class MainMenuScreen implements GameScreen{
 
     }
 
+
+
     @Override
     public void resize(int width, int height) {
         main.viewport.update(width, height, true);
+        mainScreenGUI.resize(width, height);
     }
 
     @Override

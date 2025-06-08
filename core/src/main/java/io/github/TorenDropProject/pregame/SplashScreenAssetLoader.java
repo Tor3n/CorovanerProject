@@ -2,6 +2,7 @@ package io.github.TorenDropProject.pregame;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -18,11 +19,13 @@ public class SplashScreenAssetLoader {
     }
 
     public SplashScreenAssetLoader loadAssets(){
+
         assetManager.load("Splash.png", Texture.class);
         assetManager.load("grassland_tiles.png", Texture.class);
         assetManager.load("MainModal.png", Texture.class);
         assetManager.load("drop.png",Texture.class);
         assetManager.load("MainMenu.png",Texture.class);
+        assetManager.load("cursors/arrowCursor3.png", Pixmap.class);
 
         return this;
     }
@@ -30,7 +33,6 @@ public class SplashScreenAssetLoader {
 
     public boolean preloaded(SpriteBatch spriteBatch){
         //17 = 60 fps during loading
-
 
         if (assetManager.isLoaded("Splash.png")) {
             texture = assetManager.get("Splash.png", Texture.class);
@@ -41,7 +43,8 @@ public class SplashScreenAssetLoader {
 
         if(assetManager.update(5)){
             if(assetManager.isFinished()){
-                System.out.println("*****************All your caravans are loaded*****************");
+
+                System.out.println("*****************All your caravans are belongs to us now (loaded)*****************");
                 assetManager.unload("Splash.png");
                 return true;
             }

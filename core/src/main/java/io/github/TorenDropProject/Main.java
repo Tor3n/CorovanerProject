@@ -5,7 +5,9 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -39,6 +41,7 @@ public class Main implements ApplicationListener {
     MovementSystem playerMovementSystem;
     RenderSystem playerRenderSystem;
     InputSystem playerInputSystem;
+    Pixmap arrowPixmap;
 
     @Override
     public void create() {
@@ -57,6 +60,8 @@ public class Main implements ApplicationListener {
     }
 
     private boolean postloaded(){
+        createCursors();
+
         ashleyEngine = new Engine();
         entityFactory = new PlayerEntityFactory(ashleyEngine, assetManager);
         playerMovementSystem = new MovementSystem();
@@ -121,5 +126,12 @@ public class Main implements ApplicationListener {
         spriteBatch.dispose();
         VisUI.dispose();
         // Destroy application's resources here.
+    }
+
+
+    private void createCursors() {
+        arrowPixmap = assetManager.get("cursors/arrowCursor3.png", Pixmap.class);
+        Cursor arrowCursor = Gdx.graphics.newCursor(arrowPixmap, 0, 0);
+        Gdx.graphics.setCursor(arrowCursor);
     }
 }
