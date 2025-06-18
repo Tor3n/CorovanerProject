@@ -26,7 +26,6 @@ public class MainMenuScreen implements GameScreen{
         this.spriteBatch = spriteBatch;
         this.background = assetManager.get("MainMenu.png", Texture.class);
         this.screenManager = screenManager;
-
         this.mainScreenGUI = new MainScreenGUI(this, screenManager, spriteBatch);
     }
 

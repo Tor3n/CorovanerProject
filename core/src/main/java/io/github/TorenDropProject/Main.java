@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.kotcrab.vis.ui.VisUI;
 import io.github.TorenDropProject.entities.systems.InputSystem;
@@ -26,6 +27,9 @@ import io.github.TorenDropProject.screens.modals.ModalScreen;
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main implements ApplicationListener {
 
+    private int screenW;
+    private int screenH;
+
     public static int worldWidth;
     public static int worldHeight;
     public AssetManager assetManager;
@@ -34,7 +38,7 @@ public class Main implements ApplicationListener {
     boolean postLoadedComplete = false;
     SplashScreenAssetLoader splashPseudoScreen;
     ScreenManager screenManager;
-    public FitViewport viewport;
+    public FillViewport viewport;
     Engine ashleyEngine;
     public OrthographicCamera camera;
     public PlayerEntityFactory entityFactory;
@@ -43,8 +47,14 @@ public class Main implements ApplicationListener {
     InputSystem playerInputSystem;
     Pixmap arrowPixmap;
 
+    public Main(int w, int h){
+        screenW = w;
+        screenH = h;
+    }
+
     @Override
     public void create() {
+
         worldWidth=32;
         worldHeight=20;
 
@@ -56,7 +66,7 @@ public class Main implements ApplicationListener {
         screenManager = new ScreenManager();
         spriteBatch = new SpriteBatch();
         camera = new OrthographicCamera();
-        viewport = new FitViewport(Main.worldWidth, Main.worldHeight, camera);
+        viewport = new FillViewport(Main.worldWidth, Main.worldHeight, camera);
     }
 
     private boolean postloaded(){
