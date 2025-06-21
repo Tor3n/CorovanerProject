@@ -65,8 +65,6 @@ public class Main implements ApplicationListener {
 
         screenManager = new ScreenManager();
         spriteBatch = new SpriteBatch();
-        camera = new OrthographicCamera();
-        viewport = new FillViewport(Main.worldWidth, Main.worldHeight, camera);
     }
 
     private boolean postloaded(){
@@ -82,9 +80,12 @@ public class Main implements ApplicationListener {
         ashleyEngine.addSystem(playerRenderSystem);
         ashleyEngine.addSystem(playerInputSystem);
 
-        BattleScreen battleScreen = new BattleScreen(this, spriteBatch, assetManager, entityFactory, screenManager);
+        //menu screens
         MainMenuScreen mainMenuScreen = new MainMenuScreen(this, spriteBatch, assetManager, screenManager);
         ModalScreen mainModal = new MainModal(this, spriteBatch);
+
+        //battle screens
+        BattleScreen battleScreen = new BattleScreen(this, spriteBatch, assetManager, entityFactory, screenManager);
 
         screenManager.addGameScreen("BattleScreen", battleScreen);
         screenManager.addGameScreen("MainMenu", mainMenuScreen);
@@ -96,17 +97,15 @@ public class Main implements ApplicationListener {
 
     @Override
     public void resize(int width, int height) {
-        // Resize your application here. The parameters represent the new window size.
-        viewport.update(width, height, true);
+        screenManager.resize(width, height);
     }
 
     @Override
     public void render() {
-        //This better be here.
-        viewport.apply();
-        spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
         preload();
-        screenManager.render(Gdx.graphics.getDeltaTime());
+        if(postLoadedComplete){
+            screenManager.render(Gdx.graphics.getDeltaTime());
+        }
     }
 
     private void preload() {

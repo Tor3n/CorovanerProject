@@ -1,6 +1,7 @@
 package io.github.TorenDropProject.screens.GUIs;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -30,11 +31,14 @@ public class MainScreenGUI {
     TextArea infoTextArea;
     TextButton mainContinueButton;
     TextButton settingsButton;
+    AssetManager assetManager;
+    private Texture background;
 
-    public MainScreenGUI(MainMenuScreen mainMenuScreen, ScreenManager screenManager, SpriteBatch spriteBatch) {
+    public MainScreenGUI(MainMenuScreen mainMenuScreen, ScreenManager screenManager, SpriteBatch spriteBatch, AssetManager assetManager) {
         this.gameScreen = mainMenuScreen;
         this.screenManager = screenManager;
         this.spriteBatch = spriteBatch;
+        this.assetManager = assetManager;
         guiMainViewPort = new ScreenViewport();
         stage = new Stage(guiMainViewPort);
         Skin skin = new Skin(Gdx.files.internal("uiskin.json"));

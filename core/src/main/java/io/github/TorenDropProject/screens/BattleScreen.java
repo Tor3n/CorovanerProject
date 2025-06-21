@@ -6,12 +6,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 import io.github.TorenDropProject.Main;
 import io.github.TorenDropProject.assetsLoaders.GrasslandTestBackGroundLoader;
@@ -45,6 +48,8 @@ public class BattleScreen implements GameScreen{
     boolean modalActive = false;
     private float stateTime = 0f;
     boolean devconsole = false;
+    public Viewport viewport;
+    public OrthographicCamera camera;
 
     public BattleScreen(Main main, SpriteBatch spriteBatch, AssetManager assetManager, PlayerEntityFactory playerFactory, ScreenManager screenManager) {
         this.main = main;
@@ -65,6 +70,12 @@ public class BattleScreen implements GameScreen{
         shapeRenderer = new ShapeRenderer();
         shapeRenderer.setColor(Color.GREEN);
 
+        camera = new OrthographicCamera();
+        viewport = new FillViewport(Main.worldWidth, Main.worldHeight, camera);
+
+        //IT IS SUPER IMPORTANT!!!! Without it the screen goes black
+        viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
+
     }
 
     @Override
@@ -74,6 +85,9 @@ public class BattleScreen implements GameScreen{
 
     @Override
     public void render(float delta) {
+        viewport.apply();
+        spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
+
         input();
         logic();
         draw();
@@ -111,8 +125,8 @@ public class BattleScreen implements GameScreen{
 
     private void simpleGuiCreate(){
 
-        screenWidth = main.viewport.getScreenWidth();
-        screenHeight = main.viewport.getScreenHeight();
+        screenWidth = viewport.getScreenWidth();
+        screenHeight = viewport.getScreenHeight();
 
         devConsoleSpriteBatch.begin();
         devConsoleFont.draw(devConsoleSpriteBatch, "collected: "+collected,screenWidth-screenWidth/6, screenHeight-screenHeight/30);
@@ -126,8 +140,8 @@ public class BattleScreen implements GameScreen{
     }
 
     private void logic() {
-        float worldWidthIns = main.viewport.getWorldWidth();
-        float worldHeightIns = main.viewport.getWorldHeight();
+        float worldWidthIns = viewport.getWorldWidth();
+        float worldHeightIns = viewport.getWorldHeight();
         float delta = Gdx.graphics.getDeltaTime();
     }
 

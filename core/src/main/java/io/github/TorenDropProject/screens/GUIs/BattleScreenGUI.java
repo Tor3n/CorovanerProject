@@ -9,10 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.kotcrab.vis.ui.VisUI;
 import io.github.TorenDropProject.screens.BattleScreen;
 import io.github.TorenDropProject.screens.GameScreen;
-import io.github.TorenDropProject.screens.MainMenuScreen;
 import io.github.TorenDropProject.screens.ScreenManager;
 
 public class BattleScreenGUI {
