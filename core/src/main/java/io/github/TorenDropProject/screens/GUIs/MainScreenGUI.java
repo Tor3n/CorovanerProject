@@ -39,6 +39,8 @@ public class MainScreenGUI {
         this.screenManager = screenManager;
         this.spriteBatch = spriteBatch;
         this.assetManager = assetManager;
+
+        //pixel for pixel - ideal for GUI
         guiMainViewPort = new ScreenViewport();
         stage = new Stage(guiMainViewPort);
         Skin skin = new Skin(Gdx.files.internal("uiskin.json"));

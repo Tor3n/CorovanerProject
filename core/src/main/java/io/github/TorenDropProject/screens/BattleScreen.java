@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -71,11 +72,10 @@ public class BattleScreen implements GameScreen{
         shapeRenderer.setColor(Color.GREEN);
 
         camera = new OrthographicCamera();
-        viewport = new FillViewport(Main.worldWidth, Main.worldHeight, camera);
+        viewport = new ExtendViewport(Main.worldWidth, Main.worldHeight, camera);
 
         //IT IS SUPER IMPORTANT!!!! Without it the screen goes black
         viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
-
     }
 
     @Override

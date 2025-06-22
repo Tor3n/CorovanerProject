@@ -24,6 +24,8 @@ public class BattleScreenGUI {
         this.gameScreen = battleScreen;
         this.screenManager = screenManager;
         this.spriteBatch = spriteBatch;
+
+        //pixel for pixel - ideal for GUI
         guiViewPort = new ScreenViewport();
         stage = new Stage(guiViewPort);
         Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
