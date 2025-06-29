@@ -24,7 +24,7 @@ public class RenderSystem extends IteratingSystem {
         PlayerEntityFactory.TextureComponent textureComponent = entity.getComponent(PlayerEntityFactory.TextureComponent.class);
         if(playerSprite==null){
             playerSprite = new Sprite(textureComponent.texture);
-            playerSprite.setSize(2,4);
+            playerSprite.setSize(1.5f,3f);
         }
 
         playerSprite.setX(position.x);

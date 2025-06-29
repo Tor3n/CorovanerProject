@@ -23,7 +23,7 @@ public class SplashScreenAssetLoader {
         assetManager.load("Splash.png", Texture.class);
         assetManager.load("grassland_tiles.png", Texture.class);
         assetManager.load("MainModal.png", Texture.class);
-        assetManager.load("drop.png",Texture.class);
+        assetManager.load("char.png",Texture.class);
         assetManager.load("MainMenu.png",Texture.class);
         assetManager.load("cursors/arrowCursor3.png", Pixmap.class);
 

@@ -10,8 +10,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.kotcrab.vis.ui.VisUI;
 import io.github.TorenDropProject.entities.systems.InputSystem;
 import io.github.TorenDropProject.entities.systems.MovementSystem;
@@ -38,7 +36,6 @@ public class Main implements ApplicationListener {
     boolean postLoadedComplete = false;
     SplashScreenAssetLoader splashPseudoScreen;
     ScreenManager screenManager;
-    public FillViewport viewport;
     Engine ashleyEngine;
     public OrthographicCamera camera;
     public PlayerEntityFactory entityFactory;

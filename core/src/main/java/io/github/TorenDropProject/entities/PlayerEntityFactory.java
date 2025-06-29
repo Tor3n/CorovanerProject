@@ -23,12 +23,12 @@ public class PlayerEntityFactory {
         player.add(new TextureComponent());
 
         PositionComponent position = player.getComponent(PositionComponent.class);
-        position.x = 16;
-        position.y = 10;
+        position.x = 25;
+        position.y = -10;
 
         TextureComponent textureComp = player.getComponent(TextureComponent.class);
 
-        textureComp.texture = assetManager.get("drop.png", Texture.class);
+        textureComp.texture = assetManager.get("char.png", Texture.class);
 
         ashleyEngine.addEntity(player);
         //loader = new MsDOSFalloutLeatherJacketLoader(assetManager);

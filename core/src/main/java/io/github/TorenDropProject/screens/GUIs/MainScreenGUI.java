@@ -32,7 +32,7 @@ public class MainScreenGUI {
     TextButton mainContinueButton;
     TextButton settingsButton;
     AssetManager assetManager;
-    private Texture background;
+
 
     public MainScreenGUI(MainMenuScreen mainMenuScreen, ScreenManager screenManager, SpriteBatch spriteBatch, AssetManager assetManager) {
         this.gameScreen = mainMenuScreen;

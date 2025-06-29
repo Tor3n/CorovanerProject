@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
@@ -98,6 +100,9 @@ public class BattleScreen implements GameScreen{
         viewport = new ExtendViewport(Main.worldWidth, Main.worldHeight, camera);
 
         mapRenderer.setView(camera);
+
+        //TODO scan for init position (special tile)
+        MapLayers layers = currentMap.getLayers();
 
         //IT IS SUPER IMPORTANT!!!! Without it the screen goes black
         viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
