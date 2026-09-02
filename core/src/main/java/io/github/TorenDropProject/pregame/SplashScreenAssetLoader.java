@@ -1,12 +1,12 @@
 package io.github.TorenDropProject.pregame;
 
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import io.github.TorenDropProject.Main;
 
 public class SplashScreenAssetLoader {
@@ -20,12 +20,14 @@ public class SplashScreenAssetLoader {
 
     public SplashScreenAssetLoader loadAssets(){
 
+        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         assetManager.load("Splash.png", Texture.class);
         assetManager.load("grassland_tiles.png", Texture.class);
         assetManager.load("MainModal.png", Texture.class);
         assetManager.load("char.png",Texture.class);
         assetManager.load("MainMenu.png",Texture.class);
         assetManager.load("cursors/arrowCursor3.png", Pixmap.class);
+        assetManager.load("maps/mountinPass.tmx", TiledMap.class);
 
         return this;
     }
@@ -50,8 +52,6 @@ public class SplashScreenAssetLoader {
             }
         }
 
-        float progress = assetManager.getProgress();
-        System.out.println("progress: "+progress);
         return false;
     }
 }

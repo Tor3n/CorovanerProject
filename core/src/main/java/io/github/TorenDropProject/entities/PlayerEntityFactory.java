@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import io.github.TorenDropProject.entities.textureLoaders.MsDOSFalloutLeatherJacketLoader;
 
 public class PlayerEntityFactory {
-    public Engine ashleyEngine;
+    private final Engine ashleyEngine;
     //public MsDOSFalloutLeatherJacketLoader loader;
     AssetManager assetManager;
 
@@ -50,17 +50,17 @@ public class PlayerEntityFactory {
         //    .get();
     }
 
-    public class PositionComponent implements Component {
+    public static class PositionComponent implements Component {
         public float x = 0.0f;
         public float y = 0.0f;
     }
 
-    public class VelocityComponent implements Component {
+    public static class VelocityComponent implements Component {
         public float dx = 0.0f;
         public float dy = 0.0f;
     }
 
-    public class TextureComponent implements Component {
+    public static class TextureComponent implements Component {
         public Texture texture;
     }
 }

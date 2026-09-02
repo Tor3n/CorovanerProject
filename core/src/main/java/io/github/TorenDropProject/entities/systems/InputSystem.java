@@ -8,17 +8,12 @@ import com.badlogic.gdx.Input;
 import io.github.TorenDropProject.entities.PlayerEntityFactory;
 
 public class InputSystem extends IteratingSystem {
-    private boolean isInputEntityRelated;
-
     public InputSystem() {
-        super(Family.all(PlayerEntityFactory.PositionComponent.class).get());
+        super(Family.all(PlayerEntityFactory.VelocityComponent.class).get(), 0);
     }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        float speed = 4f;
-        float delta = Gdx.graphics.getDeltaTime();
-
         PlayerEntityFactory.VelocityComponent velocity = entity.getComponent(PlayerEntityFactory.VelocityComponent.class);
         velocity.dx = 0f;
         velocity.dy = 0f;
@@ -46,9 +41,4 @@ public class InputSystem extends IteratingSystem {
             //playerTestSprite.setCenterY(touchPos.y);
         }
     }
-
-    public void setInputEntityRelated(boolean inputEntityRelated) {
-        this.isInputEntityRelated = inputEntityRelated;
-    }
-
 }

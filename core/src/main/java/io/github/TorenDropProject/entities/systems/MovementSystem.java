@@ -8,7 +8,10 @@ import io.github.TorenDropProject.entities.PlayerEntityFactory;
 public class MovementSystem extends IteratingSystem {
 
     public MovementSystem() {
-        super(Family.all(PlayerEntityFactory.PositionComponent.class).get());
+        super(Family.all(
+            PlayerEntityFactory.PositionComponent.class,
+            PlayerEntityFactory.VelocityComponent.class
+        ).get(), 1);
     }
 
     @Override

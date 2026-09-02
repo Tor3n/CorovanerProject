@@ -1,12 +1,9 @@
 package io.github.TorenDropProject.screens.GUIs;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -16,34 +13,27 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import io.github.TorenDropProject.screens.BattleScreen;
-import io.github.TorenDropProject.screens.GameScreen;
-import io.github.TorenDropProject.screens.MainMenuScreen;
 import io.github.TorenDropProject.screens.ScreenManager;
 
 public class MainScreenGUI {
-    MainMenuScreen gameScreen;
     private Stage stage;
     private ScreenManager screenManager;
     ScreenViewport guiMainViewPort;
-    private SpriteBatch spriteBatch;
     private final int border = 5 ;
     TextArea infoTextArea;
     TextButton mainContinueButton;
     TextButton settingsButton;
-    AssetManager assetManager;
+    private Skin skin;
+    private Texture infoBackgroundTexture;
 
 
-    public MainScreenGUI(MainMenuScreen mainMenuScreen, ScreenManager screenManager, SpriteBatch spriteBatch, AssetManager assetManager) {
-        this.gameScreen = mainMenuScreen;
+    public MainScreenGUI(ScreenManager screenManager) {
         this.screenManager = screenManager;
-        this.spriteBatch = spriteBatch;
-        this.assetManager = assetManager;
 
         //pixel for pixel - ideal for GUI
         guiMainViewPort = new ScreenViewport();
         stage = new Stage(guiMainViewPort);
-        Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+        skin = new Skin(Gdx.files.internal("uiskin.json"));
 
         createTesGroundButton(skin);
 
@@ -105,32 +95,34 @@ public class MainScreenGUI {
         Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         pixmap.setColor(new Color(1, 1, 1, 0.2f)); // Semi-transparent white
         pixmap.fill();
-        textFieldStyle.background = new TextureRegionDrawable(new Texture(pixmap));
+        infoBackgroundTexture = new Texture(pixmap);
+        textFieldStyle.background = new TextureRegionDrawable(infoBackgroundTexture);
         pixmap.dispose();
 
     }
 
     public void draw(float delta) {
-        input();
-
-        Gdx.input.setInputProcessor(stage);
         stage.act(delta);
         stage.draw();
     }
 
-    private void input() {
-        if(Gdx.input.isTouched()){
-            System.out.println(">> x: "+Gdx.input.getX()+", y: "+Gdx.input.getY());
+    public void show() {
+        Gdx.input.setInputProcessor(stage);
+    }
 
-            Vector2 touchPos = new Vector2();
-            touchPos.set(Gdx.input.getX(), Gdx.input.getY());
-            Vector2 unprojectedTouch = guiMainViewPort.unproject(touchPos);
-
-            System.out.println("unprojected: "+unprojectedTouch);
+    public void hide() {
+        if (Gdx.input.getInputProcessor() == stage) {
+            Gdx.input.setInputProcessor(null);
         }
     }
 
     public void resize(int width, int height) {
         guiMainViewPort.update(width, height, true);
+    }
+
+    public void dispose() {
+        stage.dispose();
+        skin.dispose();
+        infoBackgroundTexture.dispose();
     }
 }

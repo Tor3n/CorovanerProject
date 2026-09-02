@@ -2,16 +2,10 @@ package io.github.TorenDropProject.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import io.github.TorenDropProject.Main;
 import io.github.TorenDropProject.screens.GUIs.MainScreenGUI;
@@ -20,17 +14,13 @@ public class MainMenuScreen implements GameScreen{
 
     private SpriteBatch spriteBatch;
     private Texture background;
-    public ScreenManager screenManager;
-    public Main main;
     public MainScreenGUI mainScreenGUI;
     public Viewport mainScreenViewport;
     public OrthographicCamera camera;
 
 
-    public MainMenuScreen(Main main, SpriteBatch spriteBatch, AssetManager assetManager, ScreenManager screenManager) {
-        this.main = main;
-        this.screenManager = screenManager;
-        this.mainScreenGUI = new MainScreenGUI(this, screenManager, spriteBatch, assetManager);
+    public MainMenuScreen(SpriteBatch spriteBatch, AssetManager assetManager, ScreenManager screenManager) {
+        this.mainScreenGUI = new MainScreenGUI(screenManager);
 
         this.spriteBatch = spriteBatch;
         camera = new OrthographicCamera();
@@ -45,7 +35,7 @@ public class MainMenuScreen implements GameScreen{
 
     @Override
     public void show() {
-
+        mainScreenGUI.show();
     }
 
     @Override
@@ -83,11 +73,11 @@ public class MainMenuScreen implements GameScreen{
 
     @Override
     public void hide() {
-
+        mainScreenGUI.hide();
     }
 
     @Override
     public void dispose() {
-
+        mainScreenGUI.dispose();
     }
 }

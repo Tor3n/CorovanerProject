@@ -43,6 +43,7 @@ public class Main implements ApplicationListener {
     RenderSystem playerRenderSystem;
     InputSystem playerInputSystem;
     Pixmap arrowPixmap;
+    Cursor arrowCursor;
 
     public Main(int w, int h){
         screenW = w;
@@ -73,16 +74,22 @@ public class Main implements ApplicationListener {
         playerRenderSystem = new RenderSystem(spriteBatch);
         playerInputSystem = new InputSystem();
 
+        ashleyEngine.addSystem(playerInputSystem);
         ashleyEngine.addSystem(playerMovementSystem);
         ashleyEngine.addSystem(playerRenderSystem);
-        ashleyEngine.addSystem(playerInputSystem);
 
         //menu screens
-        MainMenuScreen mainMenuScreen = new MainMenuScreen(this, spriteBatch, assetManager, screenManager);
-        ModalScreen mainModal = new MainModal(this, spriteBatch);
+        MainMenuScreen mainMenuScreen = new MainMenuScreen(spriteBatch, assetManager, screenManager);
+        ModalScreen mainModal = new MainModal(assetManager, spriteBatch);
 
         //battle screens
-        BattleScreen battleScreen = new BattleScreen(this, spriteBatch, assetManager, entityFactory, screenManager);
+        BattleScreen battleScreen = new BattleScreen(
+            spriteBatch,
+            assetManager,
+            ashleyEngine,
+            entityFactory,
+            screenManager
+        );
 
         screenManager.addGameScreen("BattleScreen", battleScreen);
         screenManager.addGameScreen("MainMenu", mainMenuScreen);
@@ -118,26 +125,29 @@ public class Main implements ApplicationListener {
 
     @Override
     public void pause() {
-        // Invoked when your application is paused.
+        screenManager.pause();
     }
 
     @Override
     public void resume() {
-        // Invoked when your application is resumed after pause.
+        screenManager.resume();
     }
 
     @Override
     public void dispose() {
-        assetManager.clear();
+        screenManager.dispose();
+        if (arrowCursor != null) {
+            arrowCursor.dispose();
+        }
         spriteBatch.dispose();
+        assetManager.dispose();
         VisUI.dispose();
-        // Destroy application's resources here.
     }
 
 
     private void createCursors() {
         arrowPixmap = assetManager.get("cursors/arrowCursor3.png", Pixmap.class);
-        Cursor arrowCursor = Gdx.graphics.newCursor(arrowPixmap, 0, 0);
+        arrowCursor = Gdx.graphics.newCursor(arrowPixmap, 0, 0);
         Gdx.graphics.setCursor(arrowCursor);
     }
 }

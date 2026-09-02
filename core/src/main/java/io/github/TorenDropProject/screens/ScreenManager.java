@@ -5,21 +5,17 @@ import io.github.TorenDropProject.screens.modals.ModalScreen;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class ScreenManager {
-    static ScreenManager manager;
     private GameScreen currentScreen;
-    HashMap<String, GameScreen> gameScreens;
-    ArrayList<ModalScreen> modalScreens;
+    private final HashMap<String, GameScreen> gameScreens;
+    private final ArrayList<ModalScreen> modalScreens;
 
     public ScreenManager() {
         gameScreens = new HashMap<>();
         modalScreens = new ArrayList<>();
-        manager = this;
-    }
-
-    public static ScreenManager getScreenManager(){
-        return manager;
     }
 
     public void addGameScreen(String name, GameScreen gameScreen) {
@@ -39,9 +35,11 @@ public class ScreenManager {
     }
 
     public void setScreen(GameScreen screen) {
+        if (currentScreen == screen) {
+            return;
+        }
         if (currentScreen != null) {
             currentScreen.hide();
-            currentScreen.dispose();
         }
         currentScreen = screen;
         if (currentScreen != null) {
@@ -59,6 +57,9 @@ public class ScreenManager {
         if (currentScreen != null) {
             currentScreen.resize(width, height);
         }
+        for (ModalScreen modalScreen : modalScreens) {
+            modalScreen.resize(width, height);
+        }
     }
 
     public void pause() {
@@ -75,7 +76,22 @@ public class ScreenManager {
 
     public void dispose() {
         if (currentScreen != null) {
-            currentScreen.dispose();
+            currentScreen.hide();
         }
+
+        Set<GameScreen> uniqueScreens = new LinkedHashSet<>(gameScreens.values());
+        if (currentScreen != null) {
+            uniqueScreens.add(currentScreen);
+        }
+        for (GameScreen screen : uniqueScreens) {
+            screen.dispose();
+        }
+        for (ModalScreen modalScreen : modalScreens) {
+            modalScreen.dispose();
+        }
+
+        currentScreen = null;
+        gameScreens.clear();
+        modalScreens.clear();
     }
 }
