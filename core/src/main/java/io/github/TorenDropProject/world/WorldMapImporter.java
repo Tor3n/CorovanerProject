@@ -18,6 +18,7 @@ public final class WorldMapImporter {
     private static final int CHUNK_SIZE = 16;
     private static final float ROOT_TWO = (float)Math.sqrt(2);
     private static final float COS_ELEVATION = (float)Math.cos(Math.PI / 6);
+    private static final float LAYER_OFFSET = 0.0005f;
 
     public PreparedMap prepare(TiledMap tiledMap, JsonValue config) {
         int width = tiledMap.getProperties().get("width", Integer.class);
@@ -79,10 +80,12 @@ public final class WorldMapImporter {
                             float x = result.grid.centerX(col), z = result.grid.centerZ(row);
                             if (ground) {
                                 // Retain the base floor under raised platforms; it is visible from their edges.
-                                ground(buffer, cell, x, elevation + layerIndex * 0.0005f, z, result.grid.cellSize);
+                                ground(buffer, cell, x, elevation + layerIndex * LAYER_OFFSET, z, result.grid.cellSize);
                             } else {
                                 TileStyle style = styles.get(tile);
                                 float y = fixedElevation ? elevation : result.grid.elevation(col, row);
+                                // The footprint must sit above every ground layer's anti-flicker offset.
+                                y += (tiledMap.getLayers().getCount() + 1) * LAYER_OFFSET;
                                 cutout(buffer, cell, style, x, y, z, tileWidth, result.grid.cellSize);
                                 if (solid || style.solid) result.grid.block(col, row);
                             }
@@ -177,16 +180,33 @@ public final class WorldMapImporter {
     private void cutout(Buffer buffer, TiledMapTileLayer.Cell cell, TileStyle style, float x, float y, float z,
                         int tileWidth, float cellSize) {
         TextureRegion region = cell.getTile().getTextureRegion();
+        float[][] points = cutoutPoints(region.getRegionWidth(), region.getRegionHeight(), style.anchorX,
+            style.anchorY, x, y, z, tileWidth, cellSize);
+        float seam = 1f - style.anchorY / region.getRegionHeight();
+        if (style.anchorY > 0) {
+            quad(buffer, cell, new float[][]{points[0], points[1], points[3], points[2]},
+                new float[][]{{0,1},{1,1},{1,seam},{0,seam}}, false);
+        }
+        if (style.anchorY < region.getRegionHeight()) {
+            quad(buffer, cell, new float[][]{points[2], points[3], points[5], points[4]},
+                new float[][]{{0,seam},{1,seam},{1,0},{0,0}}, false);
+        }
+    }
+
+    /** Bottom, anchor and top pairs. Fold the footprint forward without changing its screen projection. */
+    static float[][] cutoutPoints(float width, float height, float anchorX, float anchorY,
+                                  float x, float y, float z, int tileWidth, float cellSize) {
+        require(anchorY >= 0 && anchorY <= height, "Cutout anchor outside image");
         float pixelsPerUnit = tileWidth / (ROOT_TWO * cellSize);
-        float left = -style.anchorX / pixelsPerUnit;
-        float right = (region.getRegionWidth() - style.anchorX) / pixelsPerUnit;
-        float bottom = -style.anchorY / pixelsPerUnit / COS_ELEVATION;
-        float top = (region.getRegionHeight() - style.anchorY) / pixelsPerUnit / COS_ELEVATION;
-        // Upright plane at an explicit ground anchor. No character-relative camera or screen coordinates.
-        float[][] points = {{x+left/ROOT_TWO,y+bottom,z-left/ROOT_TWO},
-            {x+right/ROOT_TWO,y+bottom,z-right/ROOT_TWO},{x+right/ROOT_TWO,y+top,z-right/ROOT_TWO},
-            {x+left/ROOT_TWO,y+top,z-left/ROOT_TWO}};
-        quad(buffer, cell, points, new float[][]{{0,1},{1,1},{1,0},{0,0}}, false);
+        float left = -anchorX / pixelsPerUnit / ROOT_TWO;
+        float right = (width - anchorX) / pixelsPerUnit / ROOT_TWO;
+        float top = (height - anchorY) / pixelsPerUnit / COS_ELEVATION;
+        // At 30 degrees, moving toward the camera on the ground projects downward by sin(30).
+        // Previously these pixels extended below Y=ground and were cut off by the depth buffer.
+        float forward = anchorY / pixelsPerUnit / 0.5f / ROOT_TWO;
+        return new float[][]{{x+left+forward,y,z-left+forward},{x+right+forward,y,z-right+forward},
+            {x+left,y,z-left},{x+right,y,z-right},
+            {x+left,y+top,z-left},{x+right,y+top,z-right}};
     }
 
     private void quad(Buffer buffer, TiledMapTileLayer.Cell cell, float[][] points, float[][] uv, boolean inset) {

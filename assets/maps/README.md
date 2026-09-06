@@ -20,6 +20,11 @@ Mercy Crossing uses the new wasteland sheets. The supplied Wasteland Pass sample
 also has world layer metadata and a `.world.json` descriptor so the same loader
 can render it; it remains a standalone sample, outside the travel catalog.
 
+The captures include the item-clipping correction: pixels below a prop's anchor
+lie on the terrain instead of underneath it. Crates, rocks, campfires and tree
+bases retain their full image. Tent halves also join at the same screen height
+in Mercy Crossing, Forest Crossroads and both pass maps.
+
 To regenerate the screenshots, build the desktop JAR, then run from `assets/`:
 
 ```sh

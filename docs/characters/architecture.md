@@ -130,6 +130,13 @@ against the same camera frustum. These are map-wide batch counts, not a claim
 that all are drawn every frame. The opaque stone patch for risers references
 existing atlas pixels; no image file was modified or duplicated.
 
+Cutout pixels above `worldAnchorY` form an upright plane. Pixels below the anchor
+fold forward onto the ground, preserving their projected size at the fixed
+30-degree camera elevation. This keeps item bases and baked footprints visible
+instead of burying them under terrain. The footprint sits just above all ground
+layer offsets and still shares the world depth buffer. Screen-horizontal atlas
+pairs, such as tents, occupy (+1 column, -1 Tiled row) relative to their first half.
+
 Cutouts use DefaultShader's alpha-test path. Because that shader only enables
 alpha discard with BlendingAttribute, ONE/ZERO blending replaces surviving
 pixels while AlphaTest discards transparent ones before they write depth.

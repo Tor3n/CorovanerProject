@@ -105,7 +105,8 @@ def mercy():
     for x in range(17, 48):
         if x not in range(28, 38):
             loc.put("Cliffs and obstacles", x, 46, 73)
-    for x, y, gid in [(21, 28, 55), (22, 28, 56), (24, 28, 57), (25, 28, 58),
+    # Join each tent's atlas halves horizontally in screen space.
+    for x, y, gid in [(21, 28, 55), (22, 27, 56), (24, 28, 57), (25, 27, 58),
                       (41, 42, 63), (42, 42, 67), (40, 41, 68), (28, 33, 69),
                       (25, 40, 65), (38, 39, 66), (29, 46, 105)]:
         loc.put("Cliffs and obstacles" if gid != 69 else "Scattered details", x, y, gid)

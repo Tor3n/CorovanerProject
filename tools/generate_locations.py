@@ -137,8 +137,8 @@ def forest():
     ], [(31, 33, 6, 5), (47, 45, 7, 6)], [(23, 57), (25, 56), (23, 54)])
     location.paths()
     location.vegetation(.38)
-    # A sheltered caravan stop beside the road: paired tent tiles, fire, supplies.
-    for x, y, gid in [(45, 42, 55), (46, 42, 56), (49, 44, 57), (50, 44, 58)]:
+    # A screen-horizontal tile pair spans (+1 column, -1 row) in the isometric grid.
+    for x, y, gid in [(45, 42, 55), (46, 41, 56), (49, 44, 57), (50, 43, 58)]:
         location.put("Cliffs and obstacles", x, y, gid)
     for x, y, gid in [(46, 46, 69), (43, 45, 63), (43, 46, 67), (50, 48, 65),
                       (48, 48, 98), (35, 30, 105), (20, 28, 103)]:
