@@ -1,28 +1,22 @@
 package io.github.TorenDropProject;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Cursor;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.Model;
+import io.github.TorenDropProject.characters.CharacterDefinition;
+import io.github.TorenDropProject.characters.CharacterFactory;
+import io.github.TorenDropProject.world.WorldSceneFactory;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.kotcrab.vis.ui.VisUI;
-import io.github.TorenDropProject.entities.systems.InputSystem;
-import io.github.TorenDropProject.entities.systems.MovementSystem;
-import io.github.TorenDropProject.entities.PlayerEntityFactory;
-import io.github.TorenDropProject.entities.systems.RenderSystem;
 import io.github.TorenDropProject.pregame.SplashScreenAssetLoader;
 import io.github.TorenDropProject.screens.BattleScreen;
-import io.github.TorenDropProject.screens.MainMenuScreen;
+import io.github.TorenDropProject.screens.development.CharacterPreviewScreen;
 import io.github.TorenDropProject.screens.ScreenManager;
-import io.github.TorenDropProject.screens.modals.MainModal;
-import io.github.TorenDropProject.screens.modals.ModalScreen;
+import io.github.TorenDropProject.menus.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main implements ApplicationListener {
@@ -38,14 +32,10 @@ public class Main implements ApplicationListener {
     boolean postLoadedComplete = false;
     SplashScreenAssetLoader splashPseudoScreen;
     ScreenManager screenManager;
-    public FillViewport viewport;
-    Engine ashleyEngine;
-    public OrthographicCamera camera;
-    public PlayerEntityFactory entityFactory;
-    MovementSystem playerMovementSystem;
-    RenderSystem playerRenderSystem;
-    InputSystem playerInputSystem;
     Pixmap arrowPixmap;
+    Cursor arrowCursor;
+    MenuTheme menuTheme;
+    MenuController menus;
 
     public Main(int w, int h){
         screenW = w;
@@ -58,8 +48,6 @@ public class Main implements ApplicationListener {
         worldWidth=32;
         worldHeight=20;
 
-        VisUI.load();
-
         assetManager = new AssetManager();
         splashPseudoScreen = new SplashScreenAssetLoader(assetManager).loadAssets();
 
@@ -70,27 +58,27 @@ public class Main implements ApplicationListener {
     private boolean postloaded(){
         createCursors();
 
-        ashleyEngine = new Engine();
-        entityFactory = new PlayerEntityFactory(ashleyEngine, assetManager);
-        playerMovementSystem = new MovementSystem();
-        playerRenderSystem = new RenderSystem(spriteBatch);
-        playerInputSystem = new InputSystem();
+        CharacterDefinition definition = CharacterDefinition.VAULT_DWELLER;
+        CharacterFactory factory = new CharacterFactory(definition, assetManager.get(definition.modelPath, Model.class));
+        boolean previewMode = Boolean.getBoolean("corovaner.characterPreview");
+        WorldSceneFactory scenes = new WorldSceneFactory(assetManager, factory);
+        FrontierCatalog catalog = assetManager.get(FrontierCatalog.PATH, FrontierCatalog.class);
+        if (previewMode) {
+            CharacterPreviewScreen preview = new CharacterPreviewScreen(scenes.create(catalog.destination("pass").worldMap, false));
+            screenManager.addGameScreen("CharacterPreview", preview);
+            screenManager.setScreen(preview);
+            return true;
+        }
 
-        ashleyEngine.addSystem(playerMovementSystem);
-        ashleyEngine.addSystem(playerRenderSystem);
-        ashleyEngine.addSystem(playerInputSystem);
-
-        //menu screens
-        MainMenuScreen mainMenuScreen = new MainMenuScreen(this, spriteBatch, assetManager, screenManager);
-        ModalScreen mainModal = new MainModal(this, spriteBatch);
-
-        //battle screens
-        BattleScreen battleScreen = new BattleScreen(this, spriteBatch, assetManager, entityFactory, screenManager);
-
+        menuTheme = new MenuTheme(assetManager);
+        GameSettings settings = new GameSettings(Gdx.app.getPreferences("corovaner.settings"));
+        menus = new MenuController(screenManager, catalog,
+            new JourneyStore(Gdx.app.getPreferences("corovaner.journeys"), catalog), settings);
+        settings.apply(settings.fullscreen, settings.vsync, settings.largerText, settings.decorations);
+        MenuRegistry.register(menus, menuTheme);
+        BattleScreen battleScreen = new BattleScreen(scenes, menus, menuTheme);
         screenManager.addGameScreen("BattleScreen", battleScreen);
-        screenManager.addGameScreen("MainMenu", mainMenuScreen);
-        screenManager.addModalScreen(mainModal);
-        screenManager.setScreen(mainMenuScreen);
+        menus.root(MenuId.MAIN);
 
         return true;
     }
@@ -121,26 +109,29 @@ public class Main implements ApplicationListener {
 
     @Override
     public void pause() {
-        // Invoked when your application is paused.
+        screenManager.pause();
     }
 
     @Override
     public void resume() {
-        // Invoked when your application is resumed after pause.
+        screenManager.resume();
     }
 
     @Override
     public void dispose() {
-        assetManager.clear();
+        screenManager.dispose();
+        if (arrowCursor != null) {
+            arrowCursor.dispose();
+        }
         spriteBatch.dispose();
-        VisUI.dispose();
-        // Destroy application's resources here.
+        if (menuTheme != null) menuTheme.dispose();
+        assetManager.dispose();
     }
 
 
     private void createCursors() {
         arrowPixmap = assetManager.get("cursors/arrowCursor3.png", Pixmap.class);
-        Cursor arrowCursor = Gdx.graphics.newCursor(arrowPixmap, 0, 0);
+        arrowCursor = Gdx.graphics.newCursor(arrowPixmap, 0, 0);
         Gdx.graphics.setCursor(arrowCursor);
     }
 }

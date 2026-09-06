@@ -1,0 +1,25 @@
+{
+  "map": "mountinPass.tmx",
+  "cellSize": 1.0,
+  "spawns": [
+    {
+      "column": 24,
+      "row": 38
+    },
+    {
+      "column": 27,
+      "row": 38
+    },
+    {
+      "column": 25,
+      "row": 35
+    }
+  ],
+  "riserTexture": {
+    "tileset": "mountin",
+    "x": 18,
+    "y": 21,
+    "width": 27,
+    "height": 56
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "map": "forgottenGraveyard.tmx",
+  "cellSize": 1.0,
+  "spawns": [
+    {
+      "column": 31,
+      "row": 57
+    },
+    {
+      "column": 33,
+      "row": 55
+    },
+    {
+      "column": 31,
+      "row": 53
+    }
+  ]
+}

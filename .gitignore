@@ -155,6 +155,8 @@ Thumbs.db
 *#*#
 /.kotlin/
 /assets/assets.txt
+/tools/__pycache__/
+/reference
 
 ## Special cases:
 

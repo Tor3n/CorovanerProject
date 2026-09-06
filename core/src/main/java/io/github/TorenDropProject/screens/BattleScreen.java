@@ -1,263 +1,105 @@
 package io.github.TorenDropProject.screens;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.*;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
-import com.kotcrab.vis.ui.widget.VisTextButton;
-import io.github.TorenDropProject.Main;
-import io.github.TorenDropProject.assetsLoaders.GrasslandTestBackGroundLoader;
-import io.github.TorenDropProject.entities.PlayerEntityFactory;
-import io.github.TorenDropProject.entities.systems.InputSystem;
+import com.badlogic.gdx.math.Vector3;
+import io.github.TorenDropProject.entities.components.CollisionComponent;
+import io.github.TorenDropProject.entities.components.PlayerControlledComponent;
+import io.github.TorenDropProject.entities.components.WorldTransformComponent;
+import io.github.TorenDropProject.entities.systems.ModelTransformSystem;
+import io.github.TorenDropProject.menus.*;
 import io.github.TorenDropProject.screens.GUIs.BattleScreenGUI;
-import io.github.TorenDropProject.screens.modals.ModalScreen;
+import io.github.TorenDropProject.world.WorldScene;
+import io.github.TorenDropProject.world.WorldInputController;
+import io.github.TorenDropProject.world.WorldSceneFactory;
 
+/** Coordinates a world scene and screen-space UI. Menus suspend the scene through screen navigation. */
+public final class BattleScreen implements GameScreen {
+    private final WorldSceneFactory scenes;
+    private WorldScene scene;
+    private Journey sceneJourney;
+    private String sceneLocation;
+    private final MenuController menus;
+    private final BattleScreenGUI gui;
+    private boolean applicationPaused;
 
-public class BattleScreen implements GameScreen{
-    BattleScreenGUI battleScreenGUI;
-    private ScreenManager screenManager;
-
-    private SpriteBatch spriteBatch;
-    private Stage stage;
-
-    public Engine ashleyEngine;
-    Vector2 touchPos;
-    GrasslandTestBackGroundLoader grassLandBackground;
-    SpriteBatch devConsoleSpriteBatch;
-    BitmapFont devConsoleFont;
-    ShapeRenderer shapeRenderer;
-    public AssetManager assetManager;
-    public Main main;
-    Entity player;
-
-    float screenWidth;
-    float screenHeight;
-    int missed;
-    int collected;
-    boolean modalActive = false;
-    private float stateTime = 0f;
-    boolean devconsole = false;
-    public Viewport viewport;
-    public OrthographicCamera camera;
-    public IsometricTiledMapRenderer mapRenderer;
-    public TiledMap currentMap;
-
-    public BattleScreen(Main main, SpriteBatch spriteBatch, AssetManager assetManager, PlayerEntityFactory playerFactory, ScreenManager screenManager) {
-        this.main = main;
-        this.assetManager = assetManager;
-        this.spriteBatch = spriteBatch;
-        this.screenManager = screenManager;
-        this.ashleyEngine = playerFactory.ashleyEngine;
-        this.battleScreenGUI = new BattleScreenGUI(this, screenManager, spriteBatch);
-
-        grassLandBackground = new GrasslandTestBackGroundLoader(main.assetManager);
-        player = playerFactory.createPlayer();
-
-        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        assetManager.load("maps/mountinPass.tmx", TiledMap.class);
-
-        while(!assetManager.isLoaded("maps/mountinPass.tmx")) {
-            assetManager.update(5);
+    public BattleScreen(WorldSceneFactory scenes, MenuController menus, MenuTheme theme) {
+        this.scenes = scenes; this.menus = menus;
+        gui = new BattleScreenGUI(menus, theme);
+        resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+    }
+    @Override public void show() {
+        Journey journey = menus.journey;
+        if (journey == null || !menus.catalog.destination(journey.location).hasLocalArea()) {
+            throw new IllegalStateException("There is no local area to enter.");
         }
-
-        if(assetManager.isFinished()){
-            System.out.println("Battle screen is loaded");
-            currentMap = assetManager.get("maps/mountinPass.tmx");
+        if (sceneJourney != journey || !journey.location.equals(sceneLocation)) {
+            WorldScene next = scenes.create(menus.catalog.destination(journey.location).worldMap, true);
+            if (scene != null) scene.dispose();
+            scene = next;
+            sceneJourney = journey;
+            sceneLocation = journey.location;
+            restorePosition(journey.positionFor(sceneLocation));
         }
-
-        float unitScale = 1 / 32f;
-        mapRenderer = new IsometricTiledMapRenderer(currentMap, unitScale);
-
-        touchPos = new Vector2();
-
-        devConsoleSpriteBatch = new SpriteBatch();
-        devConsoleFont = new BitmapFont();
-        devConsoleFont.setColor(Color.GREEN);
-        shapeRenderer = new ShapeRenderer();
-        shapeRenderer.setColor(Color.GREEN);
-
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 30, 20);
-        viewport = new ExtendViewport(Main.worldWidth, Main.worldHeight, camera);
-
-        mapRenderer.setView(camera);
-
-        //IT IS SUPER IMPORTANT!!!! Without it the screen goes black
-        viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
+        resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        gui.setWorldMessage("Click a scout to select; click the ground to move.");
+        gui.show(new WorldInputController(scene, () -> !applicationPaused && !gui.hasKeyboardFocus(),
+            gui::containsScreenPoint, gui::setWorldMessage));
     }
-
-    @Override
-    public void show() {
-
-    }
-
-    @Override
-    public void render(float delta) {
-        viewport.apply();
-        spriteBatch.setProjectionMatrix(viewport.getCamera().combined);
-
-        input();
-        logic();
-        draw();
-        battleScreenGUI.draw(Gdx.graphics.getDeltaTime());
-
-        if(devconsole){
-            simpleGuiCreate();
+    @Override public void render(float delta) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) { menus.pause(); return; }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.C)) { menus.open(MenuId.CHARACTER); return; }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.I)) { menus.open(MenuId.INVENTORY); return; }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.J)) { menus.open(MenuId.JOURNAL); return; }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.M)) { menus.open(MenuId.TRAVEL); return; }
+        boolean paused = applicationPaused || gui.hasKeyboardFocus();
+        if (!paused) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.TAB)) scene.session.selectNext();
+            if (Gdx.input.isKeyPressed(Input.Keys.EQUALS)) scene.cameraRig.zoom(-delta * 0.5f);
+            if (Gdx.input.isKeyPressed(Input.Keys.MINUS)) scene.cameraRig.zoom(delta * 0.5f);
         }
+        scene.render(delta, paused);
+        gui.draw(delta);
     }
-
-    @Override
-    public void resize(int width, int height) {
-
+    private Entity player() {
+        return scene.session.engine.getEntitiesFor(Family.all(PlayerControlledComponent.class,
+            WorldTransformComponent.class, CollisionComponent.class).get()).first();
     }
-
-    @Override
-    public void pause() {
-
+    public float[] capturePosition() {
+        WorldTransformComponent position = player().getComponent(WorldTransformComponent.class);
+        return new float[] {position.x, position.y, position.z};
     }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-        assetManager.unload("maps/mountinPass.tmx");
-    }
-
-    private void simpleGuiCreate(){
-
-        screenWidth = viewport.getScreenWidth();
-        screenHeight = viewport.getScreenHeight();
-
-        devConsoleSpriteBatch.begin();
-        devConsoleFont.draw(devConsoleSpriteBatch, "collected: "+collected,screenWidth-screenWidth/6, screenHeight-screenHeight/30);
-        devConsoleFont.draw(devConsoleSpriteBatch, "missed: "+missed,screenWidth-screenWidth/6, screenHeight-screenHeight/13);
-        devConsoleFont.draw(devConsoleSpriteBatch, "fps: "+ Gdx.graphics.getFramesPerSecond(),screenWidth-screenWidth/6, screenHeight-screenHeight/7);
-        devConsoleSpriteBatch.end();
-
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.rect(screenWidth-screenWidth/5,screenHeight-screenHeight/6-2,screenWidth/5,screenHeight/6);
-        shapeRenderer.end();
-    }
-
-    private void logic() {
-        float worldWidthIns = viewport.getWorldWidth();
-        float worldHeightIns = viewport.getWorldHeight();
-        float delta = Gdx.graphics.getDeltaTime();
-    }
-
-    /**
-     * Keyboard control
-     */
-    private void input() {
-
-        PlayerEntityFactory.PositionComponent positionComponent = player.getComponent(PlayerEntityFactory.PositionComponent.class);
-        float camX = positionComponent.x;
-        float camY = positionComponent.y;
-        camera.position.set(camX, camY,0);
-
-
-        //float camX = camera.position.x;
-        //float camY = camera.position.y;
-
-        InputSystem inputSystem = ashleyEngine.getSystem(InputSystem.class);
-
-        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
-            modalActive = !modalActive;
-            try{
-                Thread.sleep(100);
-            } catch (Exception e){
-            }
+    private void restorePosition(float[] saved) {
+        Vector3 spawn = scene.session.map.spawns.first();
+        float x = saved == null ? spawn.x : saved[0];
+        float y = saved == null ? spawn.y : saved[1];
+        float z = saved == null ? spawn.z : saved[2];
+        Entity player = player();
+        float radius = player.getComponent(CollisionComponent.class).radius;
+        if (!scene.session.map.grid.canStand(x, z, radius, y)) {
+            // Authored collision may change between saves; return to this area's safe entrance.
+            x = spawn.x; y = spawn.y; z = spawn.z;
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.F2)){
-            devconsole = !devconsole;
-            try{
-                Thread.sleep(100);
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-
-        float speed = 1f;
-
-
-        /*
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-            camera.position.add(0,-speed,0);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
-            camera.position.add(0, +speed,0);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            camera.position.add(-speed, 0,0);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            camera.position.add(+speed, 0,0);
-        } */
-
-        System.out.println("camera position: "+ camera.position.x+", y: "+camera.position.y);
-
-        camera.update();
-
-        if(isInputEntityInput()){
-            inputSystem.setInputEntityRelated(true);
-        } else {
-
-        }
-
-
+        scene.session.stopActors();
+        WorldTransformComponent position = player.getComponent(WorldTransformComponent.class);
+        position.x = x; position.y = y; position.z = z; position.yawDegrees = 0;
+        scene.session.engine.getSystem(ModelTransformSystem.class).update(0);
     }
-
-    private boolean isInputEntityInput() {
-        return true;
+    @Override public void resize(int width, int height) {
+        if (scene != null) scene.resize(width, height);
+        gui.resize(width, height);
     }
-
-    private void draw() {
-        ScreenUtils.clear(Color.BLACK);
-        float delta = Gdx.graphics.getDeltaTime();
-        stateTime += delta;
-
-
-        mapRenderer.setView(camera);
-        mapRenderer.render();
-
-        spriteBatch.begin();
-        //grassLandBackground.drawBackGround(spriteBatch);
-
-        ashleyEngine.update(delta);
-
-
-        if (modalActive){
-            ModalScreen screen = ScreenManager.manager.getModalScreen(0);
-            screen.draw();
+    @Override public void hide() {
+        if (scene != null) {
+            scene.session.stopActors();
+            // Capture into the journey that owns this scene, even if a load replaced menus.journey.
+            sceneJourney.rememberPosition(sceneLocation, capturePosition());
         }
-        spriteBatch.end();
-
+        gui.hide();
     }
-
-
+    @Override public void pause() { applicationPaused = true; if (scene != null) scene.session.stopActors(); }
+    @Override public void resume() { applicationPaused = false; }
+    @Override public void dispose() { gui.dispose(); if (scene != null) scene.dispose(); }
 }

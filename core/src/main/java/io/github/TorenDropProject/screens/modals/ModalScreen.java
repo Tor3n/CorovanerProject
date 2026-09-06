@@ -1,6 +1,10 @@
 package io.github.TorenDropProject.screens.modals;
 
-public interface ModalScreen {
+import com.badlogic.gdx.utils.Disposable;
 
-    public void draw();
+public interface ModalScreen extends Disposable {
+
+    void draw();
+
+    void resize(int width, int height);
 }
