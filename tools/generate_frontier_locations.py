@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Rebuild the three destination-specific maps. Existing wilderness maps are untouched."""
 import json
+import math
 from generate_locations import Location, MAPS, SIZE
 
 
@@ -78,7 +79,28 @@ def mercy():
         ([(32, 63), (32, 42), (34, 34), (36, 0)], 2.1),
         ([(20, 36), (20, 23), (42, 23), (44, 35)], 1.4),
     ], [(33, 35, 12, 10), (29, 23, 14, 5)], [(31, 43), (34, 43), (32, 46)])
+    loc.tileset_sources = {
+        "background.tsx": "wasteland_background.tsx", "mountin.tsx": "wasteland_mountain.tsx",
+        "items1.tsx": "wasteland_items1.tsx", "items2.tsx": "wasteland_items2.tsx",
+        "trees1.tsx": "wasteland_trees1.tsx", "trees2.tsx": "wasteland_trees2.tsx",
+    }
     loc.paths()
+    # The new atlas keeps GIDs but changes their meaning. Avoid randomly scattering
+    # hazard stripes/toxic ground where the old generator chose grass variants.
+    # This consumes no RNG, preserving the authored prop and tree placement.
+    for y in range(SIZE):
+        for x in range(SIZE):
+            road = loc.route_distance(x, y)
+            patch = math.sin((x // 4) * 1.3) + math.cos((y // 4) * .9)
+            if road <= 0 or loc.clearing(x, y):
+                tile = 19 if patch > .6 else 22 if patch < -.6 else 18
+            elif road < 1.3:
+                tile = 20
+            else:
+                tile = 2 if patch > .5 else 9 if patch < -.5 else 13
+            loc.put("Ground", x, y, tile)
+    for x in [30, 31, 32, 33, 34]:
+        loc.put("Ground", x, 46, 6)
     loc.vegetation(.15, lambda x, y: x < 12 or x > 51 or y < 10 or y > 52)
     for x in range(17, 48):
         if x not in range(28, 38):

@@ -44,6 +44,7 @@ class Location:
         self.rng = random.Random(seed)
         self.routes, self.clearings, self.spawns = routes, clearings, spawns
         self.layers = {}
+        self.tileset_sources = {}
         self.add_layer("Ground", "ground")
         self.add_layer("Raised stone shelf", "ground", elevation=2.0)
         self.add_layer("Cliffs and obstacles", "cutout", solid=True)
@@ -110,7 +111,9 @@ class Location:
         })
         properties(root, {"locationName": self.title})
         for tileset in template.findall("tileset"):
-            root.append(copy.deepcopy(tileset))
+            definition = copy.deepcopy(tileset)
+            definition.set("source", self.tileset_sources.get(definition.get("source"), definition.get("source")))
+            root.append(definition)
         for index, (name, grid, props) in enumerate(active, 1):
             layer = ET.SubElement(root, "layer", id=str(index), name=name, width=str(SIZE), height=str(SIZE))
             properties(layer, props)

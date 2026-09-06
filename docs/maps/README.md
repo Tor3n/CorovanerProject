@@ -126,3 +126,9 @@ stay still, blocks HUD clicks, reaches each central landmark, checks menu route
 cancellation, then repeats picking after zoom/resize. It writes the captures
 above and exits with `BATTLE_INPUT_SMOKE_PASSED`. Unit tests cover wall detours,
 waypoint arrival, unreachable targets, cliff avoidance and diagonal clearance.
+
+Current full-map screenshots for every `.tmx`, including Mercy Crossing with
+the wasteland tileset, are indexed in [assets/maps/README.md](../../assets/maps/README.md).
+See [tileset analysis](../../assets/WASTELAND_TILESET.md) for the curated ground
+palette and the compatible world anchors/collision metadata. Older captures
+in this documentation directory record previous artwork.
