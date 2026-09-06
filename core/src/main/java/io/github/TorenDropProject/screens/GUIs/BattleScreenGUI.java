@@ -25,7 +25,7 @@ public final class BattleScreenGUI {
         this.menus = menus; this.theme = theme;
         Table root = new Table(); root.setFillParent(true); root.pad(18);
         identity = new Label("", theme.skin, "accent");
-        Table top = new Table(); top.setBackground(theme.skin.get(TextField.TextFieldStyle.class).background); top.pad(14);
+        Table top = new Table(); top.setBackground(theme.container()); top.pad(14);
         top.setTouchable(Touchable.enabled);
         top.add(identity).expandX().left();
         location = new Label("", theme.skin, "mono");
@@ -34,7 +34,7 @@ public final class BattleScreenGUI {
         root.add().expand().row();
         feedback = new Label("Click a scout to select; click the ground to move.", theme.skin, "accent");
         root.add(feedback).left().padBottom(10).row();
-        Table bottom = new Table(); bottom.setBackground(theme.skin.get(TextField.TextFieldStyle.class).background); bottom.pad(12);
+        Table bottom = new Table(); bottom.setBackground(theme.container()); bottom.pad(12);
         bottom.setTouchable(Touchable.enabled);
         add(bottom, "Esc / Pause", menus::pause);
         add(bottom, "C / Character", () -> menus.open(MenuId.CHARACTER));

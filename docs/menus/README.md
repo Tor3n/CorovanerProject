@@ -1,6 +1,6 @@
 # Frontier menus
 
-The game now opens into a shared Scene2D menu system with a western field-terminal theme: charcoal, brass, parchment typography, contour lines, and a ruined transmission tower. No generated raster artwork or UI framework dependency was added. The three bundled Liberation fonts are covered by `assets/ui/fonts/LICENSE.txt`.
+The game opens into a shared Scene2D menu system with a western field-terminal theme: charcoal, brass, parchment typography, contour lines, and a ruined transmission tower. Reusable generated raster primitives under `assets/ui/postapoc/` add blackened-steel frames, enamel controls, fasteners, and surface wear without baking live labels or layouts into images. The three bundled Liberation fonts are covered by `assets/ui/fonts/LICENSE.txt`.
 
 ## Play through the menus
 
@@ -35,7 +35,7 @@ java --class-path ../lwjgl3/build/libs/Drop-1.0.0.jar ../tools/MenuLayoutSmoke.j
 
 ## Extension points
 
-- `menus/MenuTheme`: shared skin and styles. Font generation and catalog loading are queued by `SplashScreenAssetLoader`; the render loop never waits for assets. `Main` owns the theme, and its `AssetManager` owns fonts.
+- `menus/MenuTheme`: shared skin and styles. Font generation, post-apocalyptic nine-patch textures, and catalog loading are queued by `SplashScreenAssetLoader`; the render loop never waits for assets. `Main` owns the theme, and its `AssetManager` owns fonts and UI textures.
 - `screens/MenuScreen`: reusable stage, viewport, keyboard focus, and screen lifecycle. Each screen owns its stage; hiding a screen clears input focus without disposing reusable UI resources.
 - `screens/GUIs/menus/MenuPage`: consistent layout, controls, error notices, confirmation dialogs, and footer actions. Feature pages keep their own draft/view state. The existing `MainScreenGUI` and `BattleScreenGUI` remain in their matching package.
 - `menus/MenuRegistry` and `MenuId`: explicit page registration and named routes. To add a page, implement `MenuPage`, add its route and registration, then expose navigation from the appropriate screen.

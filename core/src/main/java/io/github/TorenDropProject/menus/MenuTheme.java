@@ -19,6 +19,9 @@ import com.badlogic.gdx.utils.Disposable;
 
 /** Owns skin textures. Fonts are queued and owned by the central AssetManager. */
 public final class MenuTheme implements Disposable {
+    private static final String PANEL_TEXTURE = "ui/postapoc/panel-frame.png";
+    private static final String DARK_CONTROL_TEXTURE = "ui/postapoc/button-dark.png";
+    private static final String ENAMEL_CONTROL_TEXTURE = "ui/postapoc/button-enamel.png";
     public static final Color INK = Color.valueOf("101715");
     public static final Color PANEL = Color.valueOf("19211d");
     public static final Color PAPER = Color.valueOf("e2d4b5");
@@ -29,6 +32,9 @@ public final class MenuTheme implements Disposable {
     public final Skin skin = new Skin();
     public final TextureRegion pixel;
     private final BitmapFont body, mono;
+    private final NinePatchDrawable panelFrame;
+    private final NinePatchDrawable darkControl;
+    private final NinePatchDrawable enamelControl;
 
     public static void queue(AssetManager assets) {
         InternalFileHandleResolver resolver = new InternalFileHandleResolver();
@@ -38,6 +44,9 @@ public final class MenuTheme implements Disposable {
         font(assets, "mono", "frontier-mono", 14);
         font(assets, "heading", "frontier-title", 34);
         font(assets, "title", "frontier-title", 66);
+        assets.load(PANEL_TEXTURE, Texture.class);
+        assets.load(DARK_CONTROL_TEXTURE, Texture.class);
+        assets.load(ENAMEL_CONTROL_TEXTURE, Texture.class);
         assets.setLoader(FrontierCatalog.class, new FrontierCatalog.Loader(resolver));
         assets.load(FrontierCatalog.PATH, FrontierCatalog.class);
     }
@@ -52,6 +61,9 @@ public final class MenuTheme implements Disposable {
     public MenuTheme(AssetManager assets) {
         body = assets.get("ui/body.ttf", BitmapFont.class);
         mono = assets.get("ui/mono.ttf", BitmapFont.class);
+        panelFrame = patch(assets.get(PANEL_TEXTURE, Texture.class), 22, 22, 22, 22, 22, 22, 22, 22);
+        darkControl = patch(assets.get(DARK_CONTROL_TEXTURE, Texture.class), 18, 18, 18, 18, 16, 16, 10, 10);
+        enamelControl = patch(assets.get(ENAMEL_CONTROL_TEXTURE, Texture.class), 18, 18, 18, 18, 16, 16, 10, 10);
         Pixmap image = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         image.setColor(Color.WHITE); image.fill();
         Texture texture = new Texture(image); image.dispose();
@@ -63,34 +75,44 @@ public final class MenuTheme implements Disposable {
         skin.add("accent", new Label.LabelStyle(mono, AMBER));
         skin.add("heading", new Label.LabelStyle(assets.get("ui/heading.ttf", BitmapFont.class), PAPER));
         skin.add("title", new Label.LabelStyle(assets.get("ui/title.ttf", BitmapFont.class), PAPER));
-        TextButton.TextButtonStyle button = new TextButton.TextButtonStyle(panel(PANEL, LINE),
-            panel(Color.valueOf("55462c"), AMBER), panel(Color.valueOf("354334"), AMBER), body);
-        button.over = panel(Color.valueOf("2b362b"), AMBER);
+        TextButton.TextButtonStyle button = new TextButton.TextButtonStyle(darkControl.tint(Color.WHITE),
+            darkControl.tint(Color.valueOf("b58b4f")), darkControl.tint(Color.valueOf("d0a45e")), body);
+        button.over = darkControl.tint(Color.valueOf("d8c49d"));
         button.focused = button.over;
         button.fontColor = PAPER;
-        button.disabled = panel(INK, LINE);
+        button.overFontColor = Color.WHITE;
+        button.downFontColor = Color.WHITE;
+        button.checked = enamelControl.tint(Color.valueOf("d8b970"));
+        button.checkedOver = enamelControl.tint(Color.valueOf("f0d592"));
+        button.checkedFontColor = INK;
+        button.checkedOverFontColor = INK;
+        button.disabled = darkControl.tint(Color.valueOf("696969"));
         button.disabledFontColor = Color.valueOf("71766b");
         skin.add("default", button);
         TextButton.TextButtonStyle primary = new TextButton.TextButtonStyle(button);
-        primary.up = panel(Color.valueOf("8d6832"), AMBER);
-        primary.over = panel(Color.valueOf("a47b3c"), PAPER);
+        primary.up = enamelControl.tint(Color.valueOf("d8b970"));
+        primary.over = enamelControl.tint(Color.valueOf("f0d592"));
+        primary.down = enamelControl.tint(Color.valueOf("b99451"));
+        primary.fontColor = INK;
+        primary.overFontColor = INK;
+        primary.downFontColor = INK;
         skin.add("primary", primary);
         TextField.TextFieldStyle field = new TextField.TextFieldStyle(body, PAPER,
-            fill(AMBER), fill(LINE), panel(INK, LINE));
-        field.focusedBackground = panel(INK, AMBER);
+            fill(AMBER), fill(LINE), darkControl.tint(Color.WHITE));
+        field.focusedBackground = darkControl.tint(Color.valueOf("d8c49d"));
         field.messageFontColor = MUTED;
         skin.add("default", field);
         ScrollPane.ScrollPaneStyle scroll = new ScrollPane.ScrollPaneStyle();
-        scroll.vScroll = fill(INK); scroll.vScrollKnob = panel(LINE, LINE);
+        scroll.vScroll = fill(INK); scroll.vScrollKnob = darkControl.tint(Color.valueOf("868686"));
         skin.add("default", scroll);
         List.ListStyle list = new List.ListStyle(body, PAPER, MUTED, fill(LINE));
-        list.background = panel(INK, LINE);
+        list.background = container();
         skin.add("default", list);
-        SelectBox.SelectBoxStyle select = new SelectBox.SelectBoxStyle(body, PAPER, panel(INK, LINE), scroll, list);
-        select.backgroundOver = panel(PANEL, AMBER);
+        SelectBox.SelectBoxStyle select = new SelectBox.SelectBoxStyle(body, PAPER, darkControl.tint(Color.WHITE), scroll, list);
+        select.backgroundOver = darkControl.tint(Color.valueOf("d8c49d"));
         select.backgroundOpen = select.backgroundOver;
         skin.add("default", select);
-        skin.add("default", new Window.WindowStyle(assets.get("ui/heading.ttf", BitmapFont.class), PAPER, panel(PANEL, AMBER)));
+        skin.add("default", new Window.WindowStyle(assets.get("ui/heading.ttf", BitmapFont.class), PAPER, container()));
         skin.get(Window.WindowStyle.class).stageBackground = fill(new Color(0, 0, 0, 0.8f));
     }
     public void apply(GameSettings settings) {
@@ -98,14 +120,15 @@ public final class MenuTheme implements Disposable {
         mono.getData().setScale(settings.largerText ? 1.1f : 1f);
     }
     public Drawable fill(Color color) { return new TextureRegionDrawable(pixel).tint(color); }
+    public Drawable container() { return panelFrame.tint(Color.WHITE); }
     public Drawable panel(Color background, Color border) {
-        Pixmap image = new Pixmap(12, 12, Pixmap.Format.RGBA8888);
-        image.setColor(border); image.fill();
-        image.setColor(background); image.fillRectangle(1, 1, 10, 10);
-        Texture texture = new Texture(image); image.dispose();
-        skin.add("panel-" + skin.getAll(Texture.class).size, texture);
-        NinePatchDrawable drawable = new NinePatchDrawable(new NinePatch(texture, 3, 3, 3, 3));
-        drawable.setPadding(10, 10, 14, 14);
+        return panelFrame.tint(border.equals(AMBER) ? Color.valueOf("e3c27b") : Color.WHITE);
+    }
+    private static NinePatchDrawable patch(Texture texture, int left, int right, int top, int bottom,
+                                           float padLeft, float padRight, float padTop, float padBottom) {
+        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        NinePatchDrawable drawable = new NinePatchDrawable(new NinePatch(texture, left, right, top, bottom));
+        drawable.setPadding(padLeft, padRight, padTop, padBottom);
         return drawable;
     }
     @Override public void dispose() { skin.dispose(); }

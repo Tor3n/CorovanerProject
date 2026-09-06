@@ -91,7 +91,7 @@ public abstract class MenuPage {
     protected Actor rule() { return new Image(theme.fill(MenuTheme.LINE)); }
     protected Table panel() {
         Table panel = new Table();
-        panel.setBackground(theme.skin.get(TextField.TextFieldStyle.class).background);
+        panel.setBackground(theme.container());
         panel.pad(24); panel.top().left();
         return panel;
     }
