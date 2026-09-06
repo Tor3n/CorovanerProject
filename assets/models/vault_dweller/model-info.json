@@ -1,0 +1,14 @@
+{
+  "id": "vault_dweller",
+  "format": "obj",
+  "forward": "+Z",
+  "up": "+Y",
+  "nominalHeight": 2.2,
+  "rigged": false,
+  "textures": false,
+  "vertices": 11444,
+  "triangles": 17348,
+  "pieces": 173,
+  "materials": 16,
+  "height": 2.212
+}

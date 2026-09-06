@@ -7,6 +7,10 @@
  <tileset firstgid="111" source="trees1.tsx"/>
  <tileset firstgid="115" source="trees2.tsx"/>
  <layer id="1" name="Tile Layer 1" width="64" height="64" locked="1">
+  <properties>
+   <property name="worldRole" value="ground"/>
+   <property name="worldElevation" type="float" value="0"/>
+  </properties>
   <data encoding="csv">
 5,2,2,8,2,2,8,5,5,9,5,5,2,6,6,2,2,9,2,2,2,6,6,6,6,9,5,2,4,2,14,5,5,23,23,23,2,2,23,2,9,9,9,10,10,9,9,4,4,2,9,14,9,2,2,14,2,2,2,2,2,2,2,2,
 2,2,2,8,2,2,8,2,2,9,2,2,2,2,6,6,2,9,2,2,2,6,2,2,6,9,2,6,6,5,14,14,5,16,21,23,23,2,23,3,4,9,14,3,10,9,9,3,3,4,3,14,14,9,3,14,14,3,3,3,3,3,2,2,
@@ -75,6 +79,11 @@
 </data>
  </layer>
  <layer id="4" name="mountins1" width="64" height="64">
+  <properties>
+   <property name="worldRole" value="cutout"/>
+   <property name="worldElevation" type="float" value="0"/>
+   <property name="worldSolid" type="bool" value="true"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,35,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,35,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -143,6 +152,10 @@
 </data>
  </layer>
  <layer id="5" name="mountins2" width="64" height="64">
+  <properties>
+   <property name="worldRole" value="ground"/>
+   <property name="worldElevation" type="float" value="2"/>
+  </properties>
   <data encoding="csv">
 12,12,29,29,29,12,12,29,29,29,23,12,12,12,23,23,12,23,23,29,23,23,12,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 12,12,13,23,10,12,12,23,23,27,13,13,13,23,23,12,23,13,13,27,10,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -211,6 +224,11 @@
 </data>
  </layer>
  <layer id="6" name="mountins3" width="64" height="64">
+  <properties>
+   <property name="worldRole" value="cutout"/>
+   <property name="worldElevation" type="float" value="2"/>
+   <property name="worldSolid" type="bool" value="true"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -279,6 +297,10 @@
 </data>
  </layer>
  <layer id="7" name="mountins4" width="64" height="64">
+  <properties>
+   <property name="worldRole" value="ground"/>
+   <property name="worldElevation" type="float" value="4"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -347,6 +369,9 @@
 </data>
  </layer>
  <layer id="8" name="items" width="64" height="64">
+  <properties>
+   <property name="worldRole" value="cutout"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,116,0,0,0,0,0,0,0,0,0,0,0,116,0,0,0,98,0,0,0,0,111,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,88,88,0,0,115,0,115,0,0,0,0,116,0,0,116,0,117,0,0,0,0,0,112,0,0,0,0,0,98,0,112,0,0,0,0,0,0,0,

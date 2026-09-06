@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 public class ScreenManager {
     private GameScreen currentScreen;
+    private int width, height;
+    private final Deque<GameScreen> history = new ArrayDeque<>();
     private final HashMap<String, GameScreen> gameScreens;
     private final ArrayList<ModalScreen> modalScreens;
 
@@ -35,6 +39,23 @@ public class ScreenManager {
     }
 
     public void setScreen(GameScreen screen) {
+        history.clear();
+        transition(screen);
+    }
+
+    public void pushScreen(GameScreen screen) {
+        if (screen == null || screen == currentScreen) return;
+        if (currentScreen != null) history.push(currentScreen);
+        transition(screen);
+    }
+
+    public void popScreen() {
+        if (!history.isEmpty()) transition(history.pop());
+    }
+
+    public boolean canGoBack() { return !history.isEmpty(); }
+
+    private void transition(GameScreen screen) {
         if (currentScreen == screen) {
             return;
         }
@@ -43,6 +64,7 @@ public class ScreenManager {
         }
         currentScreen = screen;
         if (currentScreen != null) {
+            if (width > 0 && height > 0) currentScreen.resize(width, height);
             currentScreen.show();
         }
     }
@@ -54,6 +76,8 @@ public class ScreenManager {
     }
 
     public void resize(int width, int height) {
+        this.width = width;
+        this.height = height;
         if (currentScreen != null) {
             currentScreen.resize(width, height);
         }
@@ -80,6 +104,7 @@ public class ScreenManager {
         }
 
         Set<GameScreen> uniqueScreens = new LinkedHashSet<>(gameScreens.values());
+        uniqueScreens.addAll(history);
         if (currentScreen != null) {
             uniqueScreens.add(currentScreen);
         }
@@ -91,6 +116,7 @@ public class ScreenManager {
         }
 
         currentScreen = null;
+        history.clear();
         gameScreens.clear();
         modalScreens.clear();
     }

@@ -5,9 +5,14 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.graphics.g3d.loader.ObjLoader;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import io.github.TorenDropProject.Main;
+import io.github.TorenDropProject.characters.CharacterDefinition;
+import io.github.TorenDropProject.world.WorldMap;
+import io.github.TorenDropProject.world.WorldMapLoader;
 
 public class SplashScreenAssetLoader {
 
@@ -21,13 +26,14 @@ public class SplashScreenAssetLoader {
     public SplashScreenAssetLoader loadAssets(){
 
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+        assetManager.setLoader(Model.class, ".obj", new ObjLoader(new InternalFileHandleResolver()));
+        assetManager.setLoader(WorldMap.class, new WorldMapLoader(new InternalFileHandleResolver()));
+        assetManager.load(CharacterDefinition.VAULT_DWELLER.modelPath, Model.class);
         assetManager.load("Splash.png", Texture.class);
         assetManager.load("grassland_tiles.png", Texture.class);
-        assetManager.load("MainModal.png", Texture.class);
-        assetManager.load("char.png",Texture.class);
-        assetManager.load("MainMenu.png",Texture.class);
         assetManager.load("cursors/arrowCursor3.png", Pixmap.class);
-        assetManager.load("maps/mountinPass.tmx", TiledMap.class);
+        // The catalog declares each destination WorldMap and its Tiled/texture dependencies.
+        io.github.TorenDropProject.menus.MenuTheme.queue(assetManager);
 
         return this;
     }

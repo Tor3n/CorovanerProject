@@ -1,0 +1,31 @@
+{
+  "origins": [
+    {"id":"caravan", "name":"Caravan Hand", "description":"You learned to read a trail before you learned to read a book.", "skill":"Survival"},
+    {"id":"vault", "name":"Vault Exile", "description":"The door closed behind you. The old world's secrets did not.", "skill":"Technology"},
+    {"id":"scrap", "name":"Scrap Prospector", "description":"There is a living buried in the ruins. Sometimes it still moves.", "skill":"Investigation"}
+  ],
+  "archetypes": [
+    {"id":"gunslinger", "name":"Gunslinger", "description":"A steady hand in an unsteady world.", "skill":"Perception", "hitDie":10, "weapon":"Worn revolver"},
+    {"id":"warden", "name":"Warden", "description":"Stand between the caravan and whatever comes out of the dark.", "skill":"Athletics", "hitDie":12, "weapon":"Trail carbine"},
+    {"id":"tinker", "name":"Tinker", "description":"Old machines have a language. You know how to make them listen.", "skill":"Technology", "hitDie":8, "weapon":"Arc wrench"},
+    {"id":"preacher", "name":"Ash Preacher", "description":"Carry a little faith through a country that has lost its gods.", "skill":"Persuasion", "hitDie":8, "weapon":"Iron staff"}
+  ],
+  "destinations": [
+    {"id":"mercy", "name":"Mercy Crossing", "description":"A water tower, a trading post, and a promise nobody remembers making. Your caravan's last safe berth.", "x":0.16, "y":0.55, "danger":"Sheltered", "worldMap":"maps/mercyCrossing.world.json"},
+    {"id":"pass", "name":"Blackwire Pass", "description":"The old relay line climbs into broken country. Scouts report movement above the road. A local area is available to explore.", "x":0.50, "y":0.55, "danger":"Exposed", "worldMap":"maps/mountinPass.world.json"},
+    {"id":"relay", "name":"Saint's Relay", "description":"A dead transmission tower still sends a signal at dusk. Rusting antennae rise above a fenced maintenance yard.", "x":0.84, "y":0.90, "danger":"Uncertain", "worldMap":"maps/saintsRelay.world.json"},
+    {"id":"salt", "name":"The Salt Graves", "description":"White earth. Black markers. No names. A pale salt flat surrounds rows of weathered burial crosses and a solitary memorial.", "x":0.84, "y":0.20, "danger":"Hostile", "worldMap":"maps/saltGraves.world.json"},
+    {"id":"forest", "name":"Forest Crossroads", "description":"Four old roads meet beneath the trees. A woodland trail leads to an abandoned caravan camp.", "x":0.16, "y":0.90, "danger":"Uncertain", "worldMap":"maps/forestCrossroads.world.json"},
+    {"id":"quarry", "name":"Abandoned Quarry", "description":"Broken stone shelves rise above the quarry floor. Two routes wind past exposed seams and a deserted work yard.", "x":0.50, "y":0.90, "danger":"Exposed", "worldMap":"maps/abandonedQuarry.world.json"},
+    {"id":"graveyard", "name":"Forgotten Graveyard", "description":"Burial rows and broken fences surround a silent memorial. A woodland trail skirts the graves.", "x":0.50, "y":0.20, "danger":"Uncertain", "worldMap":"maps/forgottenGraveyard.world.json"}
+  ],
+  "routes": [
+    {"from":"mercy", "to":"pass", "hours":8, "supplies":2},
+    {"from":"pass", "to":"relay", "hours":6, "supplies":2},
+    {"from":"pass", "to":"salt", "hours":12, "supplies":3},
+    {"from":"relay", "to":"salt", "hours":10, "supplies":3},
+    {"from":"pass", "to":"forest", "hours":4, "supplies":1},
+    {"from":"pass", "to":"quarry", "hours":6, "supplies":2},
+    {"from":"pass", "to":"graveyard", "hours":5, "supplies":1}
+  ]
+}

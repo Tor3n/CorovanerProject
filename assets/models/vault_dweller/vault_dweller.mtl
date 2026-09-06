@@ -1,0 +1,129 @@
+# Original character material palette. Keep beside the OBJ.
+newmtl suit_blue
+Ka 0.12 0.12 0.12
+Kd 0.16078 0.29020 0.47059
+Ks 0.025 0.025 0.025
+Ns 10
+d 1
+illum 2
+
+newmtl suit_light
+Ka 0.12 0.12 0.12
+Kd 0.23137 0.37647 0.54902
+Ks 0.025 0.025 0.025
+Ns 10
+d 1
+illum 2
+
+newmtl suit_shadow
+Ka 0.12 0.12 0.12
+Kd 0.13725 0.22353 0.32941
+Ks 0.02 0.02 0.02
+Ns 8
+d 1
+illum 2
+
+newmtl gold_trim
+Ka 0.12 0.12 0.12
+Kd 0.76471 0.63922 0.26667
+Ks 0.04 0.04 0.04
+Ns 15
+d 1
+illum 2
+
+newmtl gold_edge
+Ka 0.12 0.12 0.12
+Kd 0.56078 0.47451 0.23529
+Ks 0.03 0.03 0.03
+Ns 10
+d 1
+illum 2
+
+newmtl skin
+Ka 0.12 0.12 0.12
+Kd 0.70980 0.54118 0.39608
+Ks 0.04 0.04 0.04
+Ns 14
+d 1
+illum 2
+
+newmtl skin_shadow
+Ka 0.12 0.12 0.12
+Kd 0.58039 0.41961 0.31373
+Ks 0.025 0.025 0.025
+Ns 12
+d 1
+illum 2
+
+newmtl skin_light
+Ka 0.12 0.12 0.12
+Kd 0.76078 0.60392 0.46275
+Ks 0.04 0.04 0.04
+Ns 14
+d 1
+illum 2
+
+newmtl hair
+Ka 0.12 0.12 0.12
+Kd 0.22353 0.17647 0.14902
+Ks 0.025 0.025 0.025
+Ns 8
+d 1
+illum 2
+
+newmtl hair_light
+Ka 0.12 0.12 0.12
+Kd 0.31373 0.25098 0.20000
+Ks 0.025 0.025 0.025
+Ns 8
+d 1
+illum 2
+
+newmtl leather
+Ka 0.12 0.12 0.12
+Kd 0.25098 0.22745 0.18824
+Ks 0.06 0.06 0.06
+Ns 18
+d 1
+illum 2
+
+newmtl sole
+Ka 0.12 0.12 0.12
+Kd 0.14902 0.16863 0.16863
+Ks 0.025 0.025 0.025
+Ns 10
+d 1
+illum 2
+
+newmtl steel
+Ka 0.12 0.12 0.12
+Kd 0.41961 0.43922 0.38824
+Ks 0.18 0.18 0.18
+Ns 32
+d 1
+illum 2
+
+newmtl screen
+Ka 0.12 0.12 0.12
+Kd 0.25098 0.35294 0.21176
+Ks 0.06 0.06 0.06
+Ns 15
+d 1
+illum 2
+
+newmtl screen_text
+Ka 0.12 0.12 0.12
+Kd 0.70588 0.74118 0.47451
+Ks 0.05 0.05 0.05
+Ns 15
+d 1
+illum 2
+
+newmtl eye
+Ka 0.12 0.12 0.12
+Kd 0.18824 0.18431 0.16471
+Ks 0.02 0.02 0.02
+Ns 10
+d 1
+illum 2
+

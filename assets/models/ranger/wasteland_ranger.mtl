@@ -1,0 +1,129 @@
+# Original wasteland ranger materials; keep beside the OBJ.
+newmtl canvas
+Ka 0.12 0.12 0.12
+Kd 0.43922 0.40000 0.31373
+Ks 0.04 0.04 0.04
+Ns 8
+d 1
+illum 2
+
+newmtl canvas_light
+Ka 0.12 0.12 0.12
+Kd 0.54510 0.49020 0.38039
+Ks 0.03 0.03 0.03
+Ns 8
+d 1
+illum 2
+
+newmtl canvas_dark
+Ka 0.12 0.12 0.12
+Kd 0.31765 0.29412 0.23529
+Ks 0.03 0.03 0.03
+Ns 8
+d 1
+illum 2
+
+newmtl leather
+Ka 0.12 0.12 0.12
+Kd 0.28627 0.21569 0.17255
+Ks 0.1 0.1 0.1
+Ns 18
+d 1
+illum 2
+
+newmtl leather_edge
+Ka 0.12 0.12 0.12
+Kd 0.50196 0.38824 0.28235
+Ks 0.08 0.08 0.08
+Ns 14
+d 1
+illum 2
+
+newmtl rubber
+Ka 0.12 0.12 0.12
+Kd 0.14118 0.15294 0.14510
+Ks 0.04 0.04 0.04
+Ns 8
+d 1
+illum 2
+
+newmtl steel
+Ka 0.12 0.12 0.12
+Kd 0.38431 0.42353 0.41176
+Ks 0.32 0.32 0.32
+Ns 45
+d 1
+illum 2
+
+newmtl steel_edge
+Ka 0.12 0.12 0.12
+Kd 0.60392 0.61569 0.54510
+Ks 0.4 0.4 0.4
+Ns 55
+d 1
+illum 2
+
+newmtl rust
+Ka 0.12 0.12 0.12
+Kd 0.46667 0.31373 0.22745
+Ks 0.06 0.06 0.06
+Ns 12
+d 1
+illum 2
+
+newmtl brass
+Ka 0.12 0.12 0.12
+Kd 0.66667 0.54510 0.30980
+Ks 0.3 0.3 0.3
+Ns 48
+d 1
+illum 2
+
+newmtl scarf
+Ka 0.12 0.12 0.12
+Kd 0.40000 0.23529 0.19608
+Ks 0.03 0.03 0.03
+Ns 8
+d 1
+illum 2
+
+newmtl glass
+Ka 0.12 0.12 0.12
+Kd 0.52549 0.45098 0.27451
+Ks 0.6 0.6 0.6
+Ns 90
+d 1
+illum 2
+
+newmtl glass_glint
+Ka 0.12 0.12 0.12
+Kd 0.90588 0.83529 0.60392
+Ks 0.6 0.6 0.6
+Ns 90
+d 1
+illum 2
+
+newmtl screen
+Ka 0.12 0.12 0.12
+Kd 0.39608 0.53725 0.31373
+Ks 0.15 0.15 0.15
+Ns 30
+d 1
+illum 2
+
+newmtl screen_glow
+Ka 0.12 0.12 0.12
+Kd 0.71765 0.80000 0.50980
+Ks 0.15 0.15 0.15
+Ns 30
+d 1
+illum 2
+
+newmtl wood
+Ka 0.12 0.12 0.12
+Kd 0.38824 0.27843 0.19608
+Ks 0.12 0.12 0.12
+Ns 18
+d 1
+illum 2
+

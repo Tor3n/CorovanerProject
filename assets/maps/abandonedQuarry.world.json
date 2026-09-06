@@ -1,0 +1,18 @@
+{
+  "map": "abandonedQuarry.tmx",
+  "cellSize": 1.0,
+  "spawns": [
+    {
+      "column": 39,
+      "row": 57
+    },
+    {
+      "column": 37,
+      "row": 55
+    },
+    {
+      "column": 40,
+      "row": 54
+    }
+  ]
+}
