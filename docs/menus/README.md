@@ -1,6 +1,6 @@
 # Frontier menus
 
-The game opens into a shared Scene2D menu system with a western field-terminal theme: charcoal, brass, parchment typography, contour lines, and a ruined transmission tower. Reusable generated raster primitives under `assets/ui/postapoc/` add blackened-steel frames, enamel controls, fasteners, and surface wear without baking live labels or layouts into images. The three bundled Liberation fonts are covered by `assets/ui/fonts/LICENSE.txt`.
+The game opens into a shared Scene2D menu system with a western field-terminal theme: charcoal, brass, parchment typography, contour lines, and a ruined transmission tower. The approved screen reference and reusable generated raster primitives live under `assets/ui-architecture/`. They add blackened-steel frames, enamel controls, fasteners, and surface wear without baking live labels or layouts into images. The three bundled Liberation fonts are covered by `assets/ui/fonts/LICENSE.txt`.
 
 ## Play through the menus
 

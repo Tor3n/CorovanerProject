@@ -19,9 +19,11 @@ import com.badlogic.gdx.utils.Disposable;
 
 /** Owns skin textures. Fonts are queued and owned by the central AssetManager. */
 public final class MenuTheme implements Disposable {
-    private static final String PANEL_TEXTURE = "ui/postapoc/panel-frame.png";
-    private static final String DARK_CONTROL_TEXTURE = "ui/postapoc/button-dark.png";
-    private static final String ENAMEL_CONTROL_TEXTURE = "ui/postapoc/button-enamel.png";
+    private static final String ELEMENTS = "ui-architecture/element-set/";
+    private static final String SCREEN_FRAME_TEXTURE = ELEMENTS + "screen-frame.png";
+    private static final String PANEL_TEXTURE = ELEMENTS + "panel-dark.png";
+    private static final String DARK_CONTROL_TEXTURE = ELEMENTS + "control-dark.png";
+    private static final String ENAMEL_CONTROL_TEXTURE = ELEMENTS + "control-enamel.png";
     public static final Color INK = Color.valueOf("101715");
     public static final Color PANEL = Color.valueOf("19211d");
     public static final Color PAPER = Color.valueOf("e2d4b5");
@@ -32,6 +34,7 @@ public final class MenuTheme implements Disposable {
     public final Skin skin = new Skin();
     public final TextureRegion pixel;
     private final BitmapFont body, mono;
+    private final NinePatchDrawable screenFrame;
     private final NinePatchDrawable panelFrame;
     private final NinePatchDrawable darkControl;
     private final NinePatchDrawable enamelControl;
@@ -44,6 +47,7 @@ public final class MenuTheme implements Disposable {
         font(assets, "mono", "frontier-mono", 14);
         font(assets, "heading", "frontier-title", 34);
         font(assets, "title", "frontier-title", 66);
+        assets.load(SCREEN_FRAME_TEXTURE, Texture.class);
         assets.load(PANEL_TEXTURE, Texture.class);
         assets.load(DARK_CONTROL_TEXTURE, Texture.class);
         assets.load(ENAMEL_CONTROL_TEXTURE, Texture.class);
@@ -61,6 +65,7 @@ public final class MenuTheme implements Disposable {
     public MenuTheme(AssetManager assets) {
         body = assets.get("ui/body.ttf", BitmapFont.class);
         mono = assets.get("ui/mono.ttf", BitmapFont.class);
+        screenFrame = patch(assets.get(SCREEN_FRAME_TEXTURE, Texture.class), 22, 22, 22, 22, 22, 22, 22, 22);
         panelFrame = patch(assets.get(PANEL_TEXTURE, Texture.class), 22, 22, 22, 22, 22, 22, 22, 22);
         darkControl = patch(assets.get(DARK_CONTROL_TEXTURE, Texture.class), 18, 18, 18, 18, 16, 16, 10, 10);
         enamelControl = patch(assets.get(ENAMEL_CONTROL_TEXTURE, Texture.class), 18, 18, 18, 18, 16, 16, 10, 10);
@@ -120,6 +125,7 @@ public final class MenuTheme implements Disposable {
         mono.getData().setScale(settings.largerText ? 1.1f : 1f);
     }
     public Drawable fill(Color color) { return new TextureRegionDrawable(pixel).tint(color); }
+    public Drawable screenFrame() { return screenFrame.tint(Color.WHITE); }
     public Drawable container() { return panelFrame.tint(Color.WHITE); }
     public Drawable panel(Color background, Color border) {
         return panelFrame.tint(border.equals(AMBER) ? Color.valueOf("e3c27b") : Color.WHITE);

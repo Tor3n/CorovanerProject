@@ -27,6 +27,7 @@ public abstract class MenuPage {
         this.title = title;
         help = new MenuHelp(theme);
         root.setFillParent(true);
+        root.setBackground(theme.screenFrame());
     }
     public final void attach(Stage stage) { this.stage = stage; stage.addActor(root); }
     public void show() { rebuild(); }

@@ -46,7 +46,10 @@ configure(subprojects) {
     // iterate through all files inside that folder
     // convert it to a relative path
     // and append it to the file assets.txt
-    fileTree(assetsFolder).collect { assetsFolder.relativePath(it) }.sort().each {
+    fileTree(assetsFolder) {
+      exclude 'ui-architecture/reference/**'
+      exclude 'ui-architecture/**/*.md'
+    }.collect { assetsFolder.relativePath(it) }.sort().each {
       assetsFile.append(it + "\n")
     }
   }
