@@ -1,0 +1,38 @@
+{
+  "id": "protagonist",
+  "skeletonVersion": "humanoid_fixed_grip_v1",
+  "asset": "models/protagonist/protagonist.glb",
+  "editableSource": "docs/characters/Protoganist/maleprot_rig_master.blend",
+  "height": 2.2,
+  "up": "+Y",
+  "forward": "+Z",
+  "groundPlane": "XZ",
+  "bones": 22,
+  "fingerBones": 0,
+  "bodyTriangles": 9998,
+  "equipmentTriangles": 264,
+  "maxVertexInfluences": 4,
+  "clips": {
+    "idle": {"seconds": 2.0, "loop": true},
+    "walk": {"seconds": 0.5333333333, "loop": true, "referenceSpeed": 1.7677195511},
+    "run": {"seconds": 0.4, "loop": true, "referenceSpeed": 3.5354391021},
+    "neutral_idle": {"seconds": 2.0, "loop": true, "purpose": "unarmed preview default"},
+    "neutral_walk": {"seconds": 0.5333333333, "loop": true, "purpose": "unarmed preview walk"},
+    "neutral_run": {"seconds": 0.4, "loop": true, "purpose": "unarmed preview run"},
+    "rig_test": {"seconds": 1.0, "loop": true, "purpose": "deformation review only"}
+  },
+  "sockets": {
+    "socket_weapon_r": "hand_r",
+    "socket_support_l": "hand_l",
+    "socket_back": "chest",
+    "socket_head": "head"
+  },
+  "notes": [
+    "Documentation metadata, not a runtime configuration loader.",
+    "Fixed clutching geometry follows hand bones; no finger animation.",
+    "Equipment_Rifle is a removable visual fitting fixture, rigidly weighted to hand_r.",
+    "Movement clips are in place; gameplay owns displacement and collision.",
+    "The run clip is a faster stylized gait without a flight phase.",
+    "Skeleton names, rest transforms and mesh bind pose form the reuse contract."
+  ]
+}

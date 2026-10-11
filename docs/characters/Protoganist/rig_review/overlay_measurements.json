@@ -1,0 +1,42 @@
+{
+  "meaning": "Fitted rig joint lengths, not measured human anatomy or evaluated skin proportions.",
+  "center_plane_blender": "X=0, recentered from accepted source torso X=-0.04682",
+  "sides": "Anatomical left=+X; front view shows anatomical left on image right.",
+  "landmarks": [
+    "shoulder=upper_arm head",
+    "elbow=forearm head",
+    "wrist=hand head",
+    "distal_hand=hand tail (not fingertip)"
+  ],
+  "length_units": "Blender units; character rest height 2.2",
+  "rest_lengths": {
+    "l": {
+      "upper_arm": 0.37273508580660536,
+      "forearm": 0.33383229570187023,
+      "hand_landmark": 0.16263019820356578,
+      "total": 0.8691975797120414
+    },
+    "r": {
+      "upper_arm": 0.37273508580660536,
+      "forearm": 0.33383229570187023,
+      "hand_landmark": 0.16263019820356578,
+      "total": 0.8691975797120414
+    }
+  },
+  "relative_difference_percent": {
+    "upper_arm": 0.0,
+    "forearm": 0.0,
+    "hand_landmark": 0.0,
+    "total": 0.0
+  },
+  "views": [
+    "overlay_rest_front.png",
+    "overlay_rest_iso.png",
+    "overlay_idle_front.png",
+    "overlay_idle_iso.png",
+    "overlay_clay_grip_front.png",
+    "overlay_clay_grip_iso.png",
+    "overlay_clay_grip_underside.png"
+  ],
+  "interpretation": "Symmetric fitted arm chains establish a stable rig contract. Idle arms intentionally differ to fit rifle grips; mirrored idle lines are comparison guides, not desired targets. These overlays do not establish equal skin proportions or exact anatomy."
+}

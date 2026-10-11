@@ -19,16 +19,23 @@ import com.badlogic.gdx.graphics.g3d.attributes.IntAttribute;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 import com.badlogic.gdx.graphics.g3d.utils.MeshPartBuilder;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
+import com.badlogic.gdx.graphics.g3d.utils.DefaultShaderProvider;
 
 /** All world renderables share this batch, camera, and uninterrupted depth buffer. */
 public final class WorldRenderer implements Disposable {
-    private final ModelBatch batch = new ModelBatch();
+    private final ModelBatch batch = createBatch();
     private final Environment environment = new Environment();
     private final WorldCameraRig rig;
     private final BattleSession session;
     private final Model markerModel;
     private final ModelInstance selectionMarker, destinationMarker;
     private final ImmutableArray<Entity> renderables;
+    private static ModelBatch createBatch() {
+        DefaultShader.Config config = new DefaultShader.Config();
+        config.numBones = 32;
+        return new ModelBatch(new DefaultShaderProvider(config));
+    }
     public WorldRenderer(WorldCameraRig rig, BattleSession session) {
         this.rig = rig;
         this.session = session;

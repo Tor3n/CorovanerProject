@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g3d.Model;
+import net.mgsx.gltf.scene3d.scene.SceneAsset;
 import io.github.TorenDropProject.characters.CharacterDefinition;
 import io.github.TorenDropProject.characters.CharacterFactory;
 import io.github.TorenDropProject.world.WorldSceneFactory;
@@ -58,8 +58,8 @@ public class Main implements ApplicationListener {
     private boolean postloaded(){
         createCursors();
 
-        CharacterDefinition definition = CharacterDefinition.VAULT_DWELLER;
-        CharacterFactory factory = new CharacterFactory(definition, assetManager.get(definition.modelPath, Model.class));
+        CharacterDefinition definition = CharacterDefinition.PROTAGONIST;
+        CharacterFactory factory = new CharacterFactory(definition, assetManager.get(definition.modelPath, SceneAsset.class));
         boolean previewMode = Boolean.getBoolean("corovaner.characterPreview");
         WorldSceneFactory scenes = new WorldSceneFactory(assetManager, factory);
         FrontierCatalog catalog = assetManager.get(FrontierCatalog.PATH, FrontierCatalog.class);

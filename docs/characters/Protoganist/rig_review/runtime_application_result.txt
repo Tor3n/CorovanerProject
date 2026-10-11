@@ -1,0 +1,1 @@
+PASS: Main startup, neutral unarmed preview on all actors, instance-only equipment visibility, 60 rendered frames, hide/show, pause/resume and resize.

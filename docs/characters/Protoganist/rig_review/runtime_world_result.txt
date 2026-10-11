@@ -1,0 +1,1 @@
+PASS: real GLB loading, textures, skin shaders, sockets, idle/walk/run, shared world and pause.
