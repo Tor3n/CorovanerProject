@@ -4,7 +4,7 @@
 
 Start with the [main concept and design guide](docs/design/README.md) before
 development or art work. It links the creator's original vision, atmosphere,
-design proposals, visual references, and open decisions. **Development spoilers.**
+design proposals, visual references, and open decisions.
 
 A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
 

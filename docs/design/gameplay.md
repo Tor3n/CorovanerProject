@@ -1,6 +1,6 @@
 # Exploration and campaign progression
 
-**Major development spoilers.** This is collaborator analysis of
+This is collaborator analysis of
 [the creator's vision](vision.md). Proposed mechanics below are not approved canon.
 
 ## Requirements derived from the vision

@@ -1,6 +1,6 @@
 # Development guide and open decisions
 
-**Coworker guidance and proposals · development spoilers.** The creative source
+**Coworker guidance and proposals.** The creative source
 is [vision.md](vision.md); use [the index](README.md) for authority and status rules.
 
 ## Before implementing a task

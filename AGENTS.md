@@ -10,8 +10,8 @@ proposals, technical notes, and open questions in separate design documents.
 Distinguish creator requirements from proposals and current implementation facts.
 Existing prototypes and reference images do not settle open creative decisions.
 Check proposed work against the guide's pillars and state any material conflict.
-The guide contains development spoilers; follow its disclosure guidance for
-player-facing text, screenshots, menus, and promotional material.
+Follow the guide's direction on preserving the intended surprise in player-facing
+text, screenshots, menus, and promotional material.
 
 ## Project Structure & Module Organization
 

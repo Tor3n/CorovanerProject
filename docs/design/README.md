@@ -1,6 +1,6 @@
 # Corovaner — main concept and design guide
 
-**Developer reference · contains the central campaign reveal.** Established 2026-10-21.
+**Developer reference.** Established 2026-10-21.
 
 Start here for development, art, writing, UI, and technical planning. This is the
 shared creative reference for the creator and collaborators, including AI coworkers.
@@ -41,12 +41,8 @@ evidence for planning, not a substitute for this choice.
 
 ## Protecting the reveal
 
-These documents are for development and contain spoilers. Keep the genre change,
+To preserve the intended player experience, keep the genre change,
 late-game labels, screenshots, and explanatory diagrams out of ordinary player-facing
 menus, tutorials, loading tips, achievements, store copy, and early promotional art
 unless the creator explicitly chooses otherwise. Teach strategic controls when the
 change occurs. Accessibility and control help must remain honest and usable.
-
-The repository is public as of this guide's creation. A spoiler label does not
-provide confidentiality: readers can find the reveal in these files and Git history.
-This guide protects presentation choices, not secrecy against repository readers.
