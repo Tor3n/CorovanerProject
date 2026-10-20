@@ -10,7 +10,8 @@ It describes the intended game; it does not claim that the prototype implements 
 
 | Document | Purpose | Authority |
 | --- | --- | --- |
-| [Original vision](vision.md) | The creator's entire supplied paragraph, unchanged, including spelling and spacing. | Primary creative source. |
+| [Creator's vision](vision.md) | The original passage and the later world-setting passage, both verbatim, including spelling and spacing. | Primary creative source. |
+| [World, societies, and caravans](world.md) | The distant End-day, fragmented states, agriculture, uneven technology, transport, robots, and religions. | Derived requirements; suggested applications and unresolved details are labeled. |
 | [Atmosphere and visual direction](atmosphere.md) | Map priorities, mood, materials, camera, effects, and UI. | Requirements and earlier creator direction are identified separately from proposals. |
 | [Exploration and campaign progression](gameplay.md) | How the RPG opening and later strategic game connect. | Derived requirements plus explicitly labeled proposals. |
 | [Development guide and open decisions](development-guide.md) | How to apply the vision, evaluate work, and avoid premature commitments. | Coworker guidance; unresolved choices remain unresolved. |
@@ -26,6 +27,10 @@ The following is a collaborator's summary of [the original](vision.md), not a re
 4. **The journey begins personally.** One character travels, visits places, completes quests, and establishes relationships with peoples and factions.
 5. **The game changes genre suddenly.** It becomes a 4X game about a caravan empire and a chosen form of leadership. The creator's aim is for the player not to anticipate this expansion.
 6. **Early choices matter later.** The strategic situation grows from relationships and decisions made during the RPG stage.
+7. **The End-day is a distant, unexplained past.** Too much time has passed for it to define everyday life as a fresh disaster; the opening does not explain its cause. There is no magic and there are no mutants.
+8. **An agricultural world contains sharply different societies.** Poor farming communities, sometimes successful deliberately medieval societies, advanced factions, semi-sentient robots, and hive-mind robots coexist.
+9. **Caravans and trade carry the main story.** Routes cross deserts, scarce forests, industrial wastelands, great city ruins, and the territories of small states that trade, fight, and intermarry. Animal-drawn wagons coexist with unevenly available motor, rail, electric, and drone transport; hostile territory and developed air defences matter.
+10. **Belief is diverse.** Religions include communities inspired by Amish ways of life, singularity believers, dangerous cults, and people seeking bodily modification with metal. Faith does not establish supernatural powers.
 
 2D versus 3D remains open. The creator expresses an interest in 3D for the map's
 beauty, not a final renderer decision. The existing implementation is useful
@@ -33,7 +38,7 @@ evidence for planning, not a substitute for this choice.
 
 ## Authority and maintenance
 
-- Explicit creator decisions govern creative direction. Preserve the original paragraph as a historical source; record later decisions separately, with their date and scope.
+- Explicit creator decisions govern creative direction. Preserve each creator passage verbatim. Append supplied passages to `vision.md` only when explicitly requested, without rewriting earlier text; record the date, scope, and interpretation in the development guide and relevant concept documents.
 - Everything authored by a collaborator must identify itself as a requirement interpretation, a proposal, a current implementation fact, or an open decision. A proposal does not become approved merely because it was committed.
 - Images support specific aspects of a design. Record which aspects the creator approves before treating a new image as a target.
 - The creator rejected the existing map material and travel interface as design references on 2026-10-21. Develop the future map and travel experience from the vision; do not use those prototypes as visual or interaction baselines, quality targets, or limits on ambition.

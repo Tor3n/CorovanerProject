@@ -11,6 +11,12 @@ conflict with the guide or current architecture before making a substantial chan
 Do not silently settle an open creative choice through an implementation shortcut.
 Routine reversible work can continue within the established direction.
 
+For setting-related tasks, also read [world.md](world.md). Preserve the distant,
+unexplained End-day; the absence of magic and mutants; the mainly agricultural,
+politically fragmented world; and its uneven technology, robots, varied faiths,
+and caravan trade. Separate facts about the wider world from the playable region
+and from mechanics that have actually been approved.
+
 For a substantial feature, keep a short task note or PR explanation with:
 
 - The relevant design pillar and intended player benefit.
@@ -48,7 +54,7 @@ renderer. A concept document does not change runtime behavior.
 
 ## Proposed next work, in order
 
-1. **Prove the map's appeal in a small representative region.** Show a road, a memorable destination, contrasting terrain, and a simple traveler at the intended camera angle. Include one meaningful detour and enough interaction to test curiosity. Judge both the view and the act of exploring it.
+1. **Prove the map's appeal in a small representative region.** Show a road, a memorable destination, contrasting terrain, and a simple traveler at the intended camera angle. A proposed setting sample could pair working farmland and a rural caravan with distant industrial or city ruins. Include one meaningful detour and enough interaction to test curiosity. Judge both the view and the act of exploring it; no single sample must contain every technology or belief.
 2. **Compare presentation approaches only where needed.** Use the same region, framing, and art intent when comparing the current mixed pipeline with a richer 3D or painted approach. Record authoring effort, visual clarity, frame time, memory use, and visible popping. Choose target hardware and budgets before calling a result production-ready.
 3. **Prove one consequence through the transition.** In a deliberately small prototype, carry one meaningful RPG choice and one faction relationship into a sudden strategic scenario. Use temporary UI and content; test whether the connection is understood without spoiling the transition beforehand.
 4. **Expand content after those proofs.** Grow regions, factions, and quest networks once the visual center and persistent progression work together. Keep battle and character scope consistent with their lower visual-detail priority.
@@ -69,9 +75,23 @@ travel speed, content density, and loading strategy require evidence.
 | D-06 | How does the strategic game advance? | Turn-based, real-time, or another model; economic rules, victory, setbacks, and faction behavior open. |
 | D-07 | How do leadership identities differ? | Ruler, caravan master, and faith leader are creator-provided possibilities; exclusivity, progression, and alternatives open. |
 | D-08 | What are the production constraints? | Target hardware, frame-time and memory budgets, art pipeline, staffing, and content volume open. Do not invent numerical targets as requirements. |
+| D-09 | Will the End-day ever receive a reliable explanation? | Distant catastrophe and no explanation at the opening are required. Nuclear war and AI war are possibilities, not canon. Cause, date, surviving evidence, and any eventual revelation remain open. |
+| D-10 | Which states and landscapes belong on the playable map? | Thousands of small nations exist in the wider setting; the playable scale remains a small country. Regional roster, borders, state count, and representation of trade, war, and intermarriage are open. |
+| D-11 | How do unequal technologies affect travel and trade? | Rural animal caravans, advanced vehicles, scarce railways, drones, electric propulsion, and developed air defence are established. Player access, energy and maintenance needs, infrastructure, restrictions, and simulation depth are open. |
+| D-12 | How are robots, religions, and body modification represented? | Semi-sentient and hive-mind robots, diverse faiths, and desires for metal modification are established; magic and mutants are excluded. Named groups, autonomy, doctrines, achievable modifications, and gameplay roles are open. |
 
 When a decision is made, record its date, creator instruction or reviewed evidence,
 chosen scope, and affected documents here. Keep unresolved details visibly open.
+
+## Creator decision record
+
+| Date | Source and scope | Recorded direction | Affected documents |
+| --- | --- | --- | --- |
+| 2026-10-21 | Creator's supplied world-setting passage; explicitly requested addition to the vision. | Append the passage verbatim. Establish a distant unexplained End-day, no magic or mutants, mostly poor agricultural societies, fragmented states, uneven technology and robots, caravan trade and varied transport, developed air defence, and diverse beliefs including metal body-modification aspirations. The earlier map priorities and sudden RPG-to-4X transition remain in force. | [vision](vision.md), [index](README.md), [world](world.md), [atmosphere](atmosphere.md), [gameplay](gameplay.md), [references](references.md), and this guide. |
+
+This addition refines the earlier broad post-apocalyptic/frontier and Fallout
+inspirations. It does not select a nuclear or AI-war origin, permit mutants or
+magic, define a faction roster, or approve all proposed gameplay applications.
 
 ## Review standard
 
