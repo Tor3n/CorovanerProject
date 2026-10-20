@@ -9,6 +9,9 @@ paraphrase, or expand that file without an explicit request. Put interpretations
 proposals, technical notes, and open questions in separate design documents.
 Distinguish creator requirements from proposals and current implementation facts.
 Existing prototypes and reference images do not settle open creative decisions.
+The creator rejected the existing map material and travel interface as design
+references. Do not use their appearance, layout, or interactions as baselines or
+quality targets for future map and travel design; develop those from the vision.
 Check proposed work against the guide's pillars and state any material conflict.
 Follow the guide's direction on preserving the intended surprise in player-facing
 text, screenshots, menus, and promotional material.

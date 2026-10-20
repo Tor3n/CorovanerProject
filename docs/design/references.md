@@ -3,39 +3,22 @@
 **Development reference.** Images communicate selected qualities; they do not
 override [the vision](vision.md) or turn a prototype into final art direction.
 
-This first guide reuses repository images and links an earlier UI reference.
-No new target concept painting is introduced. The notes below distinguish what
-each reference can support from decisions it cannot settle.
+This guide collects references and briefs for the game we intend to create.
+The future country map and travel experience need their own concept work, judged
+against [the creator's vision](vision.md).
 
-## Existing map material — prototype baseline
+## Creator direction — 2026-10-21
 
-![Mercy Crossing prototype: wasteland ground, small travelers, shelters, and a water tower](../../assets/maps/mercyCrossing-detail.png)
+The creator rejected the existing map material and travel interface as references
+for this guide. Do not use their appearance, composition, layout, or interactions
+as a design baseline, a quality target, or a limit on ambition. Their screenshots
+are intentionally excluded from this reference index.
 
-Source: [Mercy Crossing detail](../../assets/maps/mercyCrossing-detail.png),
-present in `main` at `58a32a3e65dfa4a66192b90e52bfe71b1b77ba2b`.
-See [all current map previews](../../assets/maps/README.md) and the
-[tileset notes](../../assets/WASTELAND_TILESET.md).
-
-**Useful for:** current scale relationships, arid ground and salvage materials,
-settlement props, and the combination of tiled terrain with solid structures.
-
-**Limits:** a local prototype, not a country-map beauty target. Repeating terrain,
-simple structure shading, test actors, and the depicted amount of detail do not
-establish the final quality bar, population, character style, or camera contract.
-
-## Existing travel interface — interaction baseline
-
-![Existing travel screen with destinations, roads, travel costs, and journal controls](../menus/travel.png)
-
-Source: [travel capture](../menus/travel.png), same inspected main-branch baseline.
-Behavior is documented in [Frontier menus](../menus/README.md).
-
-**Useful for:** route and destination selection, travel costs, and navigation
-within the existing prototype. It demonstrates a working information layout.
-
-**Limits:** this node-and-line presentation does not fulfill or define the future
-country map's visual ambition. Its flat buttons also do not settle the latest
-rusty-metal, plank, and vintage-light material direction.
+Develop the future vision on its own terms: a beautiful, compelling country map
+that makes the player want to explore, with the main action taking place on it.
+The final map art and travel-interface design remain to be developed. New concepts
+must earn approval through their contribution to that experience; resemblance to
+the existing implementation is not an acceptance criterion.
 
 ## Earlier UI concept and stretchable components
 

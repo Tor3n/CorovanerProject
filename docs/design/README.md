@@ -14,7 +14,7 @@ It describes the intended game; it does not claim that the prototype implements 
 | [Atmosphere and visual direction](atmosphere.md) | Map priorities, mood, materials, camera, effects, and UI. | Requirements and earlier creator direction are identified separately from proposals. |
 | [Exploration and campaign progression](gameplay.md) | How the RPG opening and later strategic game connect. | Derived requirements plus explicitly labeled proposals. |
 | [Development guide and open decisions](development-guide.md) | How to apply the vision, evaluate work, and avoid premature commitments. | Coworker guidance; unresolved choices remain unresolved. |
-| [Visual reference index](references.md) | Existing images, what they demonstrate, their limits, and briefs for future concept art. | Reference evidence, not automatic approval of every depicted detail. |
+| [Visual reference index](references.md) | Direction for future concept art, selected UI references, and criteria for new visual targets. | Creator direction and explicitly scoped references. |
 
 ## Creative foundation
 
@@ -36,6 +36,7 @@ evidence for planning, not a substitute for this choice.
 - Explicit creator decisions govern creative direction. Preserve the original paragraph as a historical source; record later decisions separately, with their date and scope.
 - Everything authored by a collaborator must identify itself as a requirement interpretation, a proposal, a current implementation fact, or an open decision. A proposal does not become approved merely because it was committed.
 - Images support specific aspects of a design. Record which aspects the creator approves before treating a new image as a target.
+- The creator rejected the existing map material and travel interface as design references on 2026-10-21. Develop the future map and travel experience from the vision; do not use those prototypes as visual or interaction baselines, quality targets, or limits on ambition.
 - Existing engineering constraints remain in force for implementation. If a desired design requires changing them, describe the conflict and propose the migration explicitly.
 - Keep durable decisions in this guide rather than relying on chat memory. Update the relevant document and the decision table when the creator resolves an open question. Preserve superseded decisions with a short explanation.
 

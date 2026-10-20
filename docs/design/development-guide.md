@@ -22,7 +22,10 @@ For a substantial feature, keep a short task note or PR explanation with:
 ## Current implementation facts
 
 Baseline inspected: `main` at `58a32a3e65dfa4a66192b90e52bfe71b1b77ba2b`,
-2026-10-21. These facts describe the prototype, not final creative commitments.
+2026-10-21. This is an engineering inventory for planning changes. The creator
+rejected the existing map material and travel interface as design references;
+their appearance, layout, and interactions must not guide the future creative
+target. Technical reuse should serve the vision, without setting its quality bar.
 
 | Area | Observed baseline | Design implication |
 | --- | --- | --- |
