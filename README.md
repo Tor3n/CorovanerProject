@@ -1,5 +1,11 @@
 # Drop
 
+## Corovaner design guide
+
+Start with the [main concept and design guide](docs/design/README.md) before
+development or art work. It links the creator's original vision, atmosphere,
+design proposals, visual references, and open decisions.
+
 A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
 
 This project was generated with a template including simple application launchers and an empty `ApplicationListener` implementation.
