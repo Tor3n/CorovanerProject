@@ -1,0 +1,52 @@
+# Corovaner — main concept and design guide
+
+**Developer reference · contains the central campaign reveal.** Established 2026-10-21.
+
+Start here for development, art, writing, UI, and technical planning. This is the
+shared creative reference for the creator and collaborators, including AI coworkers.
+It describes the intended game; it does not claim that the prototype implements it.
+
+## Read in this order
+
+| Document | Purpose | Authority |
+| --- | --- | --- |
+| [Original vision](vision.md) | The creator's entire supplied paragraph, unchanged, including spelling and spacing. | Primary creative source. |
+| [Atmosphere and visual direction](atmosphere.md) | Map priorities, mood, materials, camera, effects, and UI. | Requirements and earlier creator direction are identified separately from proposals. |
+| [Exploration and campaign progression](gameplay.md) | How the RPG opening and later strategic game connect. | Derived requirements plus explicitly labeled proposals. |
+| [Development guide and open decisions](development-guide.md) | How to apply the vision, evaluate work, and avoid premature commitments. | Coworker guidance; unresolved choices remain unresolved. |
+| [Visual reference index](references.md) | Existing images, what they demonstrate, their limits, and briefs for future concept art. | Reference evidence, not automatic approval of every depicted detail. |
+
+## Creative foundation
+
+The following is a collaborator's summary of [the original](vision.md), not a replacement:
+
+1. **The map is the visual centerpiece.** Seeing it should make the player want to travel into it. Characters and battles have lower visual-detail priority.
+2. **Exploration is the game.** Roads, sites, quests, and encounters should reward curiosity; the map hosts the main action across a country-sized setting.
+3. **The landscape is largely static, with a fixed camera.** Atmospheric effects can bring it to life without buildings popping into existence or construction reshaping the scenery.
+4. **The journey begins personally.** One character travels, visits places, completes quests, and establishes relationships with peoples and factions.
+5. **The game changes genre suddenly.** It becomes a 4X game about a caravan empire and a chosen form of leadership. The creator's aim is for the player not to anticipate this expansion.
+6. **Early choices matter later.** The strategic situation grows from relationships and decisions made during the RPG stage.
+
+2D versus 3D remains open. The creator expresses an interest in 3D for the map's
+beauty, not a final renderer decision. The existing implementation is useful
+evidence for planning, not a substitute for this choice.
+
+## Authority and maintenance
+
+- Explicit creator decisions govern creative direction. Preserve the original paragraph as a historical source; record later decisions separately, with their date and scope.
+- Everything authored by a collaborator must identify itself as a requirement interpretation, a proposal, a current implementation fact, or an open decision. A proposal does not become approved merely because it was committed.
+- Images support specific aspects of a design. Record which aspects the creator approves before treating a new image as a target.
+- Existing engineering constraints remain in force for implementation. If a desired design requires changing them, describe the conflict and propose the migration explicitly.
+- Keep durable decisions in this guide rather than relying on chat memory. Update the relevant document and the decision table when the creator resolves an open question. Preserve superseded decisions with a short explanation.
+
+## Protecting the reveal
+
+These documents are for development and contain spoilers. Keep the genre change,
+late-game labels, screenshots, and explanatory diagrams out of ordinary player-facing
+menus, tutorials, loading tips, achievements, store copy, and early promotional art
+unless the creator explicitly chooses otherwise. Teach strategic controls when the
+change occurs. Accessibility and control help must remain honest and usable.
+
+The repository is public as of this guide's creation. A spoiler label does not
+provide confidentiality: readers can find the reveal in these files and Git history.
+This guide protects presentation choices, not secrecy against repository readers.

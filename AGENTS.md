@@ -1,5 +1,18 @@
 # Repository Guidelines
 
+## Creative Direction
+
+Before planning or changing gameplay, maps, visuals, UI, narrative, or architecture,
+read [the main design guide](docs/design/README.md) and the relevant linked documents.
+`docs/design/vision.md` preserves the creator's words verbatim; do not correct,
+paraphrase, or expand that file without an explicit request. Put interpretations,
+proposals, technical notes, and open questions in separate design documents.
+Distinguish creator requirements from proposals and current implementation facts.
+Existing prototypes and reference images do not settle open creative decisions.
+Check proposed work against the guide's pillars and state any material conflict.
+The guide contains development spoilers; follow its disclosure guidance for
+player-facing text, screenshots, menus, and promotional material.
+
 ## Project Structure & Module Organization
 
 This is a Java 11 libGDX project split into two Gradle modules:
