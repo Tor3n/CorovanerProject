@@ -17,6 +17,20 @@ Fixed-camera behavior beyond that phrase also needs definition: the current
 prototype has a fixed orientation with tracking and zoom, but that is not yet the
 final country-map camera contract.
 
+The world-setting passage adds a distant End-day whose cause is unknown at the
+opening and whose effects have worn away. The everyday world is mostly poor and
+agricultural, with highly advanced exceptions. Its small states, working farmland,
+animal-drawn caravans, scarce forests, deserts, industrial wastelands, and great
+city ruins all belong in the visual vocabulary. Rural caravans take inspiration
+from frontier westerns, with oxen, horses, and memorable wagons. Advanced societies
+also use cars, scarce railways, electric propulsion, and drones; developed air
+defences and hostility to strangers belong to this world too.
+
+Semi-sentient and hive-mind robots exist. Magic and mutants do not. Diverse beliefs
+and an interest in metal body modification may shape human societies, but neither
+establishes supernatural effects or a universal cybernetic aesthetic. See
+[world.md](world.md) for requirements and the limits of what has been decided.
+
 ## Earlier creator direction carried forward
 
 Earlier project discussions established an arid, worn, post-apocalyptic frontier
@@ -24,6 +38,11 @@ with caravan people, repaired equipment, and Fallout-inspired environmental art.
 People should show hardship and varied occupations rather than uniformly polished,
 idealized appearances. These notes preserve earlier direction; the new verbatim
 vision is kept in its own file.
+
+The later world-setting passage governs the scope of those earlier inspirations:
+Fallout influence does not import mutants, a confirmed nuclear origin, or pervasive
+fresh fallout. Frontier-western influence is explicit for rural caravans, while
+the wider setting also contains agrarian principalities and advanced enclaves.
 
 The latest UI direction favors **rusty metal, weathered planks, and vintage lights**.
 The creator rejected overly sci-fi buttons. Modest salvaged technology can appear
@@ -50,6 +69,10 @@ clean or comfortable world.
 | Motion | Sparse drifting dust, localized smoke, subtle heat shimmer, occasional cloth or vegetation movement. | A living atmosphere within stable geography. These are candidates, not a mandatory effects list. |
 | Sound | Wind, distant activity, material sounds and restrained location ambience. | Space and identity without requiring constant visible animation. Audio is a proposal, not an implemented feature. |
 | People and battle | Clear silhouettes, readable movement and actions, economical detail. | Support play without competing with the map for production effort. |
+| Long-settled landscapes | Working fields, maintained paths, repaired structures, and weathered ruins integrated into daily life. | Show the time since the End-day and the people sustaining the present. |
+| Regional contrast | Deserts and industrial ruins contrasted with cultivated land and occasional scarce forest; localized advanced infrastructure. | Reward exploration without making the whole world one rubble field or one technology level. |
+| Caravans | Distinctive wagon profiles, animal teams, loads, and repairs; different transport silhouettes where advanced societies support them. | Make trade visible and memorable at map scale. |
+| Belief and machinery | Material customs, dress, tools, and deliberate robotic designs; any symbols or implants remain concept proposals. | Convey social variety without magic, mutant anatomy, or declaring a religion's claims true. |
 
 ## Proposed map and camera rules
 
@@ -79,3 +102,8 @@ readable? Does each area have a memorable identity? Does the map remain the visu
 focus with the HUD present? Do effects enrich stable scenery? Are characters and
 combat legible without demanding the highest-detail assets? These questions guide
 reviews; final performance and art budgets are still open.
+
+Does the scene suggest generations of life after the End-day? Can the viewer see
+how people live, farm, and trade? Do contrasts in transport and technology feel
+local to particular societies? Does it respect the absence of magic and mutants,
+and avoid asserting an unchosen cause for the catastrophe?
