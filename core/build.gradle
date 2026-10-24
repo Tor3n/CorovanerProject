@@ -2,6 +2,7 @@
 eclipse.project.name = appName + '-core'
 
 dependencies {
+  api 'com.github.mgsx-dev.gdx-gltf:gltf:2.2.1'
   testImplementation 'junit:junit:4.13.2'
   testRuntimeOnly "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
   api "com.badlogicgames.ashley:ashley:$ashleyVersion"

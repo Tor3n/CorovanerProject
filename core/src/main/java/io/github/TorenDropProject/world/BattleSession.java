@@ -20,6 +20,7 @@ public final class BattleSession {
         engine.addSystem(new NavigationSystem());
         engine.addSystem(new MovementSystem(map.grid));
         engine.addSystem(new ModelTransformSystem());
+        engine.addSystem(new CharacterAnimationSystem());
         for (int i = 0; i < map.spawns.size; i++) {
             Vector3 spawn = map.spawns.get(i);
             Entity character = factory.create(spawn.x, spawn.y, spawn.z, playerInput && i == 0);

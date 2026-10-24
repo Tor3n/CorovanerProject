@@ -58,7 +58,14 @@ separate test terrain, camera, or renderer.
 | `WorldGrid` | CPU-only terrain height, cell conversion, walkability and collision queries |
 
 ModelInstances share the Model's geometry and texture resources while retaining
-independent transforms. Removing actors does not dispose the shared Model.
+independent transforms and animation playback. The protagonist GLB is loaded as
+an AssetManager-owned gdx-gltf SceneAsset. Its contained Model and textures are
+disposed with that asset, never separately by an actor or screen. Removing actors
+does not dispose shared resources. CharacterAnimationSystem runs after movement
+and model transforms at priority 4, using resolved velocity for in-place playback.
+The same ModelBatch uses a 32-bone shader budget and converted character materials.
+Conservative animated bounds cover body and equipment; attachment transforms use
+the animated socket node and actor transform after the Engine update.
 WorldScene teardown releases its renderer and entities. Main disposes screens
 before AssetManager releases shared character/map assets and their dependencies.
 The map loader guards partially uploaded models if an upload fails.
@@ -196,10 +203,10 @@ exited cleanly. Saved screenshots are in this directory.
 The requested single-world migration is implemented. The following are separate
 production milestones, not alternate rendering paths:
 
-- Rig the vault suit in a DCC tool, create deformation-ready topology/UV atlas,
-  bake materials, and author idle/walk/turn clips. OBJ is still a static exchange
-  format; choose and validate an animated G3D or glTF pipeline before adding
-  AnimationComponent/AnimationController and equipment sockets.
+- The [protagonist rig and GLB pipeline](Protoganist/README.md) now provide basic
+  fixed-grip idle/walk/run playback and equipment sockets. Further combat,
+  interchangeable outfits, richer authoring controls and close-up deformation
+  polish remain separate milestones. The old vault-suit OBJ stays a static prototype.
 - Replace legacy cutout cliff/tree artwork with authored world meshes where
   necessary. The fixed-camera cutouts and stone risers are a migration bridge;
   some cliff joins and baked perspectives need art cleanup. Camera orbit is
@@ -208,7 +215,6 @@ production milestones, not alternate rendering paths:
   Current collision is conservative grid/height collision, not character-to-
   character collision or a physics engine. The extra actors are independent
   entities, not autonomous AI agents.
-- Add measured performance budgets, an atlas to reduce character material draw
-  calls, animation-specific tests, optional LOD, and repeated map-switch profiling
+- Add measured performance budgets, optional LOD, and repeated map-switch profiling
   when the corresponding gameplay lifecycle exists. Shared assets alone are not
   hardware instancing.

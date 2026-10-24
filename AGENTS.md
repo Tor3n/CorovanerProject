@@ -56,6 +56,10 @@ Keep commits focused and avoid committing IDE files or build output. Pull reques
 
 Preserve asset filename case because lookups can be case-sensitive across platforms. Update code and Tiled references together when moving assets. Do not commit machine-local configuration such as `local.properties`, credentials, or generated asset indexes.
 
+## 3D Modelling
+
+Before creating, editing, simplifying, posing, or exporting a 3D model, read and follow [docs/modelling.md](docs/modelling.md). Preserve the editable source, validate proportions around the body's actual centerline with measured overlays and multiple views, and distinguish stored geometry from modifier output. For substantial anatomy or pose changes, follow the guide's independent critic review workflow. Keep compact exports separate and verify them after reloading.
+
 ## Architecture Overview
 
 The project is a modular desktop game with a screen-oriented core and an Entity Component System (ECS) for gameplay. `Lwjgl3Launcher` is the platform entry point; keep it limited to window and JVM setup. `Main` is the composition root: it owns shared libGDX services, queues startup assets, constructs the Ashley `Engine`, registers systems, creates screens, and delegates the frame loop to `ScreenManager`.

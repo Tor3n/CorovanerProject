@@ -1,10 +1,18 @@
-# Blue vault-suit character
+# Game characters
 
-The active testing character now follows the blue suit in
+The active character is now the [animated protagonist](Protoganist/README.md):
+a textured 22-bone humanoid with fixed gripping hands, idle/walk/run clips,
+equipment sockets, and a GLB asset shared by battle and character preview.
+There are no finger bones. The editable Blender source, review views and
+export validation are documented beside the model.
+
+## Earlier blue vault-suit prototype
+
+The earlier static testing character follows the blue suit in
 [`reference/ref.jpg`](../../reference/ref.jpg): leaner human proportions, visible
 face and short hair, muted blue clothing with yellow trim, small wrist terminal,
 and utility boots. The previous masked ranger remains in `assets/models/ranger`
-as an earlier prototype; it is no longer the active player model.
+as an earlier prototype. Neither OBJ is the active player model now.
 
 ![Vault suit](vault-front.png)
 

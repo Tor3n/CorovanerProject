@@ -59,11 +59,37 @@ run {
 
 // Isolated world/model preview; normal battles never enable its turntable.
 tasks.register('previewCharacter', JavaExec) {
+  group = 'application'
+  description = 'Launch the interactive character animation preview.'
   dependsOn classes
   classpath = sourceSets.main.runtimeClasspath
   mainClass = application.mainClass
   workingDir = rootProject.file('assets').path
   systemProperty 'corovaner.characterPreview', 'true'
+  if (os.contains('mac')) jvmArgs += '-XstartOnFirstThread'
+}
+
+// Real GL context without a visible window; verifies the exported asset in the production world renderer.
+tasks.register('characterSmoke', JavaExec) {
+  group = 'verification'
+  description = 'Test character animations in the world renderer and save screenshots.'
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'io.github.TorenDropProject.lwjgl3.CharacterSmoke'
+  workingDir = rootProject.file('assets').path
+  systemProperty 'characterSmoke.output', layout.buildDirectory.dir('character-smoke').get().asFile.absolutePath
+  if (os.contains('mac')) jvmArgs += '-XstartOnFirstThread'
+}
+
+// Main's full startup queue and actual CharacterPreviewScreen, with no visible window.
+tasks.register('characterApplicationSmoke', JavaExec) {
+  group = 'verification'
+  description = 'Test application startup and the character preview screen.'
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'io.github.TorenDropProject.CharacterApplicationSmoke'
+  workingDir = rootProject.file('assets').path
+  systemProperty 'characterSmoke.output', layout.buildDirectory.dir('character-smoke').get().asFile.absolutePath
   if (os.contains('mac')) jvmArgs += '-XstartOnFirstThread'
 }
 

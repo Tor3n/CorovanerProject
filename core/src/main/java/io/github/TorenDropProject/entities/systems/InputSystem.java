@@ -8,6 +8,7 @@ import com.badlogic.gdx.Input;
 import io.github.TorenDropProject.entities.components.MovementIntentComponent;
 import io.github.TorenDropProject.entities.components.SelectedComponent;
 import io.github.TorenDropProject.entities.components.NavigationComponent;
+import io.github.TorenDropProject.entities.components.AnimationComponent;
 
 public final class InputSystem extends IteratingSystem {
     public InputSystem() {
@@ -16,10 +17,14 @@ public final class InputSystem extends IteratingSystem {
     @Override protected void processEntity(Entity entity, float deltaTime) {
         float right = (Gdx.input.isKeyPressed(Input.Keys.D) ? 1 : 0) - (Gdx.input.isKeyPressed(Input.Keys.A) ? 1 : 0);
         float up = (Gdx.input.isKeyPressed(Input.Keys.W) ? 1 : 0) - (Gdx.input.isKeyPressed(Input.Keys.S) ? 1 : 0);
+        MovementIntentComponent intent = entity.getComponent(MovementIntentComponent.class);
+        if (entity.getComponent(AnimationComponent.class) != null) {
+            intent.speed = Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Input.Keys.SHIFT_RIGHT)
+                ? AnimationComponent.RUN_SPEED : AnimationComponent.WALK_SPEED;
+        }
         NavigationComponent route = entity.getComponent(NavigationComponent.class);
         if (right == 0 && up == 0 && route != null && route.active()) return;
         if (route != null) route.clear();
-        MovementIntentComponent intent = entity.getComponent(MovementIntentComponent.class);
         intent.maxDistance = Float.POSITIVE_INFINITY;
         setIntent(intent, right, up);
     }
