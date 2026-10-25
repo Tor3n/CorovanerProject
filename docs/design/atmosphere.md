@@ -12,8 +12,11 @@ static and the camera is fixed. Sudden appearance of scenery and visible buildin
 construction conflict with that intent.
 
 Particles, shaders, and other advanced effects are suggested means of improving the
-map, not a prescribed technology list. 2D, 3D, or a combination remain open.
-Fixed-camera behavior beyond that phrase also needs definition: the current
+map, not a prescribed technology list. On 2026-10-25 the creator confirmed a
+3D main map occupying the entire monitor at every resolution. This supersedes
+the earlier open choice of 2D, 3D, or a combination. Painted side margins belong
+to the illustrated menu; the main map fills the available display behind its UI.
+Fixed-camera behavior beyond that phrase still needs definition: the current
 prototype has a fixed orientation with tracking and zoom, but that is not yet the
 final country-map camera contract.
 
@@ -25,11 +28,15 @@ People should show hardship and varied occupations rather than uniformly polishe
 idealized appearances. These notes preserve earlier direction; the new verbatim
 vision is kept in its own file.
 
-The latest UI direction favors **rusty metal, weathered planks, and vintage lights**.
-The creator rejected overly sci-fi buttons. Modest salvaged technology can appear
-as an accent, but it should not dominate the controls. Existing terminal-style art
-must be interpreted in light of this more recent preference. See the
-[reference index](references.md) for repository sources and their scope.
+The latest UI discussion favors **coffee-cream enamel metal buttons, worn steel,
+and round vintage lamps**. The creator first requested planks, then rejected them
+as too cowboy, and preferred the metal buttons in the project's modal reference.
+Overly sci-fi buttons remain rejected. Controls should have varied physical forms.
+On 2026-10-26 the creator selected Manrope, amber text on dark surfaces and espresso
+text on enamel, with unlit lamps visible at rest and lit lamps on hover/focus.
+This supersedes the earlier example that hid idle lamps. See the
+[UI study](ui-art-direction.md) and [reference index](references.md) for the
+preference history, proposal status and scoped sources.
 
 ## Proposed emotional and visual vocabulary
 
@@ -61,16 +68,21 @@ clean or comfortable world.
 
 ## Proposed UI treatment
 
-Frames and controls should feel assembled and maintained: dented plates, repaired
-wood, brackets, bolts, and warm vintage lamps. Keep text on quiet areas with clear
+Frames and controls should feel assembled and maintained: dented plates, worn
+enamel, brackets, bolts, and warm vintage lamps. Keep text on quiet areas with clear
 contrast. Use decoration to establish material character without covering the map
 or making every button visually loud.
 
-For stretchable controls, keep corners and hardware at stable proportions; stretch
-quiet panel centers and straight edges. Keep labels, focus indication, and status
-separate from background art. A lamp can reinforce a state but must not be its
-only signal. The existing UI branch documents a useful implementation approach;
-it does not freeze the final aesthetic.
+The creator chose a 1920 x 1080 reference composition: center the graphical menu,
+fill excess horizontal space with painted decoration, and uniformly scale down
+for smaller displays. The main-menu picture stays rectangular with its proportions
+intact. The 3D main map uses the full display independently of that menu canvas.
+See the [display rules](ui-art-direction.md) for scope and remaining implementation
+decisions. If stretching is useful for variable content, keep corners and hardware
+at stable proportions and stretch quiet centers and straight edges. Keep labels,
+focus indication and status separate from background art. A lamp can reinforce a
+state but must not be its only signal. The exported nine-patch kit is an optional
+implementation experiment; it does not mandate stretching or freeze the aesthetic.
 
 ## Review questions
 

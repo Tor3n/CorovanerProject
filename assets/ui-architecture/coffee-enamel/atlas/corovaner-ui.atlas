@@ -1,0 +1,254 @@
+corovaner-ui.png
+size: 2048, 1024
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+button-enamel-up
+  rotate: false
+  xy: 4, 4
+  size: 384, 128
+  orig: 384, 128
+  offset: 0, 0
+  index: -1
+  split: 72, 72, 60, 60
+  pad: 64, 64, 26, 26
+button-enamel-over
+  rotate: false
+  xy: 396, 4
+  size: 384, 128
+  orig: 384, 128
+  offset: 0, 0
+  index: -1
+  split: 72, 72, 60, 60
+  pad: 64, 64, 26, 26
+button-enamel-down
+  rotate: false
+  xy: 788, 4
+  size: 384, 128
+  orig: 384, 128
+  offset: 0, 0
+  index: -1
+  split: 72, 72, 60, 60
+  pad: 64, 64, 26, 26
+button-steel
+  rotate: false
+  xy: 1180, 4
+  size: 320, 160
+  orig: 320, 160
+  offset: 0, 0
+  index: -1
+  split: 46, 46, 46, 46
+  pad: 46, 46, 36, 36
+tab-enamel
+  rotate: false
+  xy: 1508, 4
+  size: 320, 160
+  orig: 320, 160
+  offset: 0, 0
+  index: -1
+  split: 46, 46, 46, 46
+  pad: 46, 46, 36, 36
+slot-recessed
+  rotate: false
+  xy: 4, 172
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+  split: 30, 30, 30, 30
+  pad: 32, 32, 32, 32
+panel-steel
+  rotate: false
+  xy: 268, 172
+  size: 384, 320
+  orig: 384, 320
+  offset: 0, 0
+  index: -1
+  split: 62, 62, 62, 62
+  pad: 64, 64, 64, 64
+frame-steel
+  rotate: false
+  xy: 660, 172
+  size: 384, 320
+  orig: 384, 320
+  offset: 0, 0
+  index: -1
+  split: 62, 62, 62, 62
+  pad: 64, 64, 64, 64
+panel-enamel
+  rotate: false
+  xy: 1052, 172
+  size: 384, 320
+  orig: 384, 320
+  offset: 0, 0
+  index: -1
+  split: 62, 62, 62, 62
+  pad: 64, 64, 64, 64
+lamp-off
+  rotate: false
+  xy: 1444, 172
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+lamp-on
+  rotate: false
+  xy: 1548, 172
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+knob-brass
+  rotate: false
+  xy: 1652, 172
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+gauge-face
+  rotate: false
+  xy: 1788, 172
+  size: 256, 144
+  orig: 256, 144
+  offset: 0, 0
+  index: -1
+gauge-needle
+  rotate: false
+  xy: 4, 500
+  size: 40, 160
+  orig: 40, 160
+  offset: 0, 0
+  index: -1
+hinge
+  rotate: false
+  xy: 52, 500
+  size: 80, 144
+  orig: 80, 144
+  offset: 0, 0
+  index: -1
+speaker-grille
+  rotate: false
+  xy: 140, 500
+  size: 192, 152
+  orig: 192, 152
+  offset: 0, 0
+  index: -1
+corner-bracket
+  rotate: false
+  xy: 340, 500
+  size: 128, 144
+  orig: 128, 144
+  offset: 0, 0
+  index: -1
+screw
+  rotate: false
+  xy: 476, 500
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+toggle-socket
+  rotate: false
+  xy: 532, 500
+  size: 160, 80
+  orig: 160, 80
+  offset: 0, 0
+  index: -1
+toggle-handle
+  rotate: false
+  xy: 700, 500
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: -1
+scroll-thumb
+  rotate: false
+  xy: 772, 500
+  size: 32, 56
+  orig: 32, 56
+  offset: 0, 0
+  index: -1
+icon-character
+  rotate: false
+  xy: 812, 500
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icon-inventory
+  rotate: false
+  xy: 884, 500
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icon-journal
+  rotate: false
+  xy: 956, 500
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icon-save
+  rotate: false
+  xy: 1028, 500
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icon-settings
+  rotate: false
+  xy: 1100, 500
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icon-plus
+  rotate: false
+  xy: 1172, 500
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icon-minus
+  rotate: false
+  xy: 1244, 500
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icon-close
+  rotate: false
+  xy: 1316, 500
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icon-arrow-up
+  rotate: false
+  xy: 1388, 500
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icon-arrow-down
+  rotate: false
+  xy: 1460, 500
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icon-clock
+  rotate: false
+  xy: 1532, 500
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icon-supplies
+  rotate: false
+  xy: 1604, 500
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1

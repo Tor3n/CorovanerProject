@@ -1,0 +1,37 @@
+SHARED IMAGE-GENERATION BRIEF
+Use case: ui-mockup / style-transfer.
+Use the previous Corovaner screens as content/layout targets. Use MainModal.png
+as the primary material reference: light coffee-cream enamel-painted metal,
+rounded capsule action buttons, rolled aged brass rims, dark-brown labels,
+heavy rusted steel chassis, visible bolts, hinges and rubber seals.
+Use the supplied Fallout screenshot for diversity of controls only: recessed
+displays, small utility keys, round dials, counters and distinct panel shapes.
+Do not copy its game scene or watermark. No wood planks, holographic neon,
+ornamental gears or cowboy decoration. Preserve an arid post-apocalyptic mood.
+Each screen has only one round amber glass lamp on the hovered action button;
+all other buttons have no lamp or glow. Full-screen 16:9 concept composition.
+
+MAIN MENU
+Preserve the luminous dusty road, distant caravan, power pylons and sunset.
+COROVANER; Beyond the last safe mile. Keep the right side mostly scenic.
+Buttons: Continue journey, New journey, Load journey, Settings, Credits,
+Quit to desktop. Continue journey is hovered. Add a cream enamel backing
+panel, steel housing, side hinges, short corrugated cable, serial plaque,
+small speaker grille and physical volume dial.
+
+TRAVEL
+Keep a large readable terrain map on the left and destination detail on the
+right. The blackwire road; Blackwire Pass. Preserve the selected dotted road.
+Add cast-metal corner braces, compass, compact +/- keys and scratched glass.
+Destination readouts: Exposed, 8 hours, 2 supplies. Primary actions: Travel
+this road (hovered), Forage / 12 hours. Bottom HUD: recessed monochrome log,
+12 supplies and 30 brass counters, Character/Inventory/Journal/Save/Settings
+utility keys. Keep terrain legible and dominant.
+
+CHARACTER
+Preserve the three-column arrangement: Mara Venn portrait; six attributes;
+equipment list and weapon detail. Use recessed mechanical number windows,
+small section tabs, cream enamel panels, inventory icon wells and mechanical
+scrollbar. Add a condition gauge and Survival/Perception controls. Display
+Worn revolver, Trail coat, Water flask, Field rations and Bedroll. Add 6 / 24
+ammunition display, Equip (hovered) and Back cream metal action buttons.

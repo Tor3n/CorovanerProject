@@ -1,0 +1,14 @@
+assembly-buttons.png: 1920 x 1080, RGBA, decoded successfully
+assembly-empty.png: 1920 x 1080, RGBA, decoded successfully
+controls/button-enamel.png: 478 x 100, RGBA, decoded successfully
+controls/lamp-hover.png: 70 x 70, RGBA, decoded successfully
+layers/01-caravan-painting.png: 1920 x 1080, RGB, decoded successfully
+layers/02-hinged-panel.png: 1920 x 1080, RGBA, decoded successfully
+layers/03-metal-rim.png: 1920 x 1080, RGBA, decoded successfully
+source/button-native.png: 1254 x 1254, RGBA, decoded successfully
+source/lamp-native.png: 1254 x 1254, RGBA, decoded successfully
+source/painting-native.png: 1672 x 941, RGB, decoded successfully
+source/panel-native.png: 1672 x 941, RGBA, decoded successfully
+source/rim-native.png: 1672 x 941, RGBA, decoded successfully
+OpenRaster archive: 3 layers, CRC check passed.
+No in-game integration test performed.

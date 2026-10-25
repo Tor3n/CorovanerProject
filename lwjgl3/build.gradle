@@ -81,6 +81,19 @@ tasks.register('characterSmoke', JavaExec) {
   if (os.contains('mac')) jvmArgs += '-XstartOnFirstThread'
 }
 
+// Main's actual terminal, real GL rendering and screen-coordinate input.
+tasks.register('terminalMenuSmoke', JavaExec) {
+  group = 'verification'
+  description = 'Render and exercise the layered terminal menu at desktop resolutions.'
+  dependsOn testClasses
+  classpath = sourceSets.test.runtimeClasspath
+  mainClass = 'io.github.TorenDropProject.TerminalMenuSmoke'
+  workingDir = rootProject.file('assets').path
+  systemProperty 'terminalSmoke.output', layout.buildDirectory.dir('terminal-smoke').get().asFile.absolutePath
+  systemProperty 'terminalSmoke.headless', project.hasProperty('headlessTerminal')
+  if (os.contains('mac')) jvmArgs += '-XstartOnFirstThread'
+}
+
 // Main's full startup queue and actual CharacterPreviewScreen, with no visible window.
 tasks.register('characterApplicationSmoke', JavaExec) {
   group = 'verification'

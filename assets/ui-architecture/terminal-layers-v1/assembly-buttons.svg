@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080">
+<image x="0" y="0" width="1920" height="1080" xlink:href="layers/01-caravan-painting.png"/>
+<image x="0" y="0" width="1920" height="1080" xlink:href="layers/02-hinged-panel.png"/>
+<image x="0" y="0" width="1920" height="1080" xlink:href="layers/03-metal-rim.png"/>
+<image x="144" y="300" width="480" height="100" xlink:href="controls/button-enamel.png"/>
+<text x="408" y="357" text-anchor="middle" font-family="Liberation Serif, Georgia, serif" font-size="34" font-weight="bold" fill="#21160b">Continue journey</text>
+<image x="156" y="310" width="70" height="70" xlink:href="controls/lamp-hover.png"/>
+<image x="144" y="394" width="480" height="100" xlink:href="controls/button-enamel.png"/>
+<text x="408" y="451" text-anchor="middle" font-family="Liberation Serif, Georgia, serif" font-size="34" font-weight="bold" fill="#21160b">New journey</text>
+<image x="144" y="488" width="480" height="100" xlink:href="controls/button-enamel.png"/>
+<text x="408" y="545" text-anchor="middle" font-family="Liberation Serif, Georgia, serif" font-size="34" font-weight="bold" fill="#21160b">Load journey</text>
+<image x="144" y="582" width="480" height="100" xlink:href="controls/button-enamel.png"/>
+<text x="408" y="639" text-anchor="middle" font-family="Liberation Serif, Georgia, serif" font-size="34" font-weight="bold" fill="#21160b">Settings</text>
+<image x="144" y="676" width="480" height="100" xlink:href="controls/button-enamel.png"/>
+<text x="408" y="733" text-anchor="middle" font-family="Liberation Serif, Georgia, serif" font-size="34" font-weight="bold" fill="#21160b">Credits</text>
+<image x="144" y="770" width="480" height="100" xlink:href="controls/button-enamel.png"/>
+<text x="408" y="827" text-anchor="middle" font-family="Liberation Serif, Georgia, serif" font-size="34" font-weight="bold" fill="#21160b">Quit to desktop</text>
+</svg>

@@ -39,6 +39,15 @@ public abstract class MenuPage {
         stage.setKeyboardFocus(null);
         help.hide();
         root.clearChildren();
+        buildLayout();
+        root.validate();
+        if (focusedName != null) {
+            Actor focused = root.findActor(focusedName);
+            if (focused != null && (!(focused instanceof Button) || !((Button)focused).isDisabled())) stage.setKeyboardFocus(focused);
+        }
+    }
+    /** Pages with an illustrated composition can replace the shared header/footer layout. */
+    protected void buildLayout() {
         root.pad(28, 34, 22, 34);
         Table header = new Table();
         header.add(label("C / C     COROVANER", "accent")).left();
@@ -74,11 +83,6 @@ public abstract class MenuPage {
         footerActions(footer);
         root.add(footer).growX();
         stage.setScrollFocus(scroll);
-        root.validate();
-        if (focusedName != null) {
-            Actor focused = root.findActor(focusedName);
-            if (focused != null && (!(focused instanceof Button) || !((Button)focused).isDisabled())) stage.setKeyboardFocus(focused);
-        }
     }
     protected void footerActions(Table footer) {
         footer.add(label("THE ROAD REMEMBERS.", "mono")).expandX().right();
@@ -130,17 +134,26 @@ public abstract class MenuPage {
             Gdx.app.error("Menus", "Menu operation failed", failure);
         }
     }
+    protected float dialogScale() { return 1f; }
     protected void confirm(String title, String message, Runnable action) {
         help.hide();
+        float scale = dialogScale();
         Dialog dialog = new Dialog(title, theme.skin) {
             @Override protected void result(Object accepted) {
                 if (Boolean.TRUE.equals(accepted)) attempt(action);
             }
         };
-        dialog.getContentTable().pad(28);
-        dialog.getContentTable().add(prose(message)).width(480);
-        dialog.getButtonTable().pad(12).defaults().width(160).height(48).pad(6);
+        dialog.padTop(Math.max(dialog.getPadTop(), dialog.getTitleLabel().getPrefHeight() + 16));
+        Label body = prose(message);
+        body.setFontScale(body.getStyle().font.getData().scaleX * scale);
+        dialog.getContentTable().pad(28 * scale);
+        dialog.getContentTable().add(body).width(480 * scale);
+        dialog.getButtonTable().pad(12 * scale).defaults().width(160 * scale).height(48 * scale).pad(6 * scale);
         dialog.button("Cancel", false).button("Confirm", true);
+        for (Actor actor : dialog.getButtonTable().getChildren()) if (actor instanceof TextButton) {
+            Label caption = ((TextButton)actor).getLabel();
+            caption.setFontScale(caption.getStyle().font.getData().scaleX * scale);
+        }
         dialog.key(Input.Keys.ESCAPE, false);
         dialog.setMovable(false);
         dialog.show(stage);

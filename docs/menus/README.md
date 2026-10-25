@@ -1,6 +1,77 @@
 # Frontier menus
 
-The game now opens into a shared Scene2D menu system with a western field-terminal theme: charcoal, brass, parchment typography, contour lines, and a ruined transmission tower. No generated raster artwork or UI framework dependency was added. The three bundled Liberation fonts are covered by `assets/ui/fonts/LICENSE.txt`.
+The game opens into the layered coffee-enamel terminal main menu. Its landscape,
+hinged panel, perimeter rim, button faces and round amber lamp are separate assets,
+with live Scene2D button captions. Other pages retain the shared charcoal/brass
+menu theme, with amber text on dark surfaces and espresso text on enamel.
+The current UI uses bundled Manrope Regular and SemiBold; provenance and the
+SIL Open Font License are in `assets/ui/fonts/manrope/`. No new runtime dependency
+is required. The older Liberation files remain for legacy references.
+
+## Terminal main menu
+
+The [terminal pack](../../assets/ui-architecture/terminal-layers-v1/README.md)
+is assembled at 1920 x 1080 logical units. The full rectangular composition stays
+centered and scales uniformly to fit the window, including enlargement on 1440p
+and 4K displays. An `ExtendViewport` gives surplus space to a separate, subdued
+painted background. At 2560 x 1080 the terminal stays 1920 pixels wide with 320
+pixels of painted margin on each side. Taller windows use painted top/bottom
+margins. Disabling decorative backgrounds makes these margins plain dark metal
+color; it does not remove the actual terminal or its central painting.
+
+`MainScreenGUI` places four terminal PNGs and the shared component-atlas lamps;
+neither the flattened
+preview nor the ORA document is loaded by the game. `TerminalMenuAssets.PAINTING`
+identifies the landscape to replace with an artist's work. Keep its 1920 x 1080
+aspect ratio to preserve the composition. The tagline and small riveted plate
+remain blank. The grille, socket and volume dial are painted decoration.
+
+The six actions retain their existing behavior. Continue resumes the in-memory
+journey and is disabled when none exists. New journey and Quit request confirmation
+when appropriate. Button labels remain separate text and honor Larger body text.
+Every button shows the round `lamp-off` sprite at rest, including disabled actions.
+It switches to the matching `lamp-on` sprite on the hovered action, or the
+keyboard-focused action when no other button is hovered. Hover has priority,
+so only one lamp is lit. Both states keep the same position and size.
+Buttons also have a lighter pressed tint to preserve espresso text contrast;
+disabled actions cannot activate or light up.
+`Tab` / `Shift+Tab`, `Enter` / `Space` and `Escape` use the shared menu focus rules.
+Confirmation text is enlarged for this canvas and dialogs remain modal.
+
+The startup queue loads four terminal textures, the entire 33-region coffee-enamel
+atlas and the Manrope fonts through `AssetManager`. `theme.components.region(name)`
+exposes the loaded surfaces, icons, lamps, hinges, screws, dials and other hardware.
+Terminal textures use mipmaps and linear filtering; the existing atlas uses linear
+filtering. Both Manrope weights are static instances with the source license retained.
+The 2x button font is rendered at half scale inside the reference composition.
+Stages own their batches; the application owns the shared textures and fonts.
+Returning to the title rebuilds its controls without unloading its art. Other menu
+viewports and the world renderer are unchanged. The full-display 3D main-map
+direction remains separate from this menu implementation.
+
+### Runtime verification
+
+Run `./gradlew test lwjgl3:terminalMenuSmoke` with a desktop OpenGL environment.
+On Linux without a display server, `./gradlew lwjgl3:terminalMenuSmoke -PheadlessTerminal`
+uses GLFW's null platform and a real OSMesa context (requires the system OSMesa
+library). That mode is restricted to the test launcher; the game launcher is unchanged.
+The harness starts the real `Main` with isolated preferences and checks navigation,
+all 33 atlas regions, Manrope loading, amber/espresso styles, idle/disabled lamp-off,
+disabled/enabled Continue, keyboard activation, hover/focus precedence, modal
+confirmation/cancellation, input mapping after resize, label bounds, and asset lifetime.
+It checks 1920 x 1080, 1280 x 720 with larger text, 2560 x 1080, 900 x 600,
+2560 x 1440 and 3840 x 2160, plus the decorations setting and hide/show reuse.
+Captures and a result file go to `lwjgl3/build/terminal-smoke/`.
+
+All 32 JVM tests and the updated real GL smoke harness passed on 2026-10-26 using
+software OpenGL/OSMesa. Idle, hovered, large-text and confirmation captures were
+visually reviewed. The optional kit helper also compiled for Java 11 / libGDX 1.13.1.
+These checks do not measure production GPU performance or test
+every operating system's display-density settings. Enlarging the artwork does
+not add detail to the original generated sources; higher-resolution artist masters
+can replace the separate paintings later.
+
+Terminal review screenshots are generated locally by the smoke harness; this code update omits them.
 
 ## Play through the menus
 
