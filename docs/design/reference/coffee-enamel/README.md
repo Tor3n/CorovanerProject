@@ -3,7 +3,12 @@
 **Proposal / development reference.** Exported from the UI concept iteration;
 recorded in this branch on 2026-10-25. The creator requested coffee-colored metal
 buttons matching `assets/MainModal.png`, more varied UI hardware, and a round
-amber lamp on the hovered action. See [the direction and scaling discussion](../../ui-art-direction.md).
+amber lamp on the hovered action. See [the direction and display rules](../../ui-art-direction.md).
+
+The later display decision targets a centered 1920 x 1080 composition with
+painted side margins on wider displays and uniform downscaling on smaller ones.
+The main-menu picture stays rectangular. These earlier concept exports have not
+been reformatted into production artwork for that canvas.
 
 | Image | Qualities to study | Not established by this image |
 | --- | --- | --- |

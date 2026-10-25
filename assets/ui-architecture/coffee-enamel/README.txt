@@ -28,6 +28,12 @@ Reserve lamp space in every state so the caption does not move on hover.
 The disabled state is a runtime tint; it is not a separate sprite.
 
 SCALING
+The creator's display direction is a centered 1920 x 1080 composition, painted
+decoration for extra horizontal space, and uniform downscaling on smaller
+displays. The main-menu picture stays rectangular and keeps its proportions.
+The following describes the optional nine-patch helper, not a requirement to
+stretch the UI when the display size changes.
+
 PNG surfaces are authored at 2x. The Java helper scales nine-patch borders by
 0.5, making a primary button 64 UI units high. Stretch capsule buttons
 horizontally; do not enlarge their height independently. Larger UI scales
@@ -51,6 +57,6 @@ The surfaces and hardware were redrawn as clean, text-free components using
 built-in image generation, then extracted and normalized for reuse. They
 match the concept direction but are not lossless cuts from the screenshots.
 Semantic icons were authored as SVG. The kit is an opt-in study, not a replacement for the current runtime theme.
-See ../../../docs/design/ui-art-direction.md for current preference and proposal
-status. The nine-patch exports are optional; uniformly scaled fixed-proportion
-modules remain under consideration. The pending Canva draft is separate.
+See ../../../docs/design/ui-art-direction.md for creator display rules and the
+remaining implementation proposals. The nine-patch exports are optional; fixed
+illustrated compositions scale down uniformly. The pending Canva draft is separate.

@@ -12,8 +12,11 @@ static and the camera is fixed. Sudden appearance of scenery and visible buildin
 construction conflict with that intent.
 
 Particles, shaders, and other advanced effects are suggested means of improving the
-map, not a prescribed technology list. 2D, 3D, or a combination remain open.
-Fixed-camera behavior beyond that phrase also needs definition: the current
+map, not a prescribed technology list. On 2026-10-25 the creator confirmed a
+3D main map occupying the entire monitor at every resolution. This supersedes
+the earlier open choice of 2D, 3D, or a combination. Painted side margins belong
+to the illustrated menu; the main map fills the available display behind its UI.
+Fixed-camera behavior beyond that phrase still needs definition: the current
 prototype has a fixed orientation with tracking and zoom, but that is not yet the
 final country-map camera contract.
 
@@ -68,9 +71,12 @@ enamel, brackets, bolts, and warm vintage lamps. Keep text on quiet areas with c
 contrast. Use decoration to establish material character without covering the map
 or making every button visually loud.
 
-The creator is considering fixed illustrated modules that scale uniformly across
-resolutions. The [scaling discussion](ui-art-direction.md) records this as an open
-proposal. If stretching is useful for variable content, keep corners and hardware
+The creator chose a 1920 x 1080 reference composition: center the graphical menu,
+fill excess horizontal space with painted decoration, and uniformly scale down
+for smaller displays. The main-menu picture stays rectangular with its proportions
+intact. The 3D main map uses the full display independently of that menu canvas.
+See the [display rules](ui-art-direction.md) for scope and remaining implementation
+decisions. If stretching is useful for variable content, keep corners and hardware
 at stable proportions and stretch quiet centers and straight edges. Keep labels,
 focus indication and status separate from background art. A lamp can reinforce a
 state but must not be its only signal. The exported nine-patch kit is an optional

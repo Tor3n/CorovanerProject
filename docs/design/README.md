@@ -15,7 +15,7 @@ It describes the intended game; it does not claim that the prototype implements 
 | [Exploration and campaign progression](gameplay.md) | How the RPG opening and later strategic game connect. | Derived requirements plus explicitly labeled proposals. |
 | [Development guide and open decisions](development-guide.md) | How to apply the vision, evaluate work, and avoid premature commitments. | Coworker guidance; unresolved choices remain unresolved. |
 | [Visual reference index](references.md) | Direction for future concept art, selected UI references, and criteria for new visual targets. | Creator direction and explicitly scoped references. |
-| [Coffee-enamel UI study](ui-art-direction.md) | Latest metal-button preferences, reusable components, and fixed-proportion scaling discussion. | Creator preferences and unapproved implementation proposals are distinguished. |
+| [Coffee-enamel UI study](ui-art-direction.md) | Metal-button preferences, reusable components, and the centered 1920 x 1080 composition with painted side margins and uniform downscaling. | Creator display rules are distinguished from remaining implementation proposals. |
 
 ## Creative foundation
 
@@ -28,9 +28,13 @@ The following is a collaborator's summary of [the original](vision.md), not a re
 5. **The game changes genre suddenly.** It becomes a 4X game about a caravan empire and a chosen form of leadership. The creator's aim is for the player not to anticipate this expansion.
 6. **Early choices matter later.** The strategic situation grows from relationships and decisions made during the RPG stage.
 
-2D versus 3D remains open. The creator expresses an interest in 3D for the map's
-beauty, not a final renderer decision. The existing implementation is useful
-evidence for planning, not a substitute for this choice.
+On 2026-10-25 the creator confirmed that the main map will be **3D and fill the
+entire monitor at every resolution**. This resolves the earlier 2D-versus-3D
+question preserved in the original vision. The centered illustrated menu and
+its painted margins have a separate display policy; see the
+[map and menu display rules](ui-art-direction.md). Camera projection, framing
+across aspect ratios, and production rendering details remain open. The existing
+implementation is engineering evidence, not the final visual target.
 
 ## Authority and maintenance
 

@@ -1,4 +1,4 @@
-# Coffee-enamel UI study and scaling discussion
+# Coffee-enamel UI study and display rules
 
 **Creator preferences, collaborator proposals, and asset facts.** Recorded
 2026-10-25 from the UI concept discussion. Read [the main guide](README.md) and
@@ -18,28 +18,76 @@ does not approve a final screen layout or adopt a new runtime theme.
 - Button lamps should be round. A hover example shows one lit lamp, while other
   action buttons have none. Keep the lamp separate from the button surface.
 
-## Fixed-proportion scaling: under consideration
+## Creator decision: 1920 x 1080, centered menu and painted margins
 
-The creator proposed designing for modern monitors with fixed illustrated UI,
-then making it bigger or smaller at other resolutions. This was an exploratory
-discussion, not a final resolution or viewport decision.
+Clarified by the creator on 2026-10-25:
 
-The collaborator's proposed approach is to assemble fixed-proportion painted
-modules, scale each module uniformly, and keep live labels, icons and moving
-hardware separate. Reusability does not require stretching every texture.
+> the idea is that we aim for 1920 x 1080 and what goes in terms of width we just fill with some paint. Everything else that is smaller we just scale down. And the main menu picture just stays rectangular. And we can keep the graphical menu centered.
 
-| Proposal | Rationale / unresolved detail |
-| --- | --- |
-| A 1920 x 1080 logical design canvas, with production art authored at 2x | A candidate workflow, not a confirmed target or a claim about the current PNG resolution. |
-| 1x at 1920 x 1080, 1.33x at 2560 x 1440, 2x at 3840 x 2160 | Preserves proportions at the same aspect ratio. Physical display size still affects readability. |
-| Anchor modules at edges or center; allow the map to use extra ultrawide space | A candidate aspect-ratio policy. Letterboxing is another option; exact camera/view behavior remains open. |
-| A user-adjustable UI scale | Supports different viewing distances and physical monitor sizes. Final supported range needs layout evidence. |
-| Restrict stretching to content-driven elements when useful | Tooltips and variable-length lists may use it; illustrated panels need not. |
+The resulting design requirements are:
 
-The included nine-patch kit predates that discussion and is preserved as an
-optional experiment. Its existence does not mandate a stretchable UI. Before
-runtime adoption, compare uniform scaling and optional nine-patch use at actual
-play size, with readable text and the intended map visible.
+- Compose the UI for a **1920 x 1080 reference canvas**.
+- Keep the graphical main menu centered, with its relative placement and
+  illustrated proportions intact.
+- Fill additional horizontal space with painted decoration. Extra width does
+  not require wider buttons, a stretched menu or rearranged controls.
+- On smaller displays, uniformly scale the composition down until it fits
+  both dimensions. Artwork, controls and their interactive bounds stay aligned.
+- Keep the main-menu picture rectangular and preserve its aspect ratio. The
+  side painting is separate decoration, not a reason to stretch or crop it.
+
+Concrete consequences of these rules:
+
+| Display | Menu composition | Surrounding space |
+| --- | --- | --- |
+| 1920 x 1080 | Reference size, centered. | No additional side area. |
+| 2560 x 1080 | Same 1920 x 1080 composition, centered. | 320 pixels of painted decoration on each side. |
+| 1280 x 720 | Entire composition at 2/3 scale. | No additional side area. |
+
+For a smaller drawable area of width W and height H, the fitting scale is
+`min(W / 1920, H / 1080)`. Center the resulting rectangle in that area. This is
+a derived implementation note, not an implemented viewport. The main-menu picture
+may occupy a smaller rectangle within the canvas; its exact footprint remains
+an art-composition choice.
+
+This clarification supersedes the earlier open scaling proposal and the suggestion
+to use extra horizontal space for a different menu layout. It does not settle
+the gameplay map's camera or visible world area. Higher-resolution 16:9 displays
+such as 2560 x 1440 and 3840 x 2160, display-density handling, vertical surplus
+space, a minimum readable size and an optional user scale control still need
+specific implementation decisions. Automatic enlargement is not established by
+the creator's instruction to scale smaller displays down.
+
+Keep labels, icons and moving hardware separate from painted surfaces. Reusable
+elements can be assembled at fixed sizes within the reference composition. The
+included nine-patch kit predates this decision and remains an optional authoring
+experiment; it does not require stretching illustrated elements to fit a display.
+Higher-resolution production masters remain a proposal, not a statement about
+the resolution of the current exported PNGs.
+
+## Creator decision: full-display 3D main map
+
+The creator clarified the scope on 2026-10-25:
+
+> yes, the main map would be 3d and occupy the whole of the monitor, no matter the resolution.
+
+- The main map is **3D**. This resolves the earlier open choice of map presentation.
+- Its view fills the available game window, or the whole monitor in fullscreen,
+  at every supported resolution and aspect ratio.
+- The centered 1920 x 1080 menu composition and painted side margins do not
+  constrain the map's viewport. In gameplay, the map extends across the display
+  behind the UI overlays.
+- Keep map projection and screen-space UI sizing independent. A resolution or
+  aspect-ratio change must preserve world proportions.
+
+Full-display coverage does not decide the camera projection, zoom, or how much
+additional landscape a wider aspect ratio reveals. Those remain camera-design
+questions. Keeping the vertical view consistent and revealing more landscape at
+the sides is a collaborator proposal for evaluation. This display requirement
+also does not fix internal rendering resolution or a performance budget.
+
+These are design decisions recorded for future implementation. This documentation
+update changes no renderer or game screen.
 
 ## Included work and exact scope
 
@@ -74,6 +122,12 @@ silently settle them. Generated numbers, names and item details are illustrative
 These are proposed checks for future implementation, not completed game tests:
 
 - Keep artwork proportions and circular lamps intact at supported UI scales.
+- Compare the 1920 x 1080 reference, 2560 x 1080 painted side margins and
+  1280 x 720 downscaled menu; keep the rectangular picture and menu centered.
+- Check hit areas after scaling and resizing; decorative margins contain no
+  required controls.
+- Check that the 3D main map covers the full display across aspect ratios,
+  independently of the menu's painted margins and UI scale.
 - Keep text live, legible and able to accommodate localization.
 - Reserve lamp space so labels do not move on hover; retain keyboard focus feedback.
 - Compare wide and tall displays without covering the map's important landmarks.

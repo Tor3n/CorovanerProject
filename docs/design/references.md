@@ -37,10 +37,11 @@ The creator subsequently rejected planks as too cowboy and preferred coffee-crea
 enamel metal buttons with round vintage lamps. That preference supersedes the
 intermediate plank treatment. This guide does not merge the earlier branch.
 
-## Coffee-enamel controls and fixed-proportion scaling discussion
+## Coffee-enamel controls and fixed-proportion display rules
 
 See [the current UI study](ui-art-direction.md) for creator preferences and the
-still-open proposal to scale fixed illustrated modules uniformly.
+1920 x 1080 reference composition: a centered graphical menu, painted horizontal
+margins, uniform downscaling for smaller displays and a rectangular menu picture.
 
 - [Modal material reference](../../assets/MainModal.png): creator-preferred button
   material and rounded metal form, not a final screen-layout contract.
@@ -59,7 +60,7 @@ are separate tasks; none of them is a finished or approved asset.
 | --- | --- | --- |
 | Country-map mood frame | A fixed-angle view of an arid region, a compelling road, distinctive distant sites, a small traveler, and atmosphere concentrated around terrain and light. | Exact renderer, world dimensions, faction borders, and final geography. |
 | Exploration detail frame | The same visual language closer to a road junction or settlement; show why a player would investigate a side route. | Combat rules, named quest outcomes, and final building functions. |
-| Further material and UI refinement | Coffee-cream enamel metal, worn steel, round vintage amber lights, brackets and fasteners; fixed-proportion illustrated modules plus separate hardware and text. | Exact UI dimensions, final color values, scaling policy, and full interaction behavior. |
+| Further material and UI refinement | Coffee-cream enamel metal, worn steel, round vintage amber lights, brackets and fasteners; centered 1920 x 1080 composition, painted side margins and uniform downscaling; separate hardware and text. | Exact component dimensions, final color values, higher-resolution display handling, and full interaction behavior. |
 | Development-only continuity pair | The same geography and camera framing before and after the reveal; altered routes, relationships, and strategic overlays show changed responsibility while terrain stays recognizable. | The narrative trigger, final political systems, and approved late-game interface. Never use this pair as early promotional art. |
 
 For a new image, record its repository path, creator/source, date, status
