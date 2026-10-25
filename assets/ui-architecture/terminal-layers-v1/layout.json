@@ -1,0 +1,106 @@
+{
+  "canvas": {
+    "width": 1920,
+    "height": 1080,
+    "origin": "top-left"
+  },
+  "layersBackToFront": [
+    {
+      "path": "layers/01-caravan-painting.png",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "layers/02-hinged-panel.png",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "path": "layers/03-metal-rim.png",
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "controls": {
+    "button": "controls/button-enamel.png",
+    "hoverLamp": "controls/lamp-hover.png"
+  },
+  "exampleButtons": [
+    {
+      "x": 144,
+      "y": 300,
+      "width": 480,
+      "height": 100,
+      "exampleLabel": "Continue journey"
+    },
+    {
+      "x": 144,
+      "y": 394,
+      "width": 480,
+      "height": 100,
+      "exampleLabel": "New journey"
+    },
+    {
+      "x": 144,
+      "y": 488,
+      "width": 480,
+      "height": 100,
+      "exampleLabel": "Load journey"
+    },
+    {
+      "x": 144,
+      "y": 582,
+      "width": 480,
+      "height": 100,
+      "exampleLabel": "Settings"
+    },
+    {
+      "x": 144,
+      "y": 676,
+      "width": 480,
+      "height": 100,
+      "exampleLabel": "Credits"
+    },
+    {
+      "x": 144,
+      "y": 770,
+      "width": 480,
+      "height": 100,
+      "exampleLabel": "Quit to desktop"
+    }
+  ],
+  "lampInset": {
+    "x": 12,
+    "y": 10,
+    "width": 70,
+    "height": 70
+  },
+  "customLabelAreas": {
+    "underTitle": {
+      "x": 157,
+      "y": 163,
+      "width": 340,
+      "height": 36
+    },
+    "smallRivetedPlate": {
+      "x": 570,
+      "y": 204,
+      "width": 133,
+      "height": 37
+    }
+  },
+  "notes": [
+    "The main COROVANER title and VOL marking remain painted into the panel.",
+    "The tagline and the small riveted plate are blank for custom labels.",
+    "Menu labels are live text in the SVG example, absent from the PNG controls.",
+    "Show the lamp only on the hovered or keyboard-focused button.",
+    "The source generators returned 1672 x 941 main layers; exports were resampled to exactly 1920 x 1080.",
+    "The landscape is reconstructive artwork; replace it with artist-produced art later."
+  ]
+}

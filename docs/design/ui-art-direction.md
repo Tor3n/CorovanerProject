@@ -98,6 +98,7 @@ update changes no renderer or game screen.
 | Offline component preview | [HTML sampler](../../assets/ui-architecture/coffee-enamel/preview.html) | Embedded assets and sample interactions; see validation limits. |
 | Main menu, character screen, travel screen | [Concept scope](reference/coffee-enamel/README.md) | Material and control-variety studies; layouts and sample content are proposals. |
 | Java helper and validation notes | [Integration](../../assets/ui-architecture/coffee-enamel/docs/INTEGRATION.txt), [validation](../../assets/ui-architecture/coffee-enamel/docs/VALIDATION.txt) | Example compiled against LibGDX 1.13.1 / Java 11; not an in-game smoke test. |
+| Separate terminal paintings, reusable button and hover lamp | [1920 x 1080 terminal pack](../../assets/ui-architecture/terminal-layers-v1/README.md) | Creator-selected terminal direction with the requested blank tagline and riveted nameplate; independent background, panel and rim, plus layered ORA and previews. Not integrated into game screens. |
 
 The concept PNGs are 1672 x 941 and are not 4K production masters. The component
 PNGs have individually documented sizes in the kit manifest. They are clean

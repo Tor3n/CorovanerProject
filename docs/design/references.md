@@ -47,6 +47,10 @@ margins, uniform downscaling for smaller displays and a rectangular menu picture
   material and rounded metal form, not a final screen-layout contract.
 - [Component inventory](../../assets/ui-architecture/coffee-enamel/component-sheet.png):
   33 reusable surfaces, hardware parts and icons; optional nine-patch exports.
+- [Separate terminal paintings](../../assets/ui-architecture/terminal-layers-v1/README.md):
+  creator-selected main-menu terminal direction, exported as three 1920 x 1080
+  layers with a replaceable landscape, empty enamel panel and separate rim.
+  The tagline and small riveted plate are blank for custom labels; the title remains.
 - [Scoped screen studies](reference/coffee-enamel/README.md): generated material
   and control-variety examples. The travel composition is retained only for those
   qualities and does not reinstate the rejected map or travel design baseline.
