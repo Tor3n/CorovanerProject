@@ -1,0 +1,23 @@
+VALIDATION — UI KIT v1.0
+
+PASS: 33 named PNG assets, all RGBA and with transparent outside pixels.
+PASS: Manifest dimensions match every sprite file.
+PASS: The open frame's central pixel is fully transparent.
+PASS: 9 .9.png files have one-pixel marker borders and opaque black markers.
+PASS: LibGDX 1.13.1 TextureAtlasData parsed all 33 atlas regions, 9 split
+      definitions and one 2048 x 1024 atlas page; no out-of-bounds regions.
+PASS: CorovanerUi.java compiled against LibGDX 1.13.1 using Java 11 target.
+PASS: Component sheet visually reviewed after extraction.
+PASS: Nine-patch composition examples rendered from actual assets and split
+      values; corners remain fixed at multiple display dimensions.
+PASS: Offline HTML preview JavaScript syntax validated.
+
+LIMITS
+The Java helper has not been run in the game or an OpenGL render context.
+The HTML preview's browser interactions have not been exercised in this
+environment: the browser runtime download failed. Its images are embedded,
+and its hover/toggle/gauge behavior is implemented for local browser use.
+Large texture stretches can elongate surface grain; the transparent frame
+can be combined with a separate content layer when that matters.
+The kit is a clean component redraw matching the concept, not an exact pixel
+extraction of each screen, and it is not a complete Scene2D theme replacement.

@@ -25,11 +25,13 @@ People should show hardship and varied occupations rather than uniformly polishe
 idealized appearances. These notes preserve earlier direction; the new verbatim
 vision is kept in its own file.
 
-The latest UI direction favors **rusty metal, weathered planks, and vintage lights**.
-The creator rejected overly sci-fi buttons. Modest salvaged technology can appear
-as an accent, but it should not dominate the controls. Existing terminal-style art
-must be interpreted in light of this more recent preference. See the
-[reference index](references.md) for repository sources and their scope.
+The latest UI discussion favors **coffee-cream enamel metal buttons, worn steel,
+and round vintage lamps**. The creator first requested planks, then rejected them
+as too cowboy, and preferred the metal buttons in the project's modal reference.
+Overly sci-fi buttons remain rejected. Controls should have varied physical forms,
+with a lamp shown only on the hovered action in the example. See the
+[UI study](ui-art-direction.md) and [reference index](references.md) for the
+preference history, proposal status and scoped sources.
 
 ## Proposed emotional and visual vocabulary
 
@@ -61,16 +63,18 @@ clean or comfortable world.
 
 ## Proposed UI treatment
 
-Frames and controls should feel assembled and maintained: dented plates, repaired
-wood, brackets, bolts, and warm vintage lamps. Keep text on quiet areas with clear
+Frames and controls should feel assembled and maintained: dented plates, worn
+enamel, brackets, bolts, and warm vintage lamps. Keep text on quiet areas with clear
 contrast. Use decoration to establish material character without covering the map
 or making every button visually loud.
 
-For stretchable controls, keep corners and hardware at stable proportions; stretch
-quiet panel centers and straight edges. Keep labels, focus indication, and status
-separate from background art. A lamp can reinforce a state but must not be its
-only signal. The existing UI branch documents a useful implementation approach;
-it does not freeze the final aesthetic.
+The creator is considering fixed illustrated modules that scale uniformly across
+resolutions. The [scaling discussion](ui-art-direction.md) records this as an open
+proposal. If stretching is useful for variable content, keep corners and hardware
+at stable proportions and stretch quiet centers and straight edges. Keep labels,
+focus indication and status separate from background art. A lamp can reinforce a
+state but must not be its only signal. The exported nine-patch kit is an optional
+implementation experiment; it does not mandate stretching or freeze the aesthetic.
 
 ## Review questions
 

@@ -15,6 +15,7 @@ It describes the intended game; it does not claim that the prototype implements 
 | [Exploration and campaign progression](gameplay.md) | How the RPG opening and later strategic game connect. | Derived requirements plus explicitly labeled proposals. |
 | [Development guide and open decisions](development-guide.md) | How to apply the vision, evaluate work, and avoid premature commitments. | Coworker guidance; unresolved choices remain unresolved. |
 | [Visual reference index](references.md) | Direction for future concept art, selected UI references, and criteria for new visual targets. | Creator direction and explicitly scoped references. |
+| [Coffee-enamel UI study](ui-art-direction.md) | Latest metal-button preferences, reusable components, and fixed-proportion scaling discussion. | Creator preferences and unapproved implementation proposals are distinguished. |
 
 ## Creative foundation
 

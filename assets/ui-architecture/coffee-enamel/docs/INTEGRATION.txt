@@ -1,0 +1,58 @@
+LIBGDX / SCENE2D INTEGRATION
+
+The project's gradle.properties reports LibGDX 1.13.1 and Java source level
+11. The included helper is compiled against those settings.
+
+1. Copy atlas/ into the game's assets/ui/coffee-enamel/ directory.
+2. Load corovaner-ui.atlas through the existing AssetManager.
+3. Keep the atlas alive while its actors are visible; unload it with the screen
+   or theme owner. Do not dispose individual regions or shared fonts.
+4. Use docs/CorovanerUi.java as a small helper, adding your project's package
+   declaration. Supply an existing BitmapFont rather than baking labels.
+
+Example (after the AssetManager has completed loading):
+
+TextureAtlas atlas = assets.get("ui/coffee-enamel/corovaner-ui.atlas",
+                               TextureAtlas.class);
+TextButton.TextButtonStyle style = CorovanerUi.primaryStyle(atlas, font);
+CorovanerUi.HoverLampButton button = new CorovanerUi.HoverLampButton(
+    "Continue journey", style, atlas);
+table.add(button).width(320).height(64);
+
+The helper scales the authored nine-patch borders by 0.5. It uses separate
+up/over/down surfaces, a disabled tint, and a 28 x 28 lamp overlay that appears
+on hover or keyboard focus. The application still owns navigation, keyboard
+activation, sound and click actions. Native Scene2D labels remain editable.
+
+ALTERNATIVE IMPORT
+The atlas includes split and pad metadata. Skin.getDrawable(name) can create
+a NinePatchDrawable from it, but that drawable will use source-pixel border
+sizes unless you explicitly scale the patch. The helper handles this.
+If repacking with TexturePacker, use ninepatch/*.9.png for surfaces and the
+hardware/icon PNGs from sprites/. Do not include duplicate ordinary PNG
+versions of the same surfaces. Do not pack the .9.png marker pixels as art.
+
+PIVOTS AND LAYOUT
+Coordinates in manifest.json are normalized, top-left image origin.
+gauge-face pivot: (0.5,0.89); gauge-needle pivot: (0.5,0.88).
+For a Scene2D actor with bottom-left coordinates, originY is
+(1 - pivotY) * actorHeight. Align the two world-space pivots before rotating.
+At the recommended half-size, the needle is 20 x 80, face 128 x 72.
+Clamp the shown gauge angle to the designed arc (about +/-70 degrees).
+The knob's triangle is part of the knob: rotate the whole knob uniformly.
+For a toggle, move the handle within the socket; preserve both aspect ratios.
+
+FILES AND COLOR
+RGBA8888 straight alpha. One atlas page, linear filtering, clamp-to-edge,
+8 px gutters, no rotation or whitespace stripping, no mipmaps. Icons use
+a warm light color so they work on dark steel; tint them dark on enamel.
+Maintain source dimensions when regenerating .9.png markers and the atlas.
+
+Official documentation consulted:
+https://libgdx.com/wiki/tools/texture-packer
+https://libgdx.com/wiki/graphics/2d/scene2d/skin
+https://libgdx.com/wiki/graphics/2d/ninepatches
+
+Repository convention reviewed:
+Tor3n/CorovanerProject, codex/postapocalyptic-ui-theme,
+assets/ui-architecture/element-set/README.md

@@ -33,9 +33,22 @@ Use these pinned links so the references do not silently change with the branch:
 That branch's documentation identifies its image as an approved reference for an
 earlier frontier-terminal direction. It describes separate frames, panels,
 controls, live text, and fixed-size hardware. Reuse those ideas where appropriate.
-The creator's later request for rusty metal, planks, and vintage lights refines
-the aesthetic and takes precedence over overly sci-fi treatment. This guide does
-not merge that branch or claim its runtime assets are present on main.
+The creator subsequently rejected planks as too cowboy and preferred coffee-cream
+enamel metal buttons with round vintage lamps. That preference supersedes the
+intermediate plank treatment. This guide does not merge the earlier branch.
+
+## Coffee-enamel controls and fixed-proportion scaling discussion
+
+See [the current UI study](ui-art-direction.md) for creator preferences and the
+still-open proposal to scale fixed illustrated modules uniformly.
+
+- [Modal material reference](../../assets/MainModal.png): creator-preferred button
+  material and rounded metal form, not a final screen-layout contract.
+- [Component inventory](../../assets/ui-architecture/coffee-enamel/component-sheet.png):
+  33 reusable surfaces, hardware parts and icons; optional nine-patch exports.
+- [Scoped screen studies](reference/coffee-enamel/README.md): generated material
+  and control-variety examples. The travel composition is retained only for those
+  qualities and does not reinstate the rejected map or travel design baseline.
 
 ## Proposed next concept-art briefs
 
@@ -46,7 +59,7 @@ are separate tasks; none of them is a finished or approved asset.
 | --- | --- | --- |
 | Country-map mood frame | A fixed-angle view of an arid region, a compelling road, distinctive distant sites, a small traveler, and atmosphere concentrated around terrain and light. | Exact renderer, world dimensions, faction borders, and final geography. |
 | Exploration detail frame | The same visual language closer to a road junction or settlement; show why a player would investigate a side route. | Combat rules, named quest outcomes, and final building functions. |
-| Material and UI sheet | Rusty metal, repaired planks, vintage amber lights, brackets and fasteners; text-free button/frame surfaces plus separate hardware. | Exact UI dimensions, final color values, and interaction behavior. |
+| Further material and UI refinement | Coffee-cream enamel metal, worn steel, round vintage amber lights, brackets and fasteners; fixed-proportion illustrated modules plus separate hardware and text. | Exact UI dimensions, final color values, scaling policy, and full interaction behavior. |
 | Development-only continuity pair | The same geography and camera framing before and after the reveal; altered routes, relationships, and strategic overlays show changed responsibility while terrain stays recognizable. | The narrative trigger, final political systems, and approved late-game interface. Never use this pair as early promotional art. |
 
 For a new image, record its repository path, creator/source, date, status

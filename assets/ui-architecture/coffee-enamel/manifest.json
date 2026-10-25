@@ -1,0 +1,789 @@
+{
+  "name": "Corovaner coffee-enamel UI kit",
+  "version": "1.0.0",
+  "pixelRatio": 2,
+  "atlas": "atlas/corovaner-ui.atlas",
+  "scaleOrder": "left,right,top,bottom",
+  "assets": {
+    "button-enamel-up": {
+      "file": "sprites/button-enamel-up.png",
+      "size": [
+        384,
+        128
+      ],
+      "scale": "horizontal",
+      "recommendedUiSize": [
+        192.0,
+        64.0
+      ],
+      "split": [
+        72,
+        72,
+        60,
+        60
+      ],
+      "padding": [
+        64,
+        64,
+        26,
+        26
+      ],
+      "minimumUiSize": [
+        72.5,
+        60.5
+      ],
+      "atlasBounds": [
+        4,
+        4,
+        384,
+        128
+      ]
+    },
+    "button-enamel-over": {
+      "file": "sprites/button-enamel-over.png",
+      "size": [
+        384,
+        128
+      ],
+      "scale": "horizontal",
+      "recommendedUiSize": [
+        192.0,
+        64.0
+      ],
+      "split": [
+        72,
+        72,
+        60,
+        60
+      ],
+      "padding": [
+        64,
+        64,
+        26,
+        26
+      ],
+      "minimumUiSize": [
+        72.5,
+        60.5
+      ],
+      "atlasBounds": [
+        396,
+        4,
+        384,
+        128
+      ]
+    },
+    "button-enamel-down": {
+      "file": "sprites/button-enamel-down.png",
+      "size": [
+        384,
+        128
+      ],
+      "scale": "horizontal",
+      "recommendedUiSize": [
+        192.0,
+        64.0
+      ],
+      "split": [
+        72,
+        72,
+        60,
+        60
+      ],
+      "padding": [
+        64,
+        64,
+        26,
+        26
+      ],
+      "minimumUiSize": [
+        72.5,
+        60.5
+      ],
+      "atlasBounds": [
+        788,
+        4,
+        384,
+        128
+      ]
+    },
+    "button-steel": {
+      "file": "sprites/button-steel.png",
+      "size": [
+        320,
+        160
+      ],
+      "scale": "both",
+      "recommendedUiSize": [
+        160.0,
+        80.0
+      ],
+      "split": [
+        46,
+        46,
+        46,
+        46
+      ],
+      "padding": [
+        46,
+        46,
+        36,
+        36
+      ],
+      "minimumUiSize": [
+        46.5,
+        46.5
+      ],
+      "atlasBounds": [
+        1180,
+        4,
+        320,
+        160
+      ]
+    },
+    "tab-enamel": {
+      "file": "sprites/tab-enamel.png",
+      "size": [
+        320,
+        160
+      ],
+      "scale": "both",
+      "recommendedUiSize": [
+        160.0,
+        80.0
+      ],
+      "split": [
+        46,
+        46,
+        46,
+        46
+      ],
+      "padding": [
+        46,
+        46,
+        36,
+        36
+      ],
+      "minimumUiSize": [
+        46.5,
+        46.5
+      ],
+      "atlasBounds": [
+        1508,
+        4,
+        320,
+        160
+      ]
+    },
+    "slot-recessed": {
+      "file": "sprites/slot-recessed.png",
+      "size": [
+        256,
+        256
+      ],
+      "scale": "both",
+      "recommendedUiSize": [
+        128.0,
+        128.0
+      ],
+      "split": [
+        30,
+        30,
+        30,
+        30
+      ],
+      "padding": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "minimumUiSize": [
+        30.5,
+        30.5
+      ],
+      "atlasBounds": [
+        4,
+        172,
+        256,
+        256
+      ]
+    },
+    "panel-steel": {
+      "file": "sprites/panel-steel.png",
+      "size": [
+        384,
+        320
+      ],
+      "scale": "both",
+      "recommendedUiSize": [
+        192.0,
+        160.0
+      ],
+      "split": [
+        62,
+        62,
+        62,
+        62
+      ],
+      "padding": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "minimumUiSize": [
+        62.5,
+        62.5
+      ],
+      "atlasBounds": [
+        268,
+        172,
+        384,
+        320
+      ]
+    },
+    "frame-steel": {
+      "file": "sprites/frame-steel.png",
+      "size": [
+        384,
+        320
+      ],
+      "scale": "both",
+      "recommendedUiSize": [
+        192.0,
+        160.0
+      ],
+      "split": [
+        62,
+        62,
+        62,
+        62
+      ],
+      "padding": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "minimumUiSize": [
+        62.5,
+        62.5
+      ],
+      "atlasBounds": [
+        660,
+        172,
+        384,
+        320
+      ]
+    },
+    "panel-enamel": {
+      "file": "sprites/panel-enamel.png",
+      "size": [
+        384,
+        320
+      ],
+      "scale": "both",
+      "recommendedUiSize": [
+        192.0,
+        160.0
+      ],
+      "split": [
+        62,
+        62,
+        62,
+        62
+      ],
+      "padding": [
+        64,
+        64,
+        64,
+        64
+      ],
+      "minimumUiSize": [
+        62.5,
+        62.5
+      ],
+      "atlasBounds": [
+        1052,
+        172,
+        384,
+        320
+      ]
+    },
+    "lamp-off": {
+      "file": "sprites/lamp-off.png",
+      "size": [
+        96,
+        96
+      ],
+      "scale": "fixed",
+      "recommendedUiSize": [
+        48.0,
+        48.0
+      ],
+      "atlasBounds": [
+        1444,
+        172,
+        96,
+        96
+      ]
+    },
+    "lamp-on": {
+      "file": "sprites/lamp-on.png",
+      "size": [
+        96,
+        96
+      ],
+      "scale": "fixed",
+      "recommendedUiSize": [
+        48.0,
+        48.0
+      ],
+      "atlasBounds": [
+        1548,
+        172,
+        96,
+        96
+      ]
+    },
+    "knob-brass": {
+      "file": "sprites/knob-brass.png",
+      "size": [
+        128,
+        128
+      ],
+      "scale": "fixed",
+      "recommendedUiSize": [
+        64.0,
+        64.0
+      ],
+      "atlasBounds": [
+        1652,
+        172,
+        128,
+        128
+      ]
+    },
+    "gauge-face": {
+      "file": "sprites/gauge-face.png",
+      "size": [
+        256,
+        144
+      ],
+      "scale": "fixed",
+      "recommendedUiSize": [
+        128.0,
+        72.0
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.89
+      ],
+      "atlasBounds": [
+        1788,
+        172,
+        256,
+        144
+      ]
+    },
+    "gauge-needle": {
+      "file": "sprites/gauge-needle.png",
+      "size": [
+        40,
+        160
+      ],
+      "scale": "fixed",
+      "recommendedUiSize": [
+        20.0,
+        80.0
+      ],
+      "pivotNormalized": [
+        0.5,
+        0.88
+      ],
+      "atlasBounds": [
+        4,
+        500,
+        40,
+        160
+      ]
+    },
+    "hinge": {
+      "file": "sprites/hinge.png",
+      "size": [
+        80,
+        144
+      ],
+      "scale": "fixed",
+      "recommendedUiSize": [
+        40.0,
+        72.0
+      ],
+      "atlasBounds": [
+        52,
+        500,
+        80,
+        144
+      ]
+    },
+    "speaker-grille": {
+      "file": "sprites/speaker-grille.png",
+      "size": [
+        192,
+        152
+      ],
+      "scale": "fixed",
+      "recommendedUiSize": [
+        96.0,
+        76.0
+      ],
+      "atlasBounds": [
+        140,
+        500,
+        192,
+        152
+      ]
+    },
+    "corner-bracket": {
+      "file": "sprites/corner-bracket.png",
+      "size": [
+        128,
+        144
+      ],
+      "scale": "fixed",
+      "recommendedUiSize": [
+        64.0,
+        72.0
+      ],
+      "atlasBounds": [
+        340,
+        500,
+        128,
+        144
+      ]
+    },
+    "screw": {
+      "file": "sprites/screw.png",
+      "size": [
+        48,
+        48
+      ],
+      "scale": "fixed",
+      "recommendedUiSize": [
+        24.0,
+        24.0
+      ],
+      "atlasBounds": [
+        476,
+        500,
+        48,
+        48
+      ]
+    },
+    "toggle-socket": {
+      "file": "sprites/toggle-socket.png",
+      "size": [
+        160,
+        80
+      ],
+      "scale": "fixed",
+      "recommendedUiSize": [
+        80.0,
+        40.0
+      ],
+      "atlasBounds": [
+        532,
+        500,
+        160,
+        80
+      ]
+    },
+    "toggle-handle": {
+      "file": "sprites/toggle-handle.png",
+      "size": [
+        64,
+        32
+      ],
+      "scale": "fixed",
+      "recommendedUiSize": [
+        32.0,
+        16.0
+      ],
+      "atlasBounds": [
+        700,
+        500,
+        64,
+        32
+      ]
+    },
+    "scroll-thumb": {
+      "file": "sprites/scroll-thumb.png",
+      "size": [
+        32,
+        56
+      ],
+      "scale": "fixed",
+      "recommendedUiSize": [
+        16.0,
+        28.0
+      ],
+      "atlasBounds": [
+        772,
+        500,
+        32,
+        56
+      ]
+    },
+    "icon-character": {
+      "file": "sprites/icon-character.png",
+      "source": "icons/character.svg",
+      "size": [
+        64,
+        64
+      ],
+      "recommendedUiSize": [
+        24,
+        24
+      ],
+      "scale": "uniform",
+      "atlasBounds": [
+        812,
+        500,
+        64,
+        64
+      ]
+    },
+    "icon-inventory": {
+      "file": "sprites/icon-inventory.png",
+      "source": "icons/inventory.svg",
+      "size": [
+        64,
+        64
+      ],
+      "recommendedUiSize": [
+        24,
+        24
+      ],
+      "scale": "uniform",
+      "atlasBounds": [
+        884,
+        500,
+        64,
+        64
+      ]
+    },
+    "icon-journal": {
+      "file": "sprites/icon-journal.png",
+      "source": "icons/journal.svg",
+      "size": [
+        64,
+        64
+      ],
+      "recommendedUiSize": [
+        24,
+        24
+      ],
+      "scale": "uniform",
+      "atlasBounds": [
+        956,
+        500,
+        64,
+        64
+      ]
+    },
+    "icon-save": {
+      "file": "sprites/icon-save.png",
+      "source": "icons/save.svg",
+      "size": [
+        64,
+        64
+      ],
+      "recommendedUiSize": [
+        24,
+        24
+      ],
+      "scale": "uniform",
+      "atlasBounds": [
+        1028,
+        500,
+        64,
+        64
+      ]
+    },
+    "icon-settings": {
+      "file": "sprites/icon-settings.png",
+      "source": "icons/settings.svg",
+      "size": [
+        64,
+        64
+      ],
+      "recommendedUiSize": [
+        24,
+        24
+      ],
+      "scale": "uniform",
+      "atlasBounds": [
+        1100,
+        500,
+        64,
+        64
+      ]
+    },
+    "icon-plus": {
+      "file": "sprites/icon-plus.png",
+      "source": "icons/plus.svg",
+      "size": [
+        64,
+        64
+      ],
+      "recommendedUiSize": [
+        24,
+        24
+      ],
+      "scale": "uniform",
+      "atlasBounds": [
+        1172,
+        500,
+        64,
+        64
+      ]
+    },
+    "icon-minus": {
+      "file": "sprites/icon-minus.png",
+      "source": "icons/minus.svg",
+      "size": [
+        64,
+        64
+      ],
+      "recommendedUiSize": [
+        24,
+        24
+      ],
+      "scale": "uniform",
+      "atlasBounds": [
+        1244,
+        500,
+        64,
+        64
+      ]
+    },
+    "icon-close": {
+      "file": "sprites/icon-close.png",
+      "source": "icons/close.svg",
+      "size": [
+        64,
+        64
+      ],
+      "recommendedUiSize": [
+        24,
+        24
+      ],
+      "scale": "uniform",
+      "atlasBounds": [
+        1316,
+        500,
+        64,
+        64
+      ]
+    },
+    "icon-arrow-up": {
+      "file": "sprites/icon-arrow-up.png",
+      "source": "icons/arrow-up.svg",
+      "size": [
+        64,
+        64
+      ],
+      "recommendedUiSize": [
+        24,
+        24
+      ],
+      "scale": "uniform",
+      "atlasBounds": [
+        1388,
+        500,
+        64,
+        64
+      ]
+    },
+    "icon-arrow-down": {
+      "file": "sprites/icon-arrow-down.png",
+      "source": "icons/arrow-down.svg",
+      "size": [
+        64,
+        64
+      ],
+      "recommendedUiSize": [
+        24,
+        24
+      ],
+      "scale": "uniform",
+      "atlasBounds": [
+        1460,
+        500,
+        64,
+        64
+      ]
+    },
+    "icon-clock": {
+      "file": "sprites/icon-clock.png",
+      "source": "icons/clock.svg",
+      "size": [
+        64,
+        64
+      ],
+      "recommendedUiSize": [
+        24,
+        24
+      ],
+      "scale": "uniform",
+      "atlasBounds": [
+        1532,
+        500,
+        64,
+        64
+      ]
+    },
+    "icon-supplies": {
+      "file": "sprites/icon-supplies.png",
+      "source": "icons/supplies.svg",
+      "size": [
+        64,
+        64
+      ],
+      "recommendedUiSize": [
+        24,
+        24
+      ],
+      "scale": "uniform",
+      "atlasBounds": [
+        1604,
+        500,
+        64,
+        64
+      ]
+    }
+  },
+  "states": {
+    "primary": {
+      "up": "button-enamel-up",
+      "hover": "button-enamel-over",
+      "pressed": "button-enamel-down",
+      "disabled": {
+        "region": "button-enamel-up",
+        "tint": "#888078",
+        "labelColor": "#554b3b"
+      },
+      "lamp": {
+        "idle": null,
+        "hover": "lamp-on",
+        "keyboardFocus": "lamp-on",
+        "disabled": null
+      }
+    }
+  },
+  "atlasSize": [
+    2048,
+    1024
+  ]
+}
