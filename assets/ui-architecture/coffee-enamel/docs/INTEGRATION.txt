@@ -3,16 +3,19 @@ LIBGDX / SCENE2D INTEGRATION
 The project's gradle.properties reports LibGDX 1.13.1 and Java source level
 11. The included helper is compiled against those settings.
 
-1. Copy atlas/ into the game's assets/ui/coffee-enamel/ directory.
-2. Load corovaner-ui.atlas through the existing AssetManager.
-3. Keep the atlas alive while its actors are visible; unload it with the screen
-   or theme owner. Do not dispose individual regions or shared fonts.
-4. Use docs/CorovanerUi.java as a small helper, adding your project's package
-   declaration. Supply an existing BitmapFont rather than baking labels.
+The current runtime queues all 33 atlas regions through CoffeeEnamelAssets
+during MenuTheme.queue. Access any sprite with theme.components.region(name).
+The main AssetManager owns the atlas and fonts; screens must not dispose them.
+The matching lamp-on/lamp-off pair is used in the main menu.
+
+For other integrations, load atlas/corovaner-ui.atlas through AssetManager.
+Keep the atlas alive while its actors are visible. Use docs/CorovanerUi.java
+as an optional nine-patch helper, adding your project's package declaration.
+Supply a generated Manrope BitmapFont rather than baking labels.
 
 Example (after the AssetManager has completed loading):
 
-TextureAtlas atlas = assets.get("ui/coffee-enamel/corovaner-ui.atlas",
+TextureAtlas atlas = assets.get("ui-architecture/coffee-enamel/atlas/corovaner-ui.atlas",
                                TextureAtlas.class);
 TextButton.TextButtonStyle style = CorovanerUi.primaryStyle(atlas, font);
 CorovanerUi.HoverLampButton button = new CorovanerUi.HoverLampButton(
@@ -20,8 +23,8 @@ CorovanerUi.HoverLampButton button = new CorovanerUi.HoverLampButton(
 table.add(button).width(320).height(64);
 
 The helper scales the authored nine-patch borders by 0.5. It uses separate
-up/over/down surfaces, a disabled tint, and a 28 x 28 lamp overlay that appears
-on hover or keyboard focus. The application still owns navigation, keyboard
+up/over/down surfaces, a disabled tint, and a 28 x 28 lamp overlay: unlit at
+rest/disabled and lit on hover or keyboard focus. The application still owns navigation, keyboard
 activation, sound and click actions. Native Scene2D labels remain editable.
 
 ALTERNATIVE IMPORT
@@ -44,8 +47,10 @@ For a toggle, move the handle within the socket; preserve both aspect ratios.
 
 FILES AND COLOR
 RGBA8888 straight alpha. One atlas page, linear filtering, clamp-to-edge,
-8 px gutters, no rotation or whitespace stripping, no mipmaps. Icons use
-a warm light color so they work on dark steel; tint them dark on enamel.
+8 px gutters, no rotation or whitespace stripping, no mipmaps. UI typography is
+Manrope; text is amber #D5A451 on dark surfaces and espresso #21160B on enamel.
+The exported icons retain their original warm light pixels; apply an appropriate
+tint when composing them on enamel. Font provenance/license: assets/ui/fonts/manrope/.
 Maintain source dimensions when regenerating .9.png markers and the atlas.
 
 Official documentation consulted:

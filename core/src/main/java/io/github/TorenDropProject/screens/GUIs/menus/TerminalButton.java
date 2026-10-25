@@ -7,19 +7,20 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Array;
 
-/** Live text over a painted enamel face, with one independent round hover/focus lamp. */
+/** Live text over enamel, with an unlit lamp that lights on hover or keyboard focus. */
 public final class TerminalButton extends TextButton {
-    private final TextureRegion lamp;
+    private final TextureRegion lampOn, lampOff;
 
-    public TerminalButton(String text, TextButtonStyle style, TextureRegion lamp) {
+    public TerminalButton(String text, TextButtonStyle style, TextureRegion lampOn, TextureRegion lampOff) {
         super(text, style);
-        this.lamp = lamp;
-        // Reserve the lamp area even when it is hidden, so the caption never moves.
+        this.lampOn = lampOn;
+        this.lampOff = lampOff;
+        // Both lamp states occupy the same area, so the caption never moves.
         pad(0, 68, 12, 12);
         setProgrammaticChangeEvents(false);
     }
 
-    public boolean isLampVisible() {
+    public boolean isLampLit() {
         if (isDisabled() || getStage() == null) return false;
         if (isOver()) return true;
         if (getStage().getKeyboardFocus() != this) return false;
@@ -35,13 +36,15 @@ public final class TerminalButton extends TextButton {
         return true;
     }
 
+    public TextureRegion getLampRegion() {
+        return isLampLit() ? lampOn : lampOff;
+    }
+
     @Override public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        if (isLampVisible()) {
-            Color color = getColor();
-            batch.setColor(color.r, color.g, color.b, color.a * parentAlpha);
-            batch.draw(lamp, getX() + 12, getY() + getHeight() - 80 - (isPressed() ? 2 : 0), 70, 70);
-            batch.setColor(Color.WHITE);
-        }
+        Color color = getColor();
+        batch.setColor(color.r, color.g, color.b, color.a * parentAlpha);
+        batch.draw(getLampRegion(), getX() + 12, getY() + getHeight() - 80 - (isPressed() ? 2 : 0), 70, 70);
+        batch.setColor(Color.WHITE);
     }
 }

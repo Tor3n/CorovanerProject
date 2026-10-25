@@ -15,8 +15,39 @@ is recorded below; the other screen studies remain scoped art proposals.
   those become rounded coffee-cream enamel faces with aged metal rims.
 - Increase the variety of UI forms: recessed displays, counters, utility keys,
   dials, slots, vents, hinges and distinct panel shapes. Keep their functions clear.
-- Button lamps should be round. A hover example shows one lit lamp, while other
-  action buttons have none. Keep the lamp separate from the button surface.
+- Button lamps should be round and separate from the button surface. The earlier
+  hover example hid idle lamps; the 2026-10-26 decision below supersedes that state.
+
+## Creator decision: Manrope, amber/espresso text and persistent lamps
+
+Confirmed by the creator on **2026-10-26**:
+
+- Use **Manrope** for UI typography. Current implementation uses Regular (400)
+  for body and compact text, and SemiBold (600) for headings and button captions.
+- Use **amber `#D5A451`** for text on black/dark surfaces.
+- Use **espresso `#21160B`** for text on coffee-cream enamel.
+- Load `lamp-off` and the remaining coffee-enamel sprites for runtime use.
+- Show **lamp-off on idle main-menu buttons**, including disabled actions.
+  Switch to the matching **lamp-on** on hover or keyboard focus. Hover retains
+  priority over a different focused action, so at most one enabled lamp is lit.
+
+This supersedes the earlier no-lamp-at-rest example and the parchment-on-dark
+proposal. Lamps stay in a fixed position; labels do not move when the state changes.
+Historical generated concepts and flattened previews are material references,
+not the current typography, color or idle-lamp contract.
+
+Implementation: `MenuTheme` queues the two bundled, licensed Manrope font sources
+and `CoffeeEnamelAssets` loads all 33 regions through one shared atlas. The atlas,
+fonts and illustrated terminal textures belong to the central `AssetManager`.
+Other screens can access hardware, icons and surfaces through
+`theme.components.region(name)`; loading a component does not place it on a screen.
+The main menu uses the atlas's matching `lamp-on` / `lamp-off` pair rather than
+mixing the terminal pack's earlier lit lamp with a different unlit housing.
+The pressed enamel tint is lighter to preserve espresso-label contrast.
+
+See [font provenance and license](../../assets/ui/fonts/manrope/README.md),
+[component manifest](../../assets/ui-architecture/coffee-enamel/manifest.json),
+and [runtime behavior](../menus/README.md#terminal-main-menu).
 
 ## Creator decision: 1920 x 1080, centered menu and painted margins
 
@@ -96,7 +127,7 @@ work does not modify the world renderer or implement the final country map.
 
 | Work | Location | Status |
 | --- | --- | --- |
-| 33 component sprites, 12 SVG icon originals, 9 nine-patch inputs, one atlas | [Coffee-enamel kit](../../assets/ui-architecture/coffee-enamel/README.txt) | Text-free component study; not wired into game screens. |
+| 33 component sprites, 12 SVG icon originals, 9 nine-patch inputs, one atlas | [Coffee-enamel kit](../../assets/ui-architecture/coffee-enamel/README.txt) | All atlas regions load at startup; the matching lamp pair is used in the main menu. Other hardware is available for future composition. |
 | Visual component inventory | [Component sheet](../../assets/ui-architecture/coffee-enamel/component-sheet.png) | Shows the exported assets and example button states. |
 | Offline component preview | [HTML sampler](../../assets/ui-architecture/coffee-enamel/preview.html) | Embedded assets and sample interactions; see validation limits. |
 | Main menu, character screen, travel screen | [Concept scope](reference/coffee-enamel/README.md) | Material and control-variety studies; layouts and sample content are proposals. |

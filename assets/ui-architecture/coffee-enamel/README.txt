@@ -1,4 +1,4 @@
-COROVANER — REUSABLE COFFEE-ENAMEL UI KIT v1.0
+COROVANER — REUSABLE COFFEE-ENAMEL UI KIT v1.1
 
 33 reusable, text-free sprites derived from the revised UI concepts:
 9 stretchable surfaces; 12 independent hardware parts; 12 semantic icons.
@@ -7,6 +7,8 @@ START HERE
 Open preview.html in a browser. It is self-contained and works offline.
 Hover/focus/press the buttons, operate the toggle and move the gauge slider.
 component-sheet.png is a quick visual inventory of the exported pieces.
+These v1 visual studies predate the 2026-10-26 typography/color/lamp decision;
+the current contract is below and in manifest.json and docs/design/ui-art-direction.md.
 
 PACKAGE
 sprites/     33 transparent PNGs, ready to compose independently.
@@ -20,10 +22,11 @@ docs/        Integration guide, Java helper and validation results.
 DESIGN CONTRACT
 Keep text and icons as separate actors. No screen backgrounds, portraits,
 sample values or captions are baked into the reusable controls.
+Use Manrope: Regular 400 for body/compact labels, SemiBold 600 for headings/buttons.
+Text on dark surfaces is amber #D5A451; text on enamel is espresso #21160B.
 Primary buttons use the up, over and down surfaces. The lamp is a separate
-fixed-size overlay, hidden at rest, visible on hover or keyboard focus, and
-hidden when disabled. An optional lamp-off sprite exists for status widgets;
-do not display it on idle action buttons if following the current concept.
+fixed-size overlay: lamp-off at rest and when disabled, lamp-on on hover or
+keyboard focus. The main menu gives hover priority over another focused action.
 Reserve lamp space in every state so the caption does not move on hover.
 The disabled state is a runtime tint; it is not a separate sprite.
 
@@ -56,7 +59,10 @@ Scrollbar: a narrow slot-recessed track + scroll-thumb + arrow icons.
 The surfaces and hardware were redrawn as clean, text-free components using
 built-in image generation, then extracted and normalized for reuse. They
 match the concept direction but are not lossless cuts from the screenshots.
-Semantic icons were authored as SVG. The kit is an opt-in study, not a replacement for the current runtime theme.
+Semantic icons were authored as SVG. All 33 atlas sprites now load at startup via
+CoffeeEnamelAssets; the main menu uses the matching lamp-on/lamp-off pair.
+The remaining components are available through theme.components.region(name),
+without drawing unused hardware or replacing other screens' layouts.
 See ../../../docs/design/ui-art-direction.md for creator display rules and the
 remaining implementation proposals. The nine-patch exports are optional; fixed
 illustrated compositions scale down uniformly. The pending Canva draft is separate.

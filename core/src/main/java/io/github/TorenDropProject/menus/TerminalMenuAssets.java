@@ -17,12 +17,11 @@ public final class TerminalMenuAssets {
     public static final String PANEL = ROOT + "layers/02-hinged-panel.png";
     public static final String RIM = ROOT + "layers/03-metal-rim.png";
     public static final String BUTTON = ROOT + "controls/button-enamel.png";
-    public static final String LAMP = ROOT + "controls/lamp-hover.png";
-    public final TextureRegion painting, panel, rim, button, lamp;
+    public final TextureRegion painting, panel, rim, button, lampOn, lampOff;
     public final BitmapFont font;
 
     public static void queue(AssetManager assets) {
-        for (String path : new String[] {PAINTING, PANEL, RIM, BUTTON, LAMP}) {
+        for (String path : new String[] {PAINTING, PANEL, RIM, BUTTON}) {
             TextureParameter parameter = new TextureParameter();
             parameter.genMipMaps = true;
             parameter.minFilter = Texture.TextureFilter.MipMapLinearLinear;
@@ -31,12 +30,13 @@ public final class TerminalMenuAssets {
         }
     }
 
-    public TerminalMenuAssets(AssetManager assets) {
+    public TerminalMenuAssets(AssetManager assets, CoffeeEnamelAssets components) {
         painting = region(assets, PAINTING);
         panel = region(assets, PANEL);
         rim = region(assets, RIM);
         button = region(assets, BUTTON);
-        lamp = region(assets, LAMP);
+        lampOn = components.region("lamp-on");
+        lampOff = components.region("lamp-off");
         font = assets.get("ui/terminal-button.ttf", BitmapFont.class);
         font.getData().setScale(0.5f);
         font.setUseIntegerPositions(false);
@@ -50,11 +50,11 @@ public final class TerminalMenuAssets {
         TextureRegionDrawable face = new TextureRegionDrawable(button);
         TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
         style.font = font;
-        style.fontColor = Color.valueOf("21160b");
+        style.fontColor = MenuTheme.ESPRESSO;
         style.up = face;
         style.over = face.tint(new Color(1f, 0.96f, 0.86f, 1f));
         style.focused = style.over;
-        style.down = face.tint(new Color(0.78f, 0.72f, 0.61f, 1f));
+        style.down = face.tint(new Color(0.86f, 0.82f, 0.74f, 1f));
         style.disabled = face.tint(new Color(0.62f, 0.60f, 0.56f, 1f));
         style.disabledFontColor = Color.valueOf("494237");
         style.pressedOffsetY = -2;

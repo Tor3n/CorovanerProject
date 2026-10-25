@@ -31,7 +31,7 @@ public final class CorovanerUi {
         disabled.setColor(Color.valueOf("888078"));
         style.disabled = new NinePatchDrawable(disabled);
         style.font = font;
-        style.fontColor = Color.valueOf("2B1D0C");
+        style.fontColor = Color.valueOf("21160B");
         style.overFontColor = style.fontColor;
         style.downFontColor = style.fontColor;
         style.disabledFontColor = Color.valueOf("554B3B");
@@ -39,14 +39,15 @@ public final class CorovanerUi {
         return style;
     }
 
-    /** Idle has no lamp. Hover and keyboard focus reveal the circular overlay. */
+    /** Idle/disabled show lamp-off. Hover and keyboard focus switch to lamp-on. */
     public static final class HoverLampButton extends TextButton {
-        private final TextureAtlas.AtlasRegion lamp;
+        private final TextureAtlas.AtlasRegion lampOn, lampOff;
 
         public HoverLampButton(String text, TextButtonStyle style, TextureAtlas atlas) {
             super(text, style);
-            lamp = atlas.findRegion("lamp-on");
-            if (lamp == null) throw new IllegalArgumentException("Missing lamp-on");
+            lampOn = atlas.findRegion("lamp-on");
+            lampOff = atlas.findRegion("lamp-off");
+            if (lampOn == null || lampOff == null) throw new IllegalArgumentException("Missing lamp sprites");
             // Reserve space symmetrically so text does not jump between states.
             padLeft(48);
             padRight(48);
@@ -56,15 +57,14 @@ public final class CorovanerUi {
         public void draw(Batch batch, float parentAlpha) {
             super.draw(batch, parentAlpha);
             boolean focused = getStage() != null && getStage().getKeyboardFocus() == this;
-            if (!isDisabled() && (isOver() || focused)) {
-                float oldColor = batch.getPackedColor();
-                Color actorColor = getColor();
-                batch.setColor(actorColor.r, actorColor.g, actorColor.b, actorColor.a * parentAlpha);
-                float size = 28;
-                float pressed = isPressed() ? -1 : 0;
-                batch.draw(lamp, getX() + 15, getY() + (getHeight() - size) / 2 + pressed, size, size);
-                batch.setPackedColor(oldColor);
-            }
+            TextureAtlas.AtlasRegion lamp = !isDisabled() && (isOver() || focused) ? lampOn : lampOff;
+            float oldColor = batch.getPackedColor();
+            Color actorColor = getColor();
+            batch.setColor(actorColor.r, actorColor.g, actorColor.b, actorColor.a * parentAlpha);
+            float size = 28;
+            float pressed = isPressed() ? -1 : 0;
+            batch.draw(lamp, getX() + 15, getY() + (getHeight() - size) / 2 + pressed, size, size);
+            batch.setPackedColor(oldColor);
         }
     }
 }

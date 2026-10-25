@@ -1,6 +1,6 @@
 {
   "name": "Corovaner coffee-enamel UI kit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "pixelRatio": 2,
   "atlas": "atlas/corovaner-ui.atlas",
   "scaleOrder": "left,right,top,bottom",
@@ -775,15 +775,26 @@
         "labelColor": "#554b3b"
       },
       "lamp": {
-        "idle": null,
+        "idle": "lamp-off",
         "hover": "lamp-on",
         "keyboardFocus": "lamp-on",
-        "disabled": null
+        "disabled": "lamp-off"
       }
     }
   },
   "atlasSize": [
     2048,
     1024
-  ]
+  ],
+  "typography": {
+    "family": "Manrope",
+    "bodyWeight": 400,
+    "headingAndButtonWeight": 600,
+    "regular": "ui/fonts/manrope/Manrope-Regular.ttf",
+    "semibold": "ui/fonts/manrope/Manrope-SemiBold.ttf"
+  },
+  "colors": {
+    "textOnDark": "#D5A451",
+    "textOnEnamel": "#21160B"
+  }
 }

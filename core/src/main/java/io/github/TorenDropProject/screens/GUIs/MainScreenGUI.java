@@ -62,7 +62,8 @@ public final class MainScreenGUI extends MenuPage {
     }
 
     private TerminalButton action(Table table, int row, String text, Runnable command) {
-        TerminalButton button = new TerminalButton(text, theme.terminal.buttonStyle(), theme.terminal.lamp);
+        TerminalButton button = new TerminalButton(text, theme.terminal.buttonStyle(),
+            theme.terminal.lampOn, theme.terminal.lampOff);
         button.setName(text);
         // The art manifest uses top-left coordinates; Scene2D uses bottom-left.
         button.setBounds(144, TerminalMenuAssets.HEIGHT - (300 + row * 94) - 100, 480, 100);

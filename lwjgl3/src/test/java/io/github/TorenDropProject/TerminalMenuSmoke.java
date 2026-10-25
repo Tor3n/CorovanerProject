@@ -8,15 +8,21 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.PixmapIO;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.JsonReader;
+import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.TimeUtils;
 import io.github.TorenDropProject.menus.CharacterRecord;
+import io.github.TorenDropProject.menus.CoffeeEnamelAssets;
 import io.github.TorenDropProject.menus.Journey;
 import io.github.TorenDropProject.menus.MenuId;
+import io.github.TorenDropProject.menus.MenuTheme;
 import io.github.TorenDropProject.menus.TerminalMenuAssets;
 import io.github.TorenDropProject.screens.GUIs.menus.TerminalButton;
 import org.lwjgl.glfw.GLFW;
@@ -57,12 +63,19 @@ public final class TerminalMenuSmoke extends Main {
         if (!postLoadedComplete || ++frames % 30 != 0) return;
         switch (step++) {
             case 0:
+                checkComponents();
+                clearPointer();
+                stage().setKeyboardFocus(null);
+                require(litLamps() == 0, "Idle lamps must be unlit");
+                checkLampRegions();
+                capture("terminal-idle.png");
                 require(button("Continue journey").isDisabled(), "Fresh game must disable Continue");
                 pointer("Continue journey", true);
                 require(mainVisible(), "Disabled Continue navigated");
                 pointer("New journey", false);
                 stage().setKeyboardFocus(button("Settings"));
-                require(litLamps() == 1 && button("New journey").isLampVisible(), "Hover must take precedence over another focused button");
+                require(litLamps() == 1 && button("New journey").isLampLit(), "Hover must take precedence over another focused button");
+                checkLampRegions();
                 capture("terminal-1920.png");
                 pointer("Credits", true);
                 break;
@@ -76,7 +89,8 @@ public final class TerminalMenuSmoke extends Main {
                 stage().setKeyboardFocus(null);
                 stage().keyDown(Input.Keys.TAB);
                 require(stage().getKeyboardFocus() == button("New journey"), "Tab must skip disabled Continue");
-                require(button("New journey").isLampVisible() && litLamps() == 1, "Keyboard focus lamp missing");
+                require(button("New journey").isLampLit() && litLamps() == 1, "Keyboard focus lamp missing");
+                checkLampRegions();
                 stage().keyDown(Input.Keys.ENTER);
                 break;
             case 3:
@@ -167,8 +181,10 @@ public final class TerminalMenuSmoke extends Main {
                 menus.root(MenuId.MAIN);
                 require(mainVisible(), "Reused terminal did not restore");
                 require(assetManager.isLoaded(TerminalMenuAssets.PANEL), "A shared terminal asset was disposed during navigation");
+                checkComponents();
+                checkLampRegions();
                 require(Gdx.gl.glGetError() == GL20.GL_NO_ERROR, "OpenGL error");
-                Gdx.files.absolute(output() + "/result.txt").writeString("PASS: real Main startup; independent artwork; disabled/enabled Continue; six routes; hover/focus precedence; keyboard activation; confirmations/cancel; resize and click mapping at 1920x1080, 1280x720, 2560x1080, 900x600, 2560x1440, 3840x2160; larger text; hidden decorations; shared asset lifetime.\n", false);
+                Gdx.files.absolute(output() + "/result.txt").writeString("PASS: real Main startup; 33 shared component sprites; Manrope rendering; amber/espresso styles; idle/disabled lamp-off; hover/focus lamp-on; independent artwork; disabled/enabled Continue; six routes; hover/focus precedence; keyboard activation; confirmations/cancel; resize and click mapping at 1920x1080, 1280x720, 2560x1080, 900x600, 2560x1440, 3840x2160; larger text; hidden decorations; shared asset lifetime.\n", false);
                 System.out.println("TERMINAL_MENU_SMOKE_PASSED");
                 Gdx.app.exit();
                 break;
@@ -191,8 +207,32 @@ public final class TerminalMenuSmoke extends Main {
     private int litLamps() {
         int count = 0;
         for (Actor actor : composition().getChildren()) if (actor instanceof TerminalButton
-            && ((TerminalButton)actor).isLampVisible()) count++;
+            && ((TerminalButton)actor).isLampLit()) count++;
         return count;
+    }
+    private void checkComponents() {
+        require(assetManager.isLoaded(CoffeeEnamelAssets.ATLAS), "Shared component atlas missing");
+        TextureAtlas atlas = assetManager.get(CoffeeEnamelAssets.ATLAS, TextureAtlas.class);
+        JsonValue entries = new JsonReader().parse(Gdx.files.internal("ui-architecture/coffee-enamel/manifest.json")).get("assets");
+        require(entries.size == 33 && atlas.getRegions().size == entries.size, "Expected all 33 kit sprites");
+        for (JsonValue entry : entries) {
+            TextureAtlas.AtlasRegion region = menuTheme.components.region(entry.name);
+            int[] size = entry.get("size").asIntArray();
+            require(region.getRegionWidth() == size[0] && region.getRegionHeight() == size[1], "Incorrect sprite bounds: " + entry.name);
+        }
+        require(menuTheme.skin.get(Label.LabelStyle.class).fontColor.equals(MenuTheme.AMBER), "Dark-panel text must be amber");
+        require(button("New journey").getStyle().fontColor.equals(MenuTheme.ESPRESSO), "Enamel text must be espresso");
+        require(assetManager.getDependencies("ui/body.ttf").contains("ui/fonts/manrope/Manrope-Regular.ttf.gen", false)
+            && assetManager.getDependencies("ui/terminal-button.ttf").contains("ui/fonts/manrope/Manrope-SemiBold.ttf.gen", false),
+            "Menu fonts must be generated from the bundled Manrope sources");
+    }
+    private void checkLampRegions() {
+        for (Actor actor : composition().getChildren()) if (actor instanceof TerminalButton) {
+            TerminalButton button = (TerminalButton)actor;
+            require(button.getLampRegion() == (button.isLampLit() ? menuTheme.terminal.lampOn : menuTheme.terminal.lampOff),
+                "Incorrect lamp sprite for " + button.getText());
+            require(!button.isDisabled() || !button.isLampLit(), "Disabled lamp lit up");
+        }
     }
     private void clearPointer() {
         stage().mouseMoved(Gdx.graphics.getWidth() - 50, Gdx.graphics.getHeight() - 50);

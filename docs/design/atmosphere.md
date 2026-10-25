@@ -31,8 +31,10 @@ vision is kept in its own file.
 The latest UI discussion favors **coffee-cream enamel metal buttons, worn steel,
 and round vintage lamps**. The creator first requested planks, then rejected them
 as too cowboy, and preferred the metal buttons in the project's modal reference.
-Overly sci-fi buttons remain rejected. Controls should have varied physical forms,
-with a lamp shown only on the hovered action in the example. See the
+Overly sci-fi buttons remain rejected. Controls should have varied physical forms.
+On 2026-10-26 the creator selected Manrope, amber text on dark surfaces and espresso
+text on enamel, with unlit lamps visible at rest and lit lamps on hover/focus.
+This supersedes the earlier example that hid idle lamps. See the
 [UI study](ui-art-direction.md) and [reference index](references.md) for the
 preference history, proposal status and scoped sources.
 

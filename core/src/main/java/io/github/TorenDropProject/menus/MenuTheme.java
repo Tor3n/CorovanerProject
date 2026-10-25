@@ -21,13 +21,13 @@ import com.badlogic.gdx.utils.Disposable;
 public final class MenuTheme implements Disposable {
     public static final Color INK = Color.valueOf("101715");
     public static final Color PANEL = Color.valueOf("19211d");
-    public static final Color PAPER = Color.valueOf("e2d4b5");
-    public static final Color MUTED = Color.valueOf("a7ad98");
     public static final Color AMBER = Color.valueOf("d5a451");
+    public static final Color ESPRESSO = Color.valueOf("21160b");
     public static final Color GREEN = Color.valueOf("8eb49a");
     public static final Color LINE = Color.valueOf("455044");
     public final Skin skin = new Skin();
     public final TextureRegion pixel;
+    public final CoffeeEnamelAssets components;
     public final TerminalMenuAssets terminal;
     private final BitmapFont body, mono;
 
@@ -35,11 +35,13 @@ public final class MenuTheme implements Disposable {
         InternalFileHandleResolver resolver = new InternalFileHandleResolver();
         assets.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(resolver));
         assets.setLoader(BitmapFont.class, ".ttf", new FreetypeFontLoader(resolver));
-        font(assets, "body", "frontier-body", 19);
-        font(assets, "mono", "frontier-mono", 14);
-        font(assets, "heading", "frontier-title", 34);
-        font(assets, "title", "frontier-title", 66);
-        font(assets, "terminal-button", "frontier-title", 68);
+        font(assets, "body", "manrope/Manrope-Regular", 19);
+        // Retain the compact label style ID; all menu typography now uses Manrope.
+        font(assets, "mono", "manrope/Manrope-Regular", 14);
+        font(assets, "heading", "manrope/Manrope-SemiBold", 34);
+        font(assets, "title", "manrope/Manrope-SemiBold", 66);
+        font(assets, "terminal-button", "manrope/Manrope-SemiBold", 68);
+        CoffeeEnamelAssets.queue(assets);
         TerminalMenuAssets.queue(assets);
         assets.setLoader(FrontierCatalog.class, new FrontierCatalog.Loader(resolver));
         assets.load(FrontierCatalog.PATH, FrontierCatalog.class);
@@ -55,46 +57,46 @@ public final class MenuTheme implements Disposable {
     public MenuTheme(AssetManager assets) {
         body = assets.get("ui/body.ttf", BitmapFont.class);
         mono = assets.get("ui/mono.ttf", BitmapFont.class);
-        terminal = new TerminalMenuAssets(assets);
+        components = new CoffeeEnamelAssets(assets);
+        terminal = new TerminalMenuAssets(assets, components);
         Pixmap image = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         image.setColor(Color.WHITE); image.fill();
         Texture texture = new Texture(image); image.dispose();
         skin.add("pixel-texture", texture);
         pixel = new TextureRegion(texture);
-        skin.add("default", new Label.LabelStyle(body, PAPER));
-        skin.add("muted", new Label.LabelStyle(body, MUTED));
-        skin.add("mono", new Label.LabelStyle(mono, MUTED));
+        skin.add("default", new Label.LabelStyle(body, AMBER));
+        skin.add("muted", new Label.LabelStyle(body, AMBER));
+        skin.add("mono", new Label.LabelStyle(mono, AMBER));
         skin.add("accent", new Label.LabelStyle(mono, AMBER));
-        skin.add("heading", new Label.LabelStyle(assets.get("ui/heading.ttf", BitmapFont.class), PAPER));
-        skin.add("title", new Label.LabelStyle(assets.get("ui/title.ttf", BitmapFont.class), PAPER));
+        skin.add("heading", new Label.LabelStyle(assets.get("ui/heading.ttf", BitmapFont.class), AMBER));
+        skin.add("title", new Label.LabelStyle(assets.get("ui/title.ttf", BitmapFont.class), AMBER));
         TextButton.TextButtonStyle button = new TextButton.TextButtonStyle(panel(PANEL, LINE),
-            panel(Color.valueOf("55462c"), AMBER), panel(Color.valueOf("354334"), AMBER), body);
+            panel(Color.valueOf("302b21"), AMBER), panel(Color.valueOf("354334"), AMBER), body);
         button.over = panel(Color.valueOf("2b362b"), AMBER);
         button.focused = button.over;
-        button.fontColor = PAPER;
+        button.fontColor = AMBER;
         button.disabled = panel(INK, LINE);
         button.disabledFontColor = Color.valueOf("71766b");
         skin.add("default", button);
         TextButton.TextButtonStyle primary = new TextButton.TextButtonStyle(button);
-        primary.up = panel(Color.valueOf("8d6832"), AMBER);
-        primary.over = panel(Color.valueOf("a47b3c"), PAPER);
+        primary.up = panel(INK, AMBER);
         skin.add("primary", primary);
-        TextField.TextFieldStyle field = new TextField.TextFieldStyle(body, PAPER,
+        TextField.TextFieldStyle field = new TextField.TextFieldStyle(body, AMBER,
             fill(AMBER), fill(LINE), panel(INK, LINE));
         field.focusedBackground = panel(INK, AMBER);
-        field.messageFontColor = MUTED;
+        field.messageFontColor = AMBER;
         skin.add("default", field);
         ScrollPane.ScrollPaneStyle scroll = new ScrollPane.ScrollPaneStyle();
         scroll.vScroll = fill(INK); scroll.vScrollKnob = panel(LINE, LINE);
         skin.add("default", scroll);
-        List.ListStyle list = new List.ListStyle(body, PAPER, MUTED, fill(LINE));
+        List.ListStyle list = new List.ListStyle(body, AMBER, AMBER, fill(Color.valueOf("2b362b")));
         list.background = panel(INK, LINE);
         skin.add("default", list);
-        SelectBox.SelectBoxStyle select = new SelectBox.SelectBoxStyle(body, PAPER, panel(INK, LINE), scroll, list);
+        SelectBox.SelectBoxStyle select = new SelectBox.SelectBoxStyle(body, AMBER, panel(INK, LINE), scroll, list);
         select.backgroundOver = panel(PANEL, AMBER);
         select.backgroundOpen = select.backgroundOver;
         skin.add("default", select);
-        skin.add("default", new Window.WindowStyle(assets.get("ui/heading.ttf", BitmapFont.class), PAPER, panel(PANEL, AMBER)));
+        skin.add("default", new Window.WindowStyle(assets.get("ui/heading.ttf", BitmapFont.class), AMBER, panel(PANEL, AMBER)));
         skin.get(Window.WindowStyle.class).stageBackground = fill(new Color(0, 0, 0, 0.8f));
     }
     public void apply(GameSettings settings) {

@@ -16,10 +16,13 @@ See [runtime behavior and checks](../../../docs/menus/README.md#terminal-main-me
 | [Hinged enamel panel](layers/02-hinged-panel.png) | 1920 × 1080 | Transparent outside the panel, empty enamel area and two blank label areas. |
 | [Outer metal rim](layers/03-metal-rim.png) | 1920 × 1080 | Transparent center; separate perimeter frame. |
 | [Enamel button](controls/button-enamel.png) | 478 × 100 | Text-free button with shadow; example placement box is 480 × 100. |
-| [Round hover lamp](controls/lamp-hover.png) | 70 × 70 | Separate amber lamp and halo; display on hover or keyboard focus. |
+| [Round hover lamp](controls/lamp-hover.png) | 70 × 70 | Earlier standalone study; runtime now uses the component atlas's matching lamp-on/lamp-off pair. |
 
 Draw the three full-canvas layers in the table's order at `(0, 0)`, then add
 buttons and live labels. Only the first button's lamp is lit in the example.
+That flattened example predates the 2026-10-26 decision: the live menu uses Manrope,
+espresso labels and an unlit lamp on every idle/disabled button. Hover or keyboard
+focus switches the same housing to its lit sprite. Dark-panel text is amber.
 
 ## Editing and placement
 
