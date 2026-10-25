@@ -14,7 +14,22 @@ choices shape the factions and situations the player must then handle.
 
 The exact trigger, stage lengths, combat system, strategic turn structure, and
 leadership mechanics have not been decided. No particular catastrophe, succession,
-war, or chosen-one story is established by this guide.
+war, or chosen-one story is established as the trigger for the genre change. The
+ancient End-day exists in the setting, but its cause remains unchosen.
+
+Caravans and trade carry the main story. The player charts routes through deserts,
+scarce forests, industrial wastelands, and great city ruins in a world of small
+states that trade, fight, and intermarry. Most people live by agriculture; advanced
+factions and sometimes successful deliberately medieval communities coexist.
+Rural wagons drawn by oxen or horses share the setting with cars, scarce railways,
+electric propulsion, and drones. Hostile communities may fire on strangers, and
+developed air defences mean flight cannot simply be assumed to bypass local power.
+These are setting requirements; exact transport and economic mechanics remain open.
+
+Semi-sentient and hive-mind robots, diverse religions, and desires for metal body
+modification belong in the world. Magic and mutants do not. The opening provides
+no reliable account of the End-day, and uncovering its cause is not an established
+main objective. See [world.md](world.md) for the source-derived boundaries.
 
 ## Proposed exploration loop
 
@@ -28,6 +43,25 @@ Empty distance should establish scale and pacing, not only consume time. The
 country map must remain an interesting place to play, rather than a decorative
 selector between detailed combat scenes.
 
+## Proposed route and trade decisions
+
+The following are candidate ways to make charting a route interesting. They do
+not approve a resource list, simulation depth, faction roster, or vehicle system.
+
+| Route consideration | Possible player decision |
+| --- | --- |
+| Terrain and distance | Compare a direct desert crossing with a longer road through inhabited land or a difficult passage through ruins. |
+| Agriculture and markets | Learn where a caravan might obtain food, fodder, or goods, and whether the detour is worthwhile. |
+| Political boundaries | Seek local permission, negotiate access, or change course when relations between neighboring states change. |
+| Transport and support | Choose a viable transport arrangement for the road and available repairs, power, or supplies; do not assume advanced vehicles are always the best choice. |
+| Airspace and hostility | Learn who tolerates drones or unfamiliar traffic before relying on them; avoid treating flight as risk-free fast travel. |
+| Beliefs and trust | Learn a community's customs and attitudes toward outsiders, machines, or body modification, with variation between communities. |
+
+Not every journey needs every consideration. The loop should make exploration and
+trade understandable, with local people and discoveries giving the decisions
+meaning. Any supplies, maintenance, toll, diplomacy, or airspace system requires
+its own design before implementation.
+
 ## Proposed continuity across the genre change
 
 Keep the same recognizable geography and persistent campaign history. The scope
@@ -40,6 +74,8 @@ changes with it. This supports the surprise without discarding the RPG journey.
 | Learn a difficult road and meet its local guides. | Route knowledge and relationships offer a logistical advantage. | Proposed example. |
 | Make a promise to a tribe or faction. | That promise becomes a diplomatic obligation at a larger scale. | Proposed example. |
 | Respect or undermine a religious community. | Its support or opposition matters if the player seeks spiritual authority. | Proposed example. |
+| Earn permission to cross a small state's territory. | Access or obligations affect the later caravan network. | Proposed example. |
+| Learn where a route supports animal-drawn or advanced transport. | Practical route knowledge informs later trade decisions. | Proposed example. |
 
 These examples define no named faction, numerical bonus, quest, or mandatory path.
 They illustrate how the creator's requirement for consequences could work.

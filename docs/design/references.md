@@ -20,6 +20,16 @@ The final map art and travel-interface design remain to be developed. New concep
 must earn approval through their contribution to that experience; resemblance to
 the existing implementation is not an acceptance criterion.
 
+The creator's later world-setting passage on the same date adds constraints for
+new references: the End-day is distant and unexplained at the opening; most
+society is poor and agricultural, with small states, advanced exceptions,
+semi-sentient and hive-mind robots, and diverse beliefs. There is no magic and
+there are no mutants. Caravans and trade connect deserts, scarce forests,
+industrial wastelands, and great city ruins. Rural ox- and horse-drawn wagons have
+frontier-western character; advanced transport and air defences exist unevenly.
+Use [world.md](world.md) to scope those references. An image of a robot does not
+establish an AI war, and Fallout inspiration does not establish a nuclear history.
+
 ## Earlier UI concept and stretchable components
 
 The `codex/postapocalyptic-ui-theme` branch contains earlier UI artwork and a
@@ -44,8 +54,10 @@ are separate tasks; none of them is a finished or approved asset.
 
 | Brief | What the image should explain | What it must leave open |
 | --- | --- | --- |
-| Country-map mood frame | A fixed-angle view of an arid region, a compelling road, distinctive distant sites, a small traveler, and atmosphere concentrated around terrain and light. | Exact renderer, world dimensions, faction borders, and final geography. |
-| Exploration detail frame | The same visual language closer to a road junction or settlement; show why a player would investigate a side route. | Combat rules, named quest outcomes, and final building functions. |
+| Country-map mood frame | A fixed-angle arid region with a compelling trade road, working farmland, weathered city or industrial ruins, and a small traveler or rural caravan; atmosphere concentrated around terrain and light. | Exact renderer, world dimensions, faction borders, final geography, and the cause of the End-day. |
+| Exploration detail frame | The same visual language closer to a road junction, farming settlement, or caravan stop; show why a player would investigate a side route and how people make a living. | Combat rules, named quest outcomes, final building functions, and economic mechanics. |
+| Caravan and transport contrasts | Memorable ox- and horse-drawn wagons alongside separate studies of advanced cars, scarce rail, electric propulsion, and drones; show terrain and support context. | Final designs, vehicle access, capacities, speed, fuel, and progression systems. |
+| Communities, beliefs, and robots | Distinct farming and advanced communities, varied religious material culture, and separate semi-sentient and hive-mind robot studies; body-modification ideas clearly labeled as proposals. | Named factions, doctrines, symbols, robot origins and autonomy, and modification capabilities. No magic or mutants. |
 | Material and UI sheet | Rusty metal, repaired planks, vintage amber lights, brackets and fasteners; text-free button/frame surfaces plus separate hardware. | Exact UI dimensions, final color values, and interaction behavior. |
 | Development-only continuity pair | The same geography and camera framing before and after the reveal; altered routes, relationships, and strategic overlays show changed responsibility while terrain stays recognizable. | The narrative trigger, final political systems, and approved late-game interface. Never use this pair as early promotional art. |
 
