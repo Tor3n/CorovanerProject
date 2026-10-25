@@ -2,8 +2,8 @@
 
 **Creator preferences, collaborator proposals, and asset facts.** Recorded
 2026-10-25 from the UI concept discussion. Read [the main guide](README.md) and
-[the vision](vision.md) for authority and scope. Adding these files to a branch
-does not approve a final screen layout or adopt a new runtime theme.
+[the vision](vision.md) for authority and scope. The main-menu implementation
+is recorded below; the other screen studies remain scoped art proposals.
 
 ## Latest creator preferences
 
@@ -46,17 +46,20 @@ Concrete consequences of these rules:
 
 For a smaller drawable area of width W and height H, the fitting scale is
 `min(W / 1920, H / 1080)`. Center the resulting rectangle in that area. This is
-a derived implementation note, not an implemented viewport. The main-menu picture
-may occupy a smaller rectangle within the canvas; its exact footprint remains
-an art-composition choice.
+a derived fitting rule. The main-menu implementation now uses this reference
+canvas, with the rectangular picture behind the separate panel and perimeter rim.
 
 This clarification supersedes the earlier open scaling proposal and the suggestion
 to use extra horizontal space for a different menu layout. It does not settle
-the gameplay map's camera or visible world area. Higher-resolution 16:9 displays
-such as 2560 x 1440 and 3840 x 2160, display-density handling, vertical surplus
-space, a minimum readable size and an optional user scale control still need
-specific implementation decisions. Automatic enlargement is not established by
-the creator's instruction to scale smaller displays down.
+the gameplay map's camera or visible world area.
+
+**Implementation choice, 2026-10-25:** the first screen uses uniform enlargement
+as proposed during the discussion: 1.33x at 2560 x 1440 and 2x at 3840 x 2160,
+with painted margins for surplus width or height. This is the current engineering
+choice for the requested screen, rather than an additional quoted creator rule.
+The minimum readable size and an independent user scale slider remain open.
+LibGDX handles the backend's logical-window/framebuffer distinction; platform-specific
+display-density behavior still needs verification on target systems.
 
 Keep labels, icons and moving hardware separate from painted surfaces. Reusable
 elements can be assembled at fixed sizes within the reference composition. The
@@ -86,8 +89,8 @@ questions. Keeping the vertical view consistent and revealing more landscape at
 the sides is a collaborator proposal for evaluation. This display requirement
 also does not fix internal rendering resolution or a performance budget.
 
-These are design decisions recorded for future implementation. This documentation
-update changes no renderer or game screen.
+These map requirements remain separate from the implemented main menu. The terminal
+work does not modify the world renderer or implement the final country map.
 
 ## Included work and exact scope
 
@@ -98,7 +101,7 @@ update changes no renderer or game screen.
 | Offline component preview | [HTML sampler](../../assets/ui-architecture/coffee-enamel/preview.html) | Embedded assets and sample interactions; see validation limits. |
 | Main menu, character screen, travel screen | [Concept scope](reference/coffee-enamel/README.md) | Material and control-variety studies; layouts and sample content are proposals. |
 | Java helper and validation notes | [Integration](../../assets/ui-architecture/coffee-enamel/docs/INTEGRATION.txt), [validation](../../assets/ui-architecture/coffee-enamel/docs/VALIDATION.txt) | Example compiled against LibGDX 1.13.1 / Java 11; not an in-game smoke test. |
-| Separate terminal paintings, reusable button and hover lamp | [1920 x 1080 terminal pack](../../assets/ui-architecture/terminal-layers-v1/README.md) | Creator-selected terminal direction with the requested blank tagline and riveted nameplate; independent background, panel and rim, plus layered ORA and previews. Not integrated into game screens. |
+| Separate terminal paintings, reusable button and hover lamp | [1920 x 1080 terminal pack](../../assets/ui-architecture/terminal-layers-v1/README.md) | Used by the implemented main menu, with live text and hover/focus lamps. The tagline and riveted nameplate remain blank. [Runtime behavior and checks](../menus/README.md#terminal-main-menu). |
 
 The concept PNGs are 1672 x 941 and are not 4K production masters. The component
 PNGs have individually documented sizes in the kit manifest. They are clean
@@ -120,7 +123,9 @@ silently settle them. Generated numbers, names and item details are illustrative
 
 ## Future acceptance checks
 
-These are proposed checks for future implementation, not completed game tests:
+The terminal-specific scale, centering, input and label checks are covered by the
+[runtime smoke harness](../menus/README.md#runtime-verification). The following
+remain ongoing acceptance criteria for the wider UI and future map implementation:
 
 - Keep artwork proportions and circular lamps intact at supported UI scales.
 - Compare the 1920 x 1080 reference, 2560 x 1080 painted side margins and

@@ -28,6 +28,7 @@ public final class MenuTheme implements Disposable {
     public static final Color LINE = Color.valueOf("455044");
     public final Skin skin = new Skin();
     public final TextureRegion pixel;
+    public final TerminalMenuAssets terminal;
     private final BitmapFont body, mono;
 
     public static void queue(AssetManager assets) {
@@ -38,6 +39,8 @@ public final class MenuTheme implements Disposable {
         font(assets, "mono", "frontier-mono", 14);
         font(assets, "heading", "frontier-title", 34);
         font(assets, "title", "frontier-title", 66);
+        font(assets, "terminal-button", "frontier-title", 68);
+        TerminalMenuAssets.queue(assets);
         assets.setLoader(FrontierCatalog.class, new FrontierCatalog.Loader(resolver));
         assets.load(FrontierCatalog.PATH, FrontierCatalog.class);
     }
@@ -52,6 +55,7 @@ public final class MenuTheme implements Disposable {
     public MenuTheme(AssetManager assets) {
         body = assets.get("ui/body.ttf", BitmapFont.class);
         mono = assets.get("ui/mono.ttf", BitmapFont.class);
+        terminal = new TerminalMenuAssets(assets);
         Pixmap image = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         image.setColor(Color.WHITE); image.fill();
         Texture texture = new Texture(image); image.dispose();
@@ -96,6 +100,7 @@ public final class MenuTheme implements Disposable {
     public void apply(GameSettings settings) {
         body.getData().setScale(settings.largerText ? 1.15f : 1f);
         mono.getData().setScale(settings.largerText ? 1.1f : 1f);
+        terminal.font.getData().setScale(settings.largerText ? 0.575f : 0.5f);
     }
     public Drawable fill(Color color) { return new TextureRegionDrawable(pixel).tint(color); }
     public Drawable panel(Color background, Color border) {

@@ -10,19 +10,24 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import io.github.TorenDropProject.menus.*;
 import io.github.TorenDropProject.screens.GUIs.menus.FrontierBackdrop;
 import io.github.TorenDropProject.screens.GUIs.menus.MenuPage;
 
-/** Owns the stage lifecycle; all menu features use the same viewport and focus rules. */
+/** Owns the stage lifecycle and shared focus rules; illustrated menus can supply their own viewport. */
 public class MenuScreen implements GameScreen {
-    private final Stage stage = new Stage(new ExtendViewport(1200, 760));
+    private final Stage stage;
     private final MenuPage page;
     private final MenuTheme theme;
     private final GameSettings settings;
     public MenuScreen(MenuPage page, MenuTheme theme, GameSettings settings, boolean landscape) {
+        this(page, theme, settings, new ExtendViewport(1200, 760), new FrontierBackdrop(theme, settings, landscape));
+    }
+    protected MenuScreen(MenuPage page, MenuTheme theme, GameSettings settings, Viewport viewport, Actor backdrop) {
         this.page = page; this.theme = theme; this.settings = settings;
-        stage.addActor(new FrontierBackdrop(theme, settings, landscape));
+        stage = new Stage(viewport);
+        stage.addActor(backdrop);
         page.attach(stage);
         stage.addListener(new InputListener() {
             @Override public boolean keyDown(InputEvent event, int keycode) {

@@ -3,7 +3,8 @@
 The creator selected the terminal reference and requested independent artwork
 for the metal rim, caravan painting and hinged enamel panel. The panel keeps the
 COROVANER title; its tagline area and small riveted plate are blank for custom
-labels. This pack is ready for visual review and has not been wired into the game.
+labels. The main menu now uses these independent layers and controls in Scene2D.
+See [runtime behavior and checks](../../../docs/menus/README.md#terminal-main-menu).
 
 ![Assembled preview with example buttons](assembly-buttons.png)
 
