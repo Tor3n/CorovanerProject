@@ -43,15 +43,15 @@ See [the current UI study](ui-art-direction.md) for creator preferences and the
 1920 x 1080 reference composition: a centered graphical menu, painted horizontal
 margins, uniform downscaling for smaller displays and a rectangular menu picture.
 
-- [Modal material reference](../../assets/MainModal.png): creator-preferred button
+- [Modal material reference](../../assets/ui/Menus/MainModal.png): creator-preferred button
   material and rounded metal form, not a final screen-layout contract.
-- [Component inventory](../../assets/ui-architecture/coffee-enamel/component-sheet.png):
+- [Component inventory](../menus/concepts/coffee-enamel/component-sheet.png):
   33 reusable surfaces, hardware parts and icons; optional nine-patch exports.
-- [Separate terminal paintings](../../assets/ui-architecture/terminal-layers-v1/README.md):
+- [Separate terminal paintings](../../assets/ui/Menus/README.md):
   creator-selected main-menu terminal direction, exported as three 1920 x 1080
   layers with a replaceable landscape, empty enamel panel and separate rim.
   The tagline and small riveted plate are blank for custom labels; the title remains.
-- [Scoped screen studies](reference/coffee-enamel/README.md): generated material
+- [Scoped screen studies](../menus/concepts/coffee-enamel/README.md): generated material
   and control-variety examples. The travel composition is retained only for those
   qualities and does not reinstate the rejected map or travel design baseline.
 
@@ -71,5 +71,5 @@ For a new image, record its repository path, creator/source, date, status
 (`proposal`, `approved for specified aspects`, or `superseded`), the qualities to
 carry forward, and the details to ignore. Keep source artwork and implementation
 assets distinguishable. Do not infer a game mechanic merely because it appears in
-generated art. Store new design-only references under `docs/design/reference/`
-when created; the directory is not required until it contains a real asset.
+generated art. Store UI design concepts under `docs/menus/concepts/` and other
+design-only references under `docs/design/reference/` when created.

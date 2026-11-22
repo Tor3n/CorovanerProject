@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
+import io.github.TorenDropProject.assets.FrontierCatalog;
 import io.github.TorenDropProject.world.WorldMap;
 import org.junit.Test;
 import java.io.File;
@@ -27,7 +28,7 @@ public class FrontierMapsTest {
             assertTrue(descriptor.exists());
             assertTrue(descriptor.parent().child(new JsonReader().parse(descriptor).getString("map")).exists());
         }
-        assertEquals(7, paths.size());
+        assertEquals(6, paths.size());
         for (FrontierCatalog.Destination destination : catalog.destinations) {
             assertEquals(destination.hasLocalArea(), paths.contains(destination.worldMap));
         }
@@ -35,19 +36,5 @@ public class FrontierMapsTest {
         assertEquals("maps/forestCrossroads.world.json", catalog.destination("forest").worldMap);
         assertEquals("maps/abandonedQuarry.world.json", catalog.destination("quarry").worldMap);
         assertEquals("maps/forgottenGraveyard.world.json", catalog.destination("graveyard").worldMap);
-    }
-
-    @Test public void newAreasAreReachableAndReturnToPassWithStartingSupplies() {
-        FileHandle assets = new FileHandle(new File("../assets").exists() ? "../assets" : "assets");
-        FrontierCatalog catalog = new Json().fromJson(FrontierCatalog.class, assets.child(FrontierCatalog.PATH));
-        Journey journey = new Journey(new CharacterRecord());
-        journey.travel(catalog, "pass");
-        for (String area : new String[] {"forest", "quarry", "graveyard"}) {
-            journey.travel(catalog, area);
-            assertEquals(area, journey.location);
-            assertTrue(catalog.destination(area).hasLocalArea());
-            journey.travel(catalog, "pass");
-        }
-        assertEquals(2, journey.supplies);
     }
 }

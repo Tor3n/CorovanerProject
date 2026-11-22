@@ -1,5 +1,6 @@
 package io.github.TorenDropProject.menus;
 
+import io.github.TorenDropProject.assets.FrontierCatalog;
 import io.github.TorenDropProject.screens.GameScreen;
 import io.github.TorenDropProject.screens.ScreenManager;
 

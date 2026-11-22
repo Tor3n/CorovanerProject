@@ -12,11 +12,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 /** References to the independent terminal paintings; the central AssetManager owns them. */
 public final class TerminalMenuAssets {
     public static final float WIDTH = 1920, HEIGHT = 1080;
-    public static final String ROOT = "ui-architecture/terminal-layers-v1/";
-    public static final String PAINTING = ROOT + "layers/01-caravan-painting.png";
-    public static final String PANEL = ROOT + "layers/02-hinged-panel.png";
-    public static final String RIM = ROOT + "layers/03-metal-rim.png";
-    public static final String BUTTON = ROOT + "controls/button-enamel.png";
+    public static final String PAINTING = MenuAssets.ROOT + "01-caravan-painting.png";
+    public static final String PANEL = MenuAssets.ROOT + "02-hinged-panel.png";
+    public static final String RIM = MenuAssets.ROOT + "03-metal-rim.png";
+    public static final String BUTTON = MenuAssets.ROOT + "button-enamel.png";
     public final TextureRegion painting, panel, rim, button, lampOn, lampOff;
     public final BitmapFont font;
 
@@ -37,7 +36,7 @@ public final class TerminalMenuAssets {
         button = region(assets, BUTTON);
         lampOn = components.region("lamp-on");
         lampOff = components.region("lamp-off");
-        font = assets.get("ui/terminal-button.ttf", BitmapFont.class);
+        font = assets.get(MenuAssets.font("terminal-button"), BitmapFont.class);
         font.getData().setScale(0.5f);
         font.setUseIntegerPositions(false);
     }

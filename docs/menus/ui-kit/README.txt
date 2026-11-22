@@ -4,20 +4,20 @@ COROVANER — REUSABLE COFFEE-ENAMEL UI KIT v1.1
 9 stretchable surfaces; 12 independent hardware parts; 12 semantic icons.
 
 START HERE
-Open preview.html in a browser. It is self-contained and works offline.
+Open ../concepts/coffee-enamel/preview.html in a browser. It is self-contained and works offline.
 Hover/focus/press the buttons, operate the toggle and move the gauge slider.
-component-sheet.png is a quick visual inventory of the exported pieces.
+../concepts/coffee-enamel/component-sheet.png is a quick visual inventory of the exported pieces.
 These v1 visual studies predate the 2026-10-26 typography/color/lamp decision;
-the current contract is below and in manifest.json and docs/design/ui-art-direction.md.
+the current contract is below and in ../../../assets/ui/Menus/manifest.json and ../../design/ui-art-direction.md.
 
 PACKAGE
-sprites/     33 transparent PNGs, ready to compose independently.
-icons/       12 editable SVG originals plus matching PNGs in sprites/.
-ninepatch/   9 .9.png files with stretch and content-padding marker borders.
-atlas/       A 2048 x 1024 PNG page and LibGDX .atlas descriptor.
-manifest.json  Region names, dimensions, split/padding values and pivots.
-source/      Original generated sprite sheets and exact generation prompts.
-docs/        Integration guide, Java helper and validation results.
+Runtime UI art lives in ../../../assets/ui/Menus/ without subfolders:
+33 component PNGs; 12 editable SVG icons; 9 .9.png inputs;
+corovaner-ui.atlas and corovaner-ui.png; manifest.json;
+hardware.png, surfaces.png and prompts.json source material.
+This documentation folder holds the integration guide, Java example and
+historical validation notes. Visual studies and the offline preview live
+in ../concepts/coffee-enamel/.
 
 DESIGN CONTRACT
 Keep text and icons as separate actors. No screen backgrounds, portraits,
@@ -43,7 +43,7 @@ horizontally; do not enlarge their height independently. Larger UI scales
 should uniformly scale the entire widget. Frames and rectangular panels can
 stretch on both axes, with all corner fasteners kept outside the center.
 Never nine-slice the lamps, dials, hinges, screws or needles. Scale them
-uniformly, or retain their recommended sizes in manifest.json.
+uniformly, or retain their recommended sizes in ../../../assets/ui/Menus/manifest.json.
 Keep textured-panel stretching moderate; very large panels may benefit from
 a separate tiled fill in a later production pass. No seamless tiles claimed.
 
@@ -63,6 +63,6 @@ Semantic icons were authored as SVG. All 33 atlas sprites now load at startup vi
 CoffeeEnamelAssets; the main menu uses the matching lamp-on/lamp-off pair.
 The remaining components are available through theme.components.region(name),
 without drawing unused hardware or replacing other screens' layouts.
-See ../../../docs/design/ui-art-direction.md for creator display rules and the
+See ../../design/ui-art-direction.md for creator display rules and the
 remaining implementation proposals. The nine-patch exports are optional; fixed
 illustrated compositions scale down uniformly. The pending Canva draft is separate.

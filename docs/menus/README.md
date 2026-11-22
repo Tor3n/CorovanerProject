@@ -4,13 +4,17 @@ The game opens into the layered coffee-enamel terminal main menu. Its landscape,
 hinged panel, perimeter rim, button faces and round amber lamp are separate assets,
 with live Scene2D button captions. Other pages retain the shared charcoal/brass
 menu theme, with amber text on dark surfaces and espresso text on enamel.
-The current UI uses bundled Manrope Regular and SemiBold; provenance and the
-SIL Open Font License are in `assets/ui/fonts/manrope/`. No new runtime dependency
+The current UI uses bundled Manrope Regular and SemiBold; see
+[font provenance](manrope.md) and the SIL Open Font License in `assets/ui/Menus/`. No new runtime dependency
 is required. The older Liberation files remain for legacy references.
 
 ## Terminal main menu
 
-The [terminal pack](../../assets/ui-architecture/terminal-layers-v1/README.md)
+Runtime UI assets live directly in `assets/ui/Menus/`; the optional Java helper
+lives in `docs/menus/ui-kit/`. [UI design concepts](concepts/README.md), component
+studies and the offline preview live in `docs/menus/concepts/`.
+
+The [terminal pack](../../assets/ui/Menus/README.md)
 is assembled at 1920 x 1080 logical units. The full rectangular composition stays
 centered and scales uniformly to fit the window, including enlargement on 1440p
 and 4K displays. An `ExtendViewport` gives surplus space to a separate, subdued
@@ -106,13 +110,13 @@ java --class-path ../lwjgl3/build/libs/Drop-1.0.0.jar ../tools/MenuLayoutSmoke.j
 
 ## Extension points
 
-- `menus/MenuTheme`: shared skin and styles. Font generation and catalog loading are queued by `SplashScreenAssetLoader`; the render loop never waits for assets. `Main` owns the theme, and its `AssetManager` owns fonts.
+- `menus/MenuAssets`: UI paths and startup queue for the flat `assets/ui/Menus/` folder. `MenuTheme` builds the shared skin and styles. `assets/SplashScreenAssetLoader` queues UI assets and the world catalog separately; the render loop never waits for assets. `Main` owns the theme, and its `AssetManager` owns fonts.
 - `screens/MenuScreen`: reusable stage, viewport, keyboard focus, and screen lifecycle. Each screen owns its stage; hiding a screen clears input focus without disposing reusable UI resources.
 - `screens/GUIs/menus/MenuPage`: consistent layout, controls, error notices, confirmation dialogs, and footer actions. Feature pages keep their own draft/view state. The existing `MainScreenGUI` and `BattleScreenGUI` remain in their matching package.
 - `menus/MenuRegistry` and `MenuId`: explicit page registration and named routes. To add a page, implement `MenuPage`, add its route and registration, then expose navigation from the appropriate screen.
 - `ScreenManager`: push/pop history for nested menus; root transitions clear history. Hidden gameplay receives no frame updates. Confirmations use modal Scene2D dialogs with focus restored on dismissal.
 - `menus/MenuController`: injected session/navigation boundary. `BattleScreen` captures and restores the actual player position, independently of the camera-follow target, and selects a world scene through the injected scene factory. Leaving gameplay stops movement and stores a position for that area.
-- `menus/CharacterRecord`, `Journey`, and `FrontierCatalog`: widget-independent state and provisional tabletop rules. Character creation edits a draft and only replaces the journey on final confirmation. Equipment changes are reflected in the character record and armor defense.
+- `menus/CharacterRecord`, `menus/Journey`, and `assets/FrontierCatalog`: widget-independent state and provisional tabletop rules. Character creation edits a draft and only replaces the journey on final confirmation. Equipment changes are reflected in the character record and armor defense.
 - `menus/JourneyStore`: three validated, versioned manual snapshots in the `corovaner.journeys` libGDX preferences store. Settings use a separate `corovaner.settings` store. Save errors are displayed; incompatible/corrupt slots cannot be loaded and can be explicitly overwritten.
 - `assets/data/frontier.json`: origins, archetypes, equipment names, destination descriptions/coordinates, and roads. IDs are persistent save identifiers. The initial character and introductory quest currently use the `caravan`, `gunslinger`, `mercy`, and `pass` IDs; migrate references and old saves if these change.
 

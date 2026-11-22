@@ -22,6 +22,7 @@ import io.github.TorenDropProject.menus.CharacterRecord;
 import io.github.TorenDropProject.menus.CoffeeEnamelAssets;
 import io.github.TorenDropProject.menus.Journey;
 import io.github.TorenDropProject.menus.MenuId;
+import io.github.TorenDropProject.menus.MenuAssets;
 import io.github.TorenDropProject.menus.MenuTheme;
 import io.github.TorenDropProject.menus.TerminalMenuAssets;
 import io.github.TorenDropProject.screens.GUIs.menus.TerminalButton;
@@ -213,7 +214,7 @@ public final class TerminalMenuSmoke extends Main {
     private void checkComponents() {
         require(assetManager.isLoaded(CoffeeEnamelAssets.ATLAS), "Shared component atlas missing");
         TextureAtlas atlas = assetManager.get(CoffeeEnamelAssets.ATLAS, TextureAtlas.class);
-        JsonValue entries = new JsonReader().parse(Gdx.files.internal("ui-architecture/coffee-enamel/manifest.json")).get("assets");
+        JsonValue entries = new JsonReader().parse(Gdx.files.internal("ui/Menus/manifest.json")).get("assets");
         require(entries.size == 33 && atlas.getRegions().size == entries.size, "Expected all 33 kit sprites");
         for (JsonValue entry : entries) {
             TextureAtlas.AtlasRegion region = menuTheme.components.region(entry.name);
@@ -222,8 +223,8 @@ public final class TerminalMenuSmoke extends Main {
         }
         require(menuTheme.skin.get(Label.LabelStyle.class).fontColor.equals(MenuTheme.AMBER), "Dark-panel text must be amber");
         require(button("New journey").getStyle().fontColor.equals(MenuTheme.ESPRESSO), "Enamel text must be espresso");
-        require(assetManager.getDependencies("ui/body.ttf").contains("ui/fonts/manrope/Manrope-Regular.ttf.gen", false)
-            && assetManager.getDependencies("ui/terminal-button.ttf").contains("ui/fonts/manrope/Manrope-SemiBold.ttf.gen", false),
+        require(assetManager.getDependencies(MenuAssets.font("body")).contains("ui/Menus/Manrope-Regular.ttf.gen", false)
+            && assetManager.getDependencies(MenuAssets.font("terminal-button")).contains("ui/Menus/Manrope-SemiBold.ttf.gen", false),
             "Menu fonts must be generated from the bundled Manrope sources");
     }
     private void checkLampRegions() {

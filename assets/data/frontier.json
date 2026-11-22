@@ -11,7 +11,6 @@
     {"id":"preacher", "name":"Ash Preacher", "description":"Carry a little faith through a country that has lost its gods.", "skill":"Persuasion", "hitDie":8, "weapon":"Iron staff"}
   ],
   "destinations": [
-    {"id":"mercy", "name":"Mercy Crossing", "description":"A water tower, a trading post, and a promise nobody remembers making. Your caravan's last safe berth.", "x":0.16, "y":0.55, "danger":"Sheltered", "worldMap":"maps/mercyCrossing.world.json"},
     {"id":"pass", "name":"Blackwire Pass", "description":"The old relay line climbs into broken country. Scouts report movement above the road. A local area is available to explore.", "x":0.50, "y":0.55, "danger":"Exposed", "worldMap":"maps/mountinPass.world.json"},
     {"id":"relay", "name":"Saint's Relay", "description":"A dead transmission tower still sends a signal at dusk. Rusting antennae rise above a fenced maintenance yard.", "x":0.84, "y":0.90, "danger":"Uncertain", "worldMap":"maps/saintsRelay.world.json"},
     {"id":"salt", "name":"The Salt Graves", "description":"White earth. Black markers. No names. A pale salt flat surrounds rows of weathered burial crosses and a solitary memorial.", "x":0.84, "y":0.20, "danger":"Hostile", "worldMap":"maps/saltGraves.world.json"},
@@ -20,7 +19,6 @@
     {"id":"graveyard", "name":"Forgotten Graveyard", "description":"Burial rows and broken fences surround a silent memorial. A woodland trail skirts the graves.", "x":0.50, "y":0.20, "danger":"Uncertain", "worldMap":"maps/forgottenGraveyard.world.json"}
   ],
   "routes": [
-    {"from":"mercy", "to":"pass", "hours":8, "supplies":2},
     {"from":"pass", "to":"relay", "hours":6, "supplies":2},
     {"from":"pass", "to":"salt", "hours":12, "supplies":3},
     {"from":"relay", "to":"salt", "hours":10, "supplies":3},

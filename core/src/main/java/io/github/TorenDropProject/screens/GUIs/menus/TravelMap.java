@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import io.github.TorenDropProject.assets.FrontierCatalog;
 import io.github.TorenDropProject.menus.*;
 import java.util.function.Consumer;
 

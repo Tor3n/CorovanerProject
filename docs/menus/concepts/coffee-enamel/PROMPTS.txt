@@ -1,6 +1,6 @@
 SHARED IMAGE-GENERATION BRIEF
 Use case: ui-mockup / style-transfer.
-Use the previous Corovaner screens as content/layout targets. Use MainModal.png
+Use the previous Corovaner screens as content/layout targets. Use ui/Menus/MainModal.png
 as the primary material reference: light coffee-cream enamel-painted metal,
 rounded capsule action buttons, rolled aged brass rims, dark-brown labels,
 heavy rusted steel chassis, visible bolts, hinges and rubber seals.

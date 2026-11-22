@@ -2,8 +2,8 @@
 
 **Proposal / development reference.** Exported from the UI concept iteration;
 recorded in this branch on 2026-10-25. The creator requested coffee-colored metal
-buttons matching `assets/MainModal.png`, more varied UI hardware, and a round
-amber lamp on the hovered action. See [the direction and display rules](../../ui-art-direction.md).
+buttons matching `assets/ui/Menus/MainModal.png`, more varied UI hardware, and a round
+amber lamp on the hovered action. See [the direction and display rules](../../../design/ui-art-direction.md).
 
 The later display decision targets a centered 1920 x 1080 composition with
 painted side margins on wider displays and uniform downscaling on smaller ones.
@@ -13,7 +13,6 @@ been reformatted into production artwork for that canvas.
 | Image | Qualities to study | Not established by this image |
 | --- | --- | --- |
 | [Main menu](corovaner-main-menu.png) | Rounded enamel metal buttons, worn steel housing, separate lamp, grille and dial. | Final menu footprint, typography, setting details or approved production artwork. |
-| [Character record](corovaner-character.png) | Recessed counters, inventory wells, tabs, gauge and distinct utility controls. | Character identity, statistics, rules, equipment balance or final screen layout. |
 | [Travel material study](corovaner-travel.png) | Enamel action buttons, small utility keys, resource counter forms, recessed log display. | Map art, travel layout, route graph, camera, interactions or a quality target. |
 
 The travel image retains an earlier composition from the material study. The
@@ -23,12 +22,20 @@ The map and travel experience need their own work derived from the main vision.
 
 These are generated raster concept images, 1672 x 941. Embedded words and values
 are illustrative. Runtime assets and live labels are separate in the
-[component kit](../../../../assets/ui-architecture/coffee-enamel/README.txt).
+[component kit](../../ui-kit/README.txt).
 `PROMPTS.txt` records the generation brief. Original material source:
-[MainModal.png](../../../../assets/MainModal.png).
+[ui/Menus/MainModal.png](../../../../assets/ui/Menus/MainModal.png).
+
+Component studies from the same iteration:
+
+- [Component sheet](component-sheet.png) and [editable sheet](component-sheet.svg).
+- [Stretch examples](stretch-examples.png) and [editable examples](stretch-examples.svg).
+- [Offline interactive preview](preview.html), with embedded images.
+
+These previews predate the current typography, colors and idle-lamp requirements;
+see the design guide above and [validation limits](../../ui-kit/VALIDATION.txt).
 
 ![Main-menu material study](corovaner-main-menu.png)
 
-![Character UI material study](corovaner-character.png)
 
 ![Travel controls in an illustrative composition](corovaner-travel.png)

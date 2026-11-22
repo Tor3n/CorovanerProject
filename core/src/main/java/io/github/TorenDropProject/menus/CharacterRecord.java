@@ -1,5 +1,6 @@
 package io.github.TorenDropProject.menus;
 
+import io.github.TorenDropProject.assets.FrontierCatalog;
 import java.util.Arrays;
 
 /** Serializable character rules; no dependency on an actor or a render model. */

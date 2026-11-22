@@ -22,7 +22,8 @@ This is a Java 11 libGDX project split into two Gradle modules:
 
 - `core/src/main/java/io/github/TorenDropProject/` contains shared game logic. Major packages cover screens and modals, Ashley entities and systems, asset loaders, and pregame loading.
 - `lwjgl3/src/main/java/io/github/TorenDropProject/lwjgl3/` contains the desktop launcher and startup helpers.
-- `assets/` is the runtime asset root for textures, cursors, and Tiled `.tmx`/`.tsx` maps. Refer to these resources with paths relative to `assets/`, such as `cursors/arrowCursor3.png`.
+- `assets/` is the runtime asset root for textures, cursors, and Tiled `.tmx`/`.tsx` maps. Refer to these resources with paths relative to `assets/`, such as `ui/Menus/arrowCursor3.png`.
+- Keep runtime UI artwork, fonts, cursors, and atlas files directly in `assets/ui/Menus/`, without nested asset folders. `MenuAssets` owns the shared path prefix and UI startup queue. UI design concepts and visual previews belong in `docs/menus/concepts/`; optional integration examples belong in `docs/menus/ui-kit/`.
 - `lwjgl3/icons/` and `lwjgl3/src/main/resources/` hold launcher and window icons.
 - Root Gradle files define shared Java settings and dependency versions. Generated `build/` directories and `assets/assets.txt` are not source files.
 

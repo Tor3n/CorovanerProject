@@ -1,5 +1,7 @@
 package io.github.TorenDropProject.menus;
 
+import io.github.TorenDropProject.assets.FrontierCatalog;
+
 /** Shared explanations and derived sheet values; pages do not duplicate rule arithmetic. */
 public final class CharacterStats {
     private CharacterStats() { }

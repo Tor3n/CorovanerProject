@@ -2,11 +2,11 @@
   "name": "Corovaner coffee-enamel UI kit",
   "version": "1.1.0",
   "pixelRatio": 2,
-  "atlas": "atlas/corovaner-ui.atlas",
+  "atlas": "corovaner-ui.atlas",
   "scaleOrder": "left,right,top,bottom",
   "assets": {
     "button-enamel-up": {
-      "file": "sprites/button-enamel-up.png",
+      "file": "button-enamel-up.png",
       "size": [
         384,
         128
@@ -40,7 +40,7 @@
       ]
     },
     "button-enamel-over": {
-      "file": "sprites/button-enamel-over.png",
+      "file": "button-enamel-over.png",
       "size": [
         384,
         128
@@ -74,7 +74,7 @@
       ]
     },
     "button-enamel-down": {
-      "file": "sprites/button-enamel-down.png",
+      "file": "button-enamel-down.png",
       "size": [
         384,
         128
@@ -108,7 +108,7 @@
       ]
     },
     "button-steel": {
-      "file": "sprites/button-steel.png",
+      "file": "button-steel.png",
       "size": [
         320,
         160
@@ -142,7 +142,7 @@
       ]
     },
     "tab-enamel": {
-      "file": "sprites/tab-enamel.png",
+      "file": "tab-enamel.png",
       "size": [
         320,
         160
@@ -176,7 +176,7 @@
       ]
     },
     "slot-recessed": {
-      "file": "sprites/slot-recessed.png",
+      "file": "slot-recessed.png",
       "size": [
         256,
         256
@@ -210,7 +210,7 @@
       ]
     },
     "panel-steel": {
-      "file": "sprites/panel-steel.png",
+      "file": "panel-steel.png",
       "size": [
         384,
         320
@@ -244,7 +244,7 @@
       ]
     },
     "frame-steel": {
-      "file": "sprites/frame-steel.png",
+      "file": "frame-steel.png",
       "size": [
         384,
         320
@@ -278,7 +278,7 @@
       ]
     },
     "panel-enamel": {
-      "file": "sprites/panel-enamel.png",
+      "file": "panel-enamel.png",
       "size": [
         384,
         320
@@ -312,7 +312,7 @@
       ]
     },
     "lamp-off": {
-      "file": "sprites/lamp-off.png",
+      "file": "lamp-off.png",
       "size": [
         96,
         96
@@ -330,7 +330,7 @@
       ]
     },
     "lamp-on": {
-      "file": "sprites/lamp-on.png",
+      "file": "lamp-on.png",
       "size": [
         96,
         96
@@ -348,7 +348,7 @@
       ]
     },
     "knob-brass": {
-      "file": "sprites/knob-brass.png",
+      "file": "knob-brass.png",
       "size": [
         128,
         128
@@ -366,7 +366,7 @@
       ]
     },
     "gauge-face": {
-      "file": "sprites/gauge-face.png",
+      "file": "gauge-face.png",
       "size": [
         256,
         144
@@ -388,7 +388,7 @@
       ]
     },
     "gauge-needle": {
-      "file": "sprites/gauge-needle.png",
+      "file": "gauge-needle.png",
       "size": [
         40,
         160
@@ -410,7 +410,7 @@
       ]
     },
     "hinge": {
-      "file": "sprites/hinge.png",
+      "file": "hinge.png",
       "size": [
         80,
         144
@@ -428,7 +428,7 @@
       ]
     },
     "speaker-grille": {
-      "file": "sprites/speaker-grille.png",
+      "file": "speaker-grille.png",
       "size": [
         192,
         152
@@ -446,7 +446,7 @@
       ]
     },
     "corner-bracket": {
-      "file": "sprites/corner-bracket.png",
+      "file": "corner-bracket.png",
       "size": [
         128,
         144
@@ -464,7 +464,7 @@
       ]
     },
     "screw": {
-      "file": "sprites/screw.png",
+      "file": "screw.png",
       "size": [
         48,
         48
@@ -482,7 +482,7 @@
       ]
     },
     "toggle-socket": {
-      "file": "sprites/toggle-socket.png",
+      "file": "toggle-socket.png",
       "size": [
         160,
         80
@@ -500,7 +500,7 @@
       ]
     },
     "toggle-handle": {
-      "file": "sprites/toggle-handle.png",
+      "file": "toggle-handle.png",
       "size": [
         64,
         32
@@ -518,7 +518,7 @@
       ]
     },
     "scroll-thumb": {
-      "file": "sprites/scroll-thumb.png",
+      "file": "scroll-thumb.png",
       "size": [
         32,
         56
@@ -536,8 +536,8 @@
       ]
     },
     "icon-character": {
-      "file": "sprites/icon-character.png",
-      "source": "icons/character.svg",
+      "file": "icon-character.png",
+      "source": "character.svg",
       "size": [
         64,
         64
@@ -555,8 +555,8 @@
       ]
     },
     "icon-inventory": {
-      "file": "sprites/icon-inventory.png",
-      "source": "icons/inventory.svg",
+      "file": "icon-inventory.png",
+      "source": "inventory.svg",
       "size": [
         64,
         64
@@ -574,8 +574,8 @@
       ]
     },
     "icon-journal": {
-      "file": "sprites/icon-journal.png",
-      "source": "icons/journal.svg",
+      "file": "icon-journal.png",
+      "source": "journal.svg",
       "size": [
         64,
         64
@@ -593,8 +593,8 @@
       ]
     },
     "icon-save": {
-      "file": "sprites/icon-save.png",
-      "source": "icons/save.svg",
+      "file": "icon-save.png",
+      "source": "save.svg",
       "size": [
         64,
         64
@@ -612,8 +612,8 @@
       ]
     },
     "icon-settings": {
-      "file": "sprites/icon-settings.png",
-      "source": "icons/settings.svg",
+      "file": "icon-settings.png",
+      "source": "settings.svg",
       "size": [
         64,
         64
@@ -631,8 +631,8 @@
       ]
     },
     "icon-plus": {
-      "file": "sprites/icon-plus.png",
-      "source": "icons/plus.svg",
+      "file": "icon-plus.png",
+      "source": "plus.svg",
       "size": [
         64,
         64
@@ -650,8 +650,8 @@
       ]
     },
     "icon-minus": {
-      "file": "sprites/icon-minus.png",
-      "source": "icons/minus.svg",
+      "file": "icon-minus.png",
+      "source": "minus.svg",
       "size": [
         64,
         64
@@ -669,8 +669,8 @@
       ]
     },
     "icon-close": {
-      "file": "sprites/icon-close.png",
-      "source": "icons/close.svg",
+      "file": "icon-close.png",
+      "source": "close.svg",
       "size": [
         64,
         64
@@ -688,8 +688,8 @@
       ]
     },
     "icon-arrow-up": {
-      "file": "sprites/icon-arrow-up.png",
-      "source": "icons/arrow-up.svg",
+      "file": "icon-arrow-up.png",
+      "source": "arrow-up.svg",
       "size": [
         64,
         64
@@ -707,8 +707,8 @@
       ]
     },
     "icon-arrow-down": {
-      "file": "sprites/icon-arrow-down.png",
-      "source": "icons/arrow-down.svg",
+      "file": "icon-arrow-down.png",
+      "source": "arrow-down.svg",
       "size": [
         64,
         64
@@ -726,8 +726,8 @@
       ]
     },
     "icon-clock": {
-      "file": "sprites/icon-clock.png",
-      "source": "icons/clock.svg",
+      "file": "icon-clock.png",
+      "source": "clock.svg",
       "size": [
         64,
         64
@@ -745,8 +745,8 @@
       ]
     },
     "icon-supplies": {
-      "file": "sprites/icon-supplies.png",
-      "source": "icons/supplies.svg",
+      "file": "icon-supplies.png",
+      "source": "supplies.svg",
       "size": [
         64,
         64
@@ -790,8 +790,8 @@
     "family": "Manrope",
     "bodyWeight": 400,
     "headingAndButtonWeight": 600,
-    "regular": "ui/fonts/manrope/Manrope-Regular.ttf",
-    "semibold": "ui/fonts/manrope/Manrope-SemiBold.ttf"
+    "regular": "Manrope-Regular.ttf",
+    "semibold": "Manrope-SemiBold.ttf"
   },
   "colors": {
     "textOnDark": "#D5A451",

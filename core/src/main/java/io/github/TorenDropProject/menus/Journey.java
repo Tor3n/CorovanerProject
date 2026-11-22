@@ -1,5 +1,6 @@
 package io.github.TorenDropProject.menus;
 
+import io.github.TorenDropProject.assets.FrontierCatalog;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;

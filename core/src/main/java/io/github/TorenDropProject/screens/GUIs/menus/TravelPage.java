@@ -3,6 +3,7 @@ package io.github.TorenDropProject.screens.GUIs.menus;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import io.github.TorenDropProject.assets.FrontierCatalog;
 import io.github.TorenDropProject.menus.*;
 
 public final class TravelPage extends MenuPage {

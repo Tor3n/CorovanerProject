@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import io.github.TorenDropProject.menus.MenuAssets;
 
 public class MainModal implements ModalScreen {
     private final SpriteBatch spriteBatch;
@@ -14,7 +15,7 @@ public class MainModal implements ModalScreen {
 
     public MainModal(AssetManager assetManager, SpriteBatch spriteBatch) {
         this.spriteBatch = spriteBatch;
-        this.texture = assetManager.get("MainModal.png", Texture.class);
+        this.texture = assetManager.get(MenuAssets.MODAL, Texture.class);
         this.viewport = new ScreenViewport();
         resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }

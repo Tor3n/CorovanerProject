@@ -11,7 +11,7 @@ is recorded below; the other screen studies remain scoped art proposals.
 - Wooden planks were then rejected as too cowboy. This supersedes the earlier
   plank direction in the design guide.
 - The creator preferred the coffee-colored metal buttons in
-  [the existing modal reference](../../assets/MainModal.png). In this study,
+  [the existing modal reference](../../assets/ui/Menus/MainModal.png). In this study,
   those become rounded coffee-cream enamel faces with aged metal rims.
 - Increase the variety of UI forms: recessed displays, counters, utility keys,
   dials, slots, vents, hinges and distinct panel shapes. Keep their functions clear.
@@ -36,7 +36,7 @@ proposal. Lamps stay in a fixed position; labels do not move when the state chan
 Historical generated concepts and flattened previews are material references,
 not the current typography, color or idle-lamp contract.
 
-Implementation: `MenuTheme` queues the two bundled, licensed Manrope font sources
+Implementation: `MenuAssets` queues the two bundled, licensed Manrope font sources
 and `CoffeeEnamelAssets` loads all 33 regions through one shared atlas. The atlas,
 fonts and illustrated terminal textures belong to the central `AssetManager`.
 Other screens can access hardware, icons and surfaces through
@@ -45,8 +45,8 @@ The main menu uses the atlas's matching `lamp-on` / `lamp-off` pair rather than
 mixing the terminal pack's earlier lit lamp with a different unlit housing.
 The pressed enamel tint is lighter to preserve espresso-label contrast.
 
-See [font provenance and license](../../assets/ui/fonts/manrope/README.md),
-[component manifest](../../assets/ui-architecture/coffee-enamel/manifest.json),
+See [font provenance and license](../menus/manrope.md),
+[component manifest](../../assets/ui/Menus/manifest.json),
 and [runtime behavior](../menus/README.md#terminal-main-menu).
 
 ## Creator decision: 1920 x 1080, centered menu and painted margins
@@ -127,12 +127,12 @@ work does not modify the world renderer or implement the final country map.
 
 | Work | Location | Status |
 | --- | --- | --- |
-| 33 component sprites, 12 SVG icon originals, 9 nine-patch inputs, one atlas | [Coffee-enamel kit](../../assets/ui-architecture/coffee-enamel/README.txt) | All atlas regions load at startup; the matching lamp pair is used in the main menu. Other hardware is available for future composition. |
-| Visual component inventory | [Component sheet](../../assets/ui-architecture/coffee-enamel/component-sheet.png) | Shows the exported assets and example button states. |
-| Offline component preview | [HTML sampler](../../assets/ui-architecture/coffee-enamel/preview.html) | Embedded assets and sample interactions; see validation limits. |
-| Main menu, character screen, travel screen | [Concept scope](reference/coffee-enamel/README.md) | Material and control-variety studies; layouts and sample content are proposals. |
-| Java helper and validation notes | [Integration](../../assets/ui-architecture/coffee-enamel/docs/INTEGRATION.txt), [validation](../../assets/ui-architecture/coffee-enamel/docs/VALIDATION.txt) | Example compiled against LibGDX 1.13.1 / Java 11; not an in-game smoke test. |
-| Separate terminal paintings, reusable button and hover lamp | [1920 x 1080 terminal pack](../../assets/ui-architecture/terminal-layers-v1/README.md) | Used by the implemented main menu, with live text and hover/focus lamps. The tagline and riveted nameplate remain blank. [Runtime behavior and checks](../menus/README.md#terminal-main-menu). |
+| 33 component sprites, 12 SVG icon originals, 9 nine-patch inputs, one atlas | [Coffee-enamel kit](../menus/ui-kit/README.txt) | All atlas regions load at startup; the matching lamp pair is used in the main menu. Other hardware is available for future composition. |
+| Visual component inventory | [Component sheet](../menus/concepts/coffee-enamel/component-sheet.png) | Shows the exported assets and example button states. |
+| Offline component preview | [HTML sampler](../menus/concepts/coffee-enamel/preview.html) | Embedded assets and sample interactions; see validation limits. |
+| Main menu and travel screen concepts | [Concept scope](../menus/concepts/coffee-enamel/README.md) | Material and control-variety studies; layouts and sample content are proposals. |
+| Java helper and validation notes | [Integration](../menus/ui-kit/INTEGRATION.txt), [validation](../menus/ui-kit/VALIDATION.txt) | Example compiled against LibGDX 1.13.1 / Java 11; not an in-game smoke test. |
+| Separate terminal paintings, reusable button and hover lamp | [1920 x 1080 terminal pack](../../assets/ui/Menus/README.md) | Used by the implemented main menu, with live text and hover/focus lamps. The tagline and riveted nameplate remain blank. [Runtime behavior and checks](../menus/README.md#terminal-main-menu). |
 
 The concept PNGs are 1672 x 941 and are not 4K production masters. The component
 PNGs have individually documented sizes in the kit manifest. They are clean

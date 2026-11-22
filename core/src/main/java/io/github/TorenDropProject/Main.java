@@ -8,11 +8,12 @@ import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import net.mgsx.gltf.scene3d.scene.SceneAsset;
+import io.github.TorenDropProject.assets.FrontierCatalog;
 import io.github.TorenDropProject.characters.CharacterDefinition;
 import io.github.TorenDropProject.characters.CharacterFactory;
 import io.github.TorenDropProject.world.WorldSceneFactory;
 import com.badlogic.gdx.utils.ScreenUtils;
-import io.github.TorenDropProject.pregame.SplashScreenAssetLoader;
+import io.github.TorenDropProject.assets.SplashScreenAssetLoader;
 import io.github.TorenDropProject.screens.BattleScreen;
 import io.github.TorenDropProject.screens.development.CharacterPreviewScreen;
 import io.github.TorenDropProject.screens.ScreenManager;
@@ -130,7 +131,7 @@ public class Main implements ApplicationListener {
 
 
     private void createCursors() {
-        arrowPixmap = assetManager.get("cursors/arrowCursor3.png", Pixmap.class);
+        arrowPixmap = assetManager.get(MenuAssets.CURSOR, Pixmap.class);
         arrowCursor = Gdx.graphics.newCursor(arrowPixmap, 0, 0);
         Gdx.graphics.setCursor(arrowCursor);
     }

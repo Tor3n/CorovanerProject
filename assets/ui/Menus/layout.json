@@ -6,21 +6,21 @@
   },
   "layersBackToFront": [
     {
-      "path": "layers/01-caravan-painting.png",
+      "path": "01-caravan-painting.png",
       "x": 0,
       "y": 0,
       "width": 1920,
       "height": 1080
     },
     {
-      "path": "layers/02-hinged-panel.png",
+      "path": "02-hinged-panel.png",
       "x": 0,
       "y": 0,
       "width": 1920,
       "height": 1080
     },
     {
-      "path": "layers/03-metal-rim.png",
+      "path": "03-metal-rim.png",
       "x": 0,
       "y": 0,
       "width": 1920,
@@ -28,8 +28,8 @@
     }
   ],
   "controls": {
-    "button": "controls/button-enamel.png",
-    "hoverLamp": "controls/lamp-hover.png"
+    "button": "button-enamel.png",
+    "hoverLamp": "lamp-hover.png"
   },
   "exampleButtons": [
     {

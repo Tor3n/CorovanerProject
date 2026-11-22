@@ -2,6 +2,7 @@ package io.github.TorenDropProject.menus;
 
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
+import io.github.TorenDropProject.assets.FrontierCatalog;
 import org.junit.Test;
 import java.io.File;
 import static org.junit.Assert.*;

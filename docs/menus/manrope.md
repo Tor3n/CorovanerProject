@@ -20,7 +20,7 @@ Static instances make the requested weights explicit to the existing libGDX
 FreeType loader without adding runtime variable-font configuration. Menu fonts
 are generated asynchronously through the application's AssetManager.
 
-Copyright and redistribution terms are in [OFL.txt](OFL.txt), copied unchanged
+Copyright and redistribution terms are in [Manrope-OFL.txt](../../assets/ui/Menus/Manrope-OFL.txt), copied unchanged
 from Google Fonts. These bundled fonts remain under the SIL Open Font License 1.1.
 The older `frontier-*.ttf` files and their separate license remain available for
 legacy references; the current menu theme does not load them.

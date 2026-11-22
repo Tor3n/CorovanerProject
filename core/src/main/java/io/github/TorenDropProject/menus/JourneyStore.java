@@ -2,6 +2,7 @@ package io.github.TorenDropProject.menus;
 
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.utils.Json;
+import io.github.TorenDropProject.assets.FrontierCatalog;
 
 /** Three manual slots. Validate before replacing the running session. */
 public final class JourneyStore {

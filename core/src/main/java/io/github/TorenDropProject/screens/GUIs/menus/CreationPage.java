@@ -3,6 +3,7 @@ package io.github.TorenDropProject.screens.GUIs.menus;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import io.github.TorenDropProject.assets.FrontierCatalog;
 import io.github.TorenDropProject.menus.*;
 
 public final class CreationPage extends MenuPage {

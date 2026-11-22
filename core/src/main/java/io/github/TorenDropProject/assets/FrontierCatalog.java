@@ -1,4 +1,4 @@
-package io.github.TorenDropProject.menus;
+package io.github.TorenDropProject.assets;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
@@ -10,7 +10,9 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import io.github.TorenDropProject.world.WorldMap;
 
-/** Editable content, independent of actors, save data and world rendering. */
+/**
+ * Editable content, independent of actors, save data and world rendering.
+ */
 public final class FrontierCatalog {
     public static final String PATH = "data/frontier.json";
     public Origin[] origins;
@@ -20,38 +22,57 @@ public final class FrontierCatalog {
 
     public static class Origin {
         public String id, name, description, skill;
-        @Override public String toString() { return name; }
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
+
     public static class Archetype {
         public String id, name, description, skill, weapon;
         public int hitDie;
-        @Override public String toString() { return name; }
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
+
     public static class Destination {
         public String id, name, description, danger;
         public float x, y;
         public String worldMap;
-        public boolean hasLocalArea() { return worldMap != null && !worldMap.isEmpty(); }
+
+        public boolean hasLocalArea() {
+            return worldMap != null && !worldMap.isEmpty();
+        }
     }
+
     public static class Route {
         public String from, to;
         public int hours, supplies;
+
         public boolean connects(String a, String b) {
             return (from.equals(a) && to.equals(b)) || (from.equals(b) && to.equals(a));
         }
     }
+
     public Origin origin(String id) {
         for (Origin value : origins) if (value.id.equals(id)) return value;
         throw new IllegalArgumentException("Unknown origin: " + id);
     }
+
     public Archetype archetype(String id) {
         for (Archetype value : archetypes) if (value.id.equals(id)) return value;
         throw new IllegalArgumentException("Unknown archetype: " + id);
     }
+
     public Destination destination(String id) {
         for (Destination value : destinations) if (value.id.equals(id)) return value;
         throw new IllegalArgumentException("Unknown destination: " + id);
     }
+
     public Route route(String from, String to) {
         for (Route value : routes) if (value.connects(from, to)) return value;
         return null;
@@ -65,7 +86,8 @@ public final class FrontierCatalog {
         java.util.Set<String> ids = new java.util.HashSet<>();
         for (Origin value : origins) {
             requireId(ids, value.id);
-            if (value.name == null || value.description == null || value.skill == null) throw new IllegalArgumentException("Incomplete origin.");
+            if (value.name == null || value.description == null || value.skill == null)
+                throw new IllegalArgumentException("Incomplete origin.");
         }
         ids.clear();
         for (Archetype value : archetypes) {
@@ -84,34 +106,48 @@ public final class FrontierCatalog {
         }
         ids.clear();
         for (Route value : routes) {
-            destination(value.from); destination(value.to);
+            destination(value.from);
+            destination(value.to);
             String key = value.from.compareTo(value.to) < 0 ? value.from + ":" + value.to : value.to + ":" + value.from;
             if (!ids.add(key) || value.from.equals(value.to) || value.hours <= 0 || value.supplies <= 0) {
                 throw new IllegalArgumentException("Invalid or duplicate road.");
             }
         }
-        origin("caravan"); archetype("gunslinger"); destination("mercy"); destination("pass");
+        origin("caravan");
+        archetype("gunslinger");
+        destination("pass");
     }
+
     private void requireId(java.util.Set<String> ids, String id) {
-        if (id == null || id.isEmpty() || !ids.add(id)) throw new IllegalArgumentException("Missing or duplicate catalog ID.");
+        if (id == null || id.isEmpty() || !ids.add(id))
+            throw new IllegalArgumentException("Missing or duplicate catalog ID.");
     }
 
     public static final class Loader extends AsynchronousAssetLoader<FrontierCatalog, AssetLoaderParameters<FrontierCatalog>> {
         private FrontierCatalog loaded;
-        public Loader(FileHandleResolver resolver) { super(resolver); }
-        @Override public void loadAsync(AssetManager manager, String name, FileHandle file,
-                                        AssetLoaderParameters<FrontierCatalog> parameters) {
+
+        public Loader(FileHandleResolver resolver) {
+            super(resolver);
+        }
+
+        @Override
+        public void loadAsync(AssetManager manager, String name, FileHandle file,
+                              AssetLoaderParameters<FrontierCatalog> parameters) {
             loaded = new Json().fromJson(FrontierCatalog.class, file);
             loaded.validate();
         }
-        @Override public FrontierCatalog loadSync(AssetManager manager, String name, FileHandle file,
-                                                  AssetLoaderParameters<FrontierCatalog> parameters) {
+
+        @Override
+        public FrontierCatalog loadSync(AssetManager manager, String name, FileHandle file,
+                                        AssetLoaderParameters<FrontierCatalog> parameters) {
             FrontierCatalog result = loaded;
             loaded = null;
             return result;
         }
-        @Override public Array<AssetDescriptor> getDependencies(String name, FileHandle file,
-                                                                 AssetLoaderParameters<FrontierCatalog> parameters) {
+
+        @Override
+        public Array<AssetDescriptor> getDependencies(String name, FileHandle file,
+                                                      AssetLoaderParameters<FrontierCatalog> parameters) {
             FrontierCatalog catalog = new Json().fromJson(FrontierCatalog.class, file);
             Array<AssetDescriptor> dependencies = new Array<>();
             for (Destination destination : catalog.destinations) {

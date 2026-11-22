@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 /** Shared component sprites. Main's AssetManager owns the atlas and its texture. */
 public final class CoffeeEnamelAssets {
-    public static final String ATLAS = "ui-architecture/coffee-enamel/atlas/corovaner-ui.atlas";
+    public static final String ATLAS = MenuAssets.ROOT + "corovaner-ui.atlas";
     private final TextureAtlas atlas;
 
     public static void queue(AssetManager assets) {
