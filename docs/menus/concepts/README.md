@@ -6,6 +6,8 @@ visual studies. Creator requirements remain in the
 
 - [Coffee-enamel studies](coffee-enamel/README.md): main-menu and travel
   concepts, generation brief, component sheets, stretch examples and offline preview.
+- [Coffee-enamel character creation](coffe-enamel/README.md): selected screen
+  concept, blank component sheet, thin inner rim and empty assembly study.
 - [Earlier menu image](legacy/MainMenu.png): retained historical artwork, not used
   by the current menu.
 
